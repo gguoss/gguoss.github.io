@@ -6,14 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | Block Chain</title>
+  <title>Block Chain</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="Chain简介：chain设计了一种多种资产可以互相交易发布的分布式账本协议。用该协议的多条链可以独立的存在， 并且可以跨链交易， 这样不同的运营商可以以相同的形式互相交易。坚持最小权限原则， 资产的管理和分布式账本同步控制相分离。链协议允许任何网络参与者通过编写自定义“发布程序”来定义和发行资产。一旦发行，资产单元由“控制程序”控制。 控制程序是用图灵完备的编程语言实现， 该语言可用于编写复杂的">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Block Chain">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/05/23/chain/index.html">
 <meta property="og:site_name" content="Block Chain">
+<meta property="og:description" content="Chain简介：chain设计了一种多种资产可以互相交易发布的分布式账本协议。用该协议的多条链可以独立的存在， 并且可以跨链交易， 这样不同的运营商可以以相同的形式互相交易。坚持最小权限原则， 资产的管理和分布式账本同步控制相分离。链协议允许任何网络参与者通过编写自定义“发布程序”来定义和发行资产。一旦发行，资产单元由“控制程序”控制。 控制程序是用图灵完备的编程语言实现， 该语言可用于编写复杂的">
+<meta property="og:image" content="http://yoursite.com/img/chain.jpg">
+<meta property="og:updated_time" content="2017-05-23T13:23:29.159Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Block Chain">
+<meta name="twitter:description" content="Chain简介：chain设计了一种多种资产可以互相交易发布的分布式账本协议。用该协议的多条链可以独立的存在， 并且可以跨链交易， 这样不同的运营商可以以相同的形式互相交易。坚持最小权限原则， 资产的管理和分布式账本同步控制相分离。链协议允许任何网络参与者通过编写自定义“发布程序”来定义和发行资产。一旦发行，资产单元由“控制程序”控制。 控制程序是用图灵完备的编程语言实现， 该语言可用于编写复杂的">
+<meta name="twitter:image" content="http://yoursite.com/img/chain.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Block Chain" type="application/atom+xml">
   
@@ -149,85 +155,133 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-chain" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Chain"><a href="#Chain" class="headerlink" title="Chain"></a>Chain</h1><h2 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h2><p>chain设计了一种多种资产可以互相交易发布的分布式账本协议。用该协议的多条链可以独立的存在， 并且可以跨链交易， 这样不同的运营商可以以相同的形式互相交易。坚持最小权限原则， 资产的管理和分布式账本同步控制相分离。<br>链协议允许任何网络参与者通过编写自定义“发布程序”来定义和发行资产。一旦发行，资产单元由“控制程序”控制。 控制程序是用图灵完备的编程语言实现， 该语言可用于编写复杂的智能合约。<br>每个网络由“块签名者“组成的联盟来保护安全性。 只要法定的块签名者遵循协议， 该系统就可以安全的抵抗分叉。为了提高效率，所有出块人可以达成协议， 委托单个节点出块，类似于raft协议。 网络的任何节点都可以验证块并广播交易。<br>Chain 主要是面向企业软件产品的联盟链。 Chain的代码是长久开源的， 并且搭建了一个测试链，供大家自由测试。</p>
+<p><strong> Chain 大部分思想来自于比特币和以太坊。</strong> </p>
+<ul>
+<li>1.在比特币的基础上增加了多种资产自由发布。而比特币只支持btc。</li>
+<li>2.evm的功能介于比特币和以太坊之间。主要用于资产的发布与管理。</li>
+<li>3.采用了比特币的utxo模式。</li>
+<li>4.加入了以太坊的PAT树， 但树不是面向账户的， 而是面向utxo的。</li>
+</ul>
+<h2 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h2><p><img src="/img/chain.jpg" alt=" " title="基本数据结构关系图"></p>
+<pre><code>星期二, 23. 五月 2017 09:16下午 
+</code></pre>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>0x006E97e28CAa58D3357d070C9535D6CD06bD875e<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/23/chain/" class="archive-article-date">
-  	<time datetime="2017-05-23T13:23:29.159Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-23</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/05/23/chain/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/22/raiden/" class="archive-article-date">
-  	<time datetime="2017-05-22T12:50:00.849Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/22/ipfs/" class="archive-article-date">
-  	<time datetime="2017-05-22T06:05:01.744Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+  
+    <a href="/2017/05/22/raiden/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -250,8 +304,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
