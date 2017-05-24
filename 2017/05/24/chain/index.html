@@ -15,8 +15,10 @@
 <meta property="og:site_name" content="Block Chain">
 <meta property="og:description" content="Chain简介chain设计了一种多种资产可以互相交易发布的分布式账本协议。用该协议的多条链可以独立的存在， 并且可以跨链交易， 这样不同的运营商可以以相同的形式互相交易。坚持最小权限原则， 资产的管理和分布式账本同步控制相分离。链协议允许任何网络参与者通过编写自定义“发布程序”来定义和发行资产。一旦发行，资产单元由“控制程序”控制。 控制程序是用图灵完备的编程语言实现， 该语言可用于编写复杂的智">
 <meta property="og:image" content="http://yoursite.com/img/tx.png">
+<meta property="og:image" content="http://yoursite.com/img/segwit.png">
+<meta property="og:image" content="http://yoursite.com/img/world_state.png">
 <meta property="og:image" content="http://yoursite.com/img/chain.jpg">
-<meta property="og:updated_time" content="2017-05-24T07:56:44.354Z">
+<meta property="og:updated_time" content="2017-05-24T09:02:39.758Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Block Chain">
 <meta name="twitter:description" content="Chain简介chain设计了一种多种资产可以互相交易发布的分布式账本协议。用该协议的多条链可以独立的存在， 并且可以跨链交易， 这样不同的运营商可以以相同的形式互相交易。坚持最小权限原则， 资产的管理和分布式账本同步控制相分离。链协议允许任何网络参与者通过编写自定义“发布程序”来定义和发行资产。一旦发行，资产单元由“控制程序”控制。 控制程序是用图灵完备的编程语言实现， 该语言可用于编写复杂的智">
@@ -170,8 +172,11 @@
 <li>3.采用了比特币的utxo模式。</li>
 <li>4.加入了以太坊的PAT树用于世界状态， 但该世界状态不是面向账户的， 而是面向utxo的。</li>
 </ul>
-<h2 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h2><p>Chain 的目的是管理数字资产的发行、所有权、 交易。资产的发布、转让和交换是通过向网络发送交易来完成的。 这些交易会被排序并分批打包成块，然后组成一条不可更改的区块链。<br><strong> 资产 </strong><br>每条区块链都可以支持多种类型的资产。 每种资产被一个256位字节的全局资产ID 所定位唯一（在所有的区块链中该ID唯一）。每种资产ID有相对应的发布程序，它定义了该资产的发布规则。一旦资产发布，资产的支出由控制程序决定。<br><strong> 交易 </strong><br>交易使用比特币的UTXO模式。但在这些基础上做了改进， inputs 可以选择发布资产或者是未消耗的发费，outputs可以选择控制程序的输出或者资产的销毁，并且在inputs和outputs上加了个资产ID字段，支持多种资产的混合交易， 只要inputs和outpus的价值相等即可。如下图：<br><img src="/img/tx.png" alt=" " title="tx"></p>
-<p><img src="/img/chain.jpg" alt=" " title="基本数据结构关系图"></p>
+<h2 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h2><p>Chain 的目的是管理数字资产的发行、所有权、 交易。资产的发布、转让和交换是通过向网络发送交易来完成的。 这些交易会被排序并分批打包成块，然后组成一条不可更改的区块链。<br><strong> 资产 </strong><br>每条区块链都可以支持多种类型的资产。 每种资产被一个256位字节的全局资产ID 所定位唯一（在所有的区块链中该ID唯一）。每种资产ID有相对应的发布程序，它定义了该资产的发布规则。一旦资产发布，资产的支出由控制程序决定。<br><strong> 交易 </strong><br>交易使用比特币的UTXO模式。但在这些基础上做了改进， inputs 可以选择发布资产或者是未消耗的发费，outputs可以选择控制程序的输出或者资产的销毁，并且在inputs和outputs上加了个资产ID字段，支持多种资产的混合交易， 只要inputs和outpus的价值相等即可。如下图：<br><img src="/img/tx.png" alt=" " title="tx"><br>为了提高性能，交易实现了类似比特币的隔离见证功能， 如下图：<br><img src="/img/segwit.png" alt=""><br><strong> 区块 </strong><br>为了防止双花，块引入了类似以太坊的世界状态，但世界状态是针对UTXO 存储的, 即每一笔交易的执行，都是在该世界状态中执行两步</p>
+<ul>
+<li>1.删除原来的已经发费了的outputs。</li>
+<li>2.增加产生的outputs。<br>区块中存储每一笔排序的交易，并链接成一条不可更改的区块链。如下图<br><img src="/img/world_state.png" alt=""><br>所有的交易在每一个块中排序好，成为不可更改的历史事实。世界状态作为当前区块链的快照。  当然块与块之间少不了共识， 共识程序的执行流程类似于上上图交易验证的流程。（recover(signature + message) <strong> ?= </strong> pubkey）<br>区块链的整体数据结构如下图：<br><img src="/img/chain.jpg" alt=" " title="基本数据结构关系图"></li>
+</ul>
 <h2 id="程序设计"><a href="#程序设计" class="headerlink" title="程序设计"></a>程序设计</h2><p>Chain 的协议使得编程非常灵活， 可根据不同的层次并行计算。</p>
 <ul>
 <li>1.发行资产程序指定相应的规则发行新资产。</li>
