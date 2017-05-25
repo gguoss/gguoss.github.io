@@ -151,6 +151,53 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-raiden" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="雷电网络"><a href="#雷电网络" class="headerlink" title="雷电网络"></a>雷电网络</h1><h2 id="基于以太坊的快速数字资产交易"><a href="#基于以太坊的快速数字资产交易" class="headerlink" title="基于以太坊的快速数字资产交易"></a>基于以太坊的快速数字资产交易</h2><p><strong> 以太坊上网络支付通道 </strong><br>Raiden 利用链下网络状态技术给以太坊上的数字资产带来了许多nice的属性：</p>
+<ul>
+<li>1.可扩展性: 它与参与者的数量呈线性关系（每秒可能有1,000,000+次转帐)。</li>
+<li>2.快速： 转账在一秒钟的时间内被确认和确定。</li>
+<li>3.匿名性：单次转帐不会显示在全局分布式帐本中。</li>
+<li>4.互操作性： 以太坊上任何实现了标准代币的接口的代币都可以互相交易。</li>
+<li>5.低额交易费： 交易费比区块链上的交易费低7个数量级。</li>
+<li>6.小额支付： 低交易费允许有效的转移小额资金。<br><strong> 技术点 </strong><br>该技术类似于比特币的闪电网络。<br>基本思想是： 所有的交易需要记载到区块链上的共享账本上（这是区块链的瓶颈），而该技术是通过交易双方私下签名交易信息， 不需要全部上链。Raiden 使用一个p2p支付通道网络，并在以太坊的区块链上存一定的押金。Raiden 是以太坊上的一个扩展应用。Raiden 节点和以太坊的节点互相联通工作，作为交易的基础设施， 并用以太坊上的链来管理通道的存证信息。Raiden 提供了简单的API, 使得DApps 非常容易实现。<br><strong> 应用 </strong></li>
+<li>为内容分发做小额计费：Paywalls,广告和订阅。 </li>
+<li>去中心化的M2M市场： 特别是在物联网中， 微小的带宽， 存储， cpu占有率， 能量， 传感器数据等可以交易。</li>
+<li>没有交集的代币系统： 游戏代币， 奖励代币， 私有货币。</li>
+<li>API 访问： 对于即将来临的M2M经济，每次API 访问计费。</li>
+<li>快速去中心话交易。<br><strong> 与以太坊相辅相成 </strong><br>Vitalik Buterin 说：“ 状态通道是一种重要技术， 有可能大大提高许多区块链应用程序的可扩展性和隐私性； 结合分片和其他隐私秘密保护技术， 他们是一个重要的组合，可以实现去中心化的许多属性，而这些属性是圈内人和机构所期望，也应该实现的“</li>
+</ul>
+<p>Raiden 1.0 详解：<br>Raiden 1.0 通过合约的方式实现了token 的线下状态通道支付。<br>Registry 合约是系统注册合约，以太坊上的每一种代币都可以一次注册， 然后会产生一个基于该token的状态通道管理合约。每个有该token的用户都可以选择一个搭档建立一个状态通道合约，通过设置押金（会在链上存证）实现线下通道支付，线下交易都是双方各自签名确认即可， 撤出时， 再双方提供证据， 链上交易存证。合约如下：<br><img src="/img/raiden.jpg" alt=""><br>Raiden 2.0 正在准备实现側链的功能。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/25/raiden/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-chain" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -199,53 +246,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/05/25/chain/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-raiden" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="雷电网络"><a href="#雷电网络" class="headerlink" title="雷电网络"></a>雷电网络</h1><h2 id="基于以太坊的快速数字资产交易"><a href="#基于以太坊的快速数字资产交易" class="headerlink" title="基于以太坊的快速数字资产交易"></a>基于以太坊的快速数字资产交易</h2><p><strong> 以太坊上网络支付通道 </strong><br>Raiden 利用链下网络状态技术给以太坊上的数字资产带来了许多nice的属性：</p>
-<ul>
-<li>1.可扩展性: 它与参与者的数量呈线性关系（每秒可能有1,000,000+次转帐)。</li>
-<li>2.快速： 转账在一秒钟的时间内被确认和确定。</li>
-<li>3.匿名性：单次转帐不会显示在全局分布式帐本中。</li>
-<li>4.互操作性： 以太坊上任何实现了标准代币的接口的代币都可以互相交易。</li>
-<li>5.低额交易费： 交易费比区块链上的交易费低7个数量级。</li>
-<li>6.小额支付： 低交易费允许有效的转移小额资金。<br><strong> 技术点 </strong><br>该技术类似于比特币的闪电网络。<br>基本思想是： 所有的交易需要记载到区块链上的共享账本上（这是区块链的瓶颈），而该技术是通过交易双方私下签名交易信息， 不需要全部上链。Raiden 使用一个p2p支付通道网络，并在以太坊的区块链上存一定的押金。Raiden 是以太坊上的一个扩展应用。Raiden 节点和以太坊的节点互相联通工作，作为交易的基础设施， 并用以太坊上的链来管理通道的存证信息。Raiden 提供了简单的API, 使得DApps 非常容易实现。<br><strong> 应用 </strong></li>
-<li>为内容分发做小额计费：Paywalls,广告和订阅。 </li>
-<li>去中心化的M2M市场： 特别是在物联网中， 微小的带宽， 存储， cpu占有率， 能量， 传感器数据等可以交易。</li>
-<li>没有交集的代币系统： 游戏代币， 奖励代币， 私有货币。</li>
-<li>API 访问： 对于即将来临的M2M经济，每次API 访问计费。</li>
-<li>快速去中心话交易。<br><strong> 与以太坊相辅相成 </strong><br>Vitalik Buterin 说：“ 状态通道是一种重要技术， 有可能大大提高许多区块链应用程序的可扩展性和隐私性； 结合分片和其他隐私秘密保护技术， 他们是一个重要的组合，可以实现去中心化的许多属性，而这些属性是圈内人和机构所期望，也应该实现的“</li>
-</ul>
-<p>Raiden 1.0 详解：<br><img src="/img/raiden.jpg" alt=""> </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/22/raiden/">展开全文 >></a>
         </p>
       
 
