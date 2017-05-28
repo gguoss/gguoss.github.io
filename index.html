@@ -151,119 +151,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-raiden" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="雷电网络"><a href="#雷电网络" class="headerlink" title="雷电网络"></a>雷电网络</h1><h2 id="基于以太坊的快速数字资产交易"><a href="#基于以太坊的快速数字资产交易" class="headerlink" title="基于以太坊的快速数字资产交易"></a>基于以太坊的快速数字资产交易</h2><p><strong> 以太坊上网络支付通道 </strong><br>Raiden 利用链下网络状态技术给以太坊上的数字资产带来了许多nice的属性：</p>
-<ul>
-<li>1.可扩展性: 它与参与者的数量呈线性关系（每秒可能有1,000,000+次转帐)。</li>
-<li>2.快速： 转账在一秒钟的时间内被确认和确定。</li>
-<li>3.匿名性：单次转帐不会显示在全局分布式帐本中。</li>
-<li>4.互操作性： 以太坊上任何实现了标准代币的接口的代币都可以互相交易。</li>
-<li>5.低额交易费： 交易费比区块链上的交易费低7个数量级。</li>
-<li>6.小额支付： 低交易费允许有效的转移小额资金。<br><strong> 技术点 </strong><br>该技术类似于比特币的闪电网络。<br>基本思想是： 所有的交易需要记载到区块链上的共享账本上（这是区块链的瓶颈），而该技术是通过交易双方私下签名交易信息， 不需要全部上链。Raiden 使用一个p2p支付通道网络，并在以太坊的区块链上存一定的押金。Raiden 是以太坊上的一个扩展应用。Raiden 节点和以太坊的节点互相联通工作，作为交易的基础设施， 并用以太坊上的链来管理通道的存证信息。Raiden 提供了简单的API, 使得DApps 非常容易实现。<br><strong> 应用 </strong></li>
-<li>为内容分发做小额计费：Paywalls,广告和订阅。 </li>
-<li>去中心化的M2M市场： 特别是在物联网中， 微小的带宽， 存储， cpu占有率， 能量， 传感器数据等可以交易。</li>
-<li>没有交集的代币系统： 游戏代币， 奖励代币， 私有货币。</li>
-<li>API 访问： 对于即将来临的M2M经济，每次API 访问计费。</li>
-<li>快速去中心话交易。<br><strong> 与以太坊相辅相成 </strong><br>Vitalik Buterin 说：“ 状态通道是一种重要技术， 有可能大大提高许多区块链应用程序的可扩展性和隐私性； 结合分片和其他隐私秘密保护技术， 他们是一个重要的组合，可以实现去中心化的许多属性，而这些属性是圈内人和机构所期望，也应该实现的“</li>
-</ul>
-<p>Raiden 1.0 详解：<br>Raiden 1.0 通过合约的方式实现了token 的线下状态通道支付。<br>Registry 合约是系统注册合约，以太坊上的每一种代币都可以一次注册， 然后会产生一个基于该token的状态通道管理合约。每个有该token的用户都可以选择一个搭档建立一个状态通道合约，通过设置押金（会在链上存证）实现线下通道支付，线下交易都是双方各自签名确认即可， 撤出时， 再双方提供证据， 链上交易存证。合约如下：<br><img src="/img/raiden.jpg" alt=""><br>私有链上运行步骤：（geth 需要 &lt; 1.6.0的版本）<br>1，编译合约，并生成到genesis.json。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python tools/config_builder.py full_genesis &gt; mycustomgenesis.json</div></pre></td></tr></table></figure></p>
-<p>2， 根据genesis.json初始化内容到指定目录。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">geth --datadir /tmp/privategeth init mycustomgenesis.json</div></pre></td></tr></table></figure></p>
-<p>3，启动geth<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">geth --datadir /tmp/privategeth --networkid 123 --nodiscover --maxpeers 0 --rpc --minerthreads 1 --etherbase c13f2e8e9c92d81de806023d68cc64fe85bf6740 --mine</div></pre></td></tr></table></figure></p>
-<p>4，启动雷电网络<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">raiden --eth_rpc_endpoint 127.0.0.1:8545 --registry_contract_address 79eafd0b5ec8d3f945e6bb2817ed90b046c0d0af --discovery_contract_address 2ce636d6240f8955d085a896e12429f8b3c7db26</div></pre></td></tr></table></figure></p>
-<p>Raiden 2.0 正在准备实现側链的功能。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/27/raiden/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-chain" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Chain"><a href="#Chain" class="headerlink" title="Chain"></a>Chain</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>chain设计了一种多种资产可以互相交易发布的分布式账本协议。用该协议的多条链可以独立的存在， 并且可以跨链交易， 这样不同的运营商可以以相同的形式互相交易。坚持最小权限原则， 资产的管理和分布式账本同步控制相分离。<br>链协议允许任何网络参与者通过编写自定义“发布程序”来定义和发行资产。一旦发行，资产单元由“控制程序”控制。 控制程序是用图灵完备的编程语言实现， 该语言可用于编写复杂的智能合约。<br>每个网络由“块签名者“组成的联盟来保护安全性。 只要法定的块签名者遵循协议， 该系统就可以安全的抵抗分叉。为了提高效率，所有出块人可以达成协议， 委托单个节点出块，类似于raft协议。 网络的任何节点都可以验证块并广播交易。<br>Chain 主要是面向企业软件产品的联盟链。 Chain的代码是长久开源的， 并且搭建了一个测试链，供大家自由测试。</p>
-<h2 id="设计Chain-的动机"><a href="#设计Chain-的动机" class="headerlink" title="设计Chain 的动机"></a>设计Chain 的动机</h2><p>当今社会的货币， 证券以及衍生品是以电子支付的形式进行交易的。电子支付需要太多的第三方中介参与，需要太多的人力物力去对帐。比特币虽然去中介化了，但堆栈式脚本实现的功能太少， 只支持本币的简单交易合约。以太坊的evm 又太过于复杂， 有太多的安全不确定性。再者， 他们是公有链，所有数据在公众的眼皮底下。 这时， Chain 恰好能够解决这些痛点。 Chain 是联盟链，支持多种资产的发布和交易， 也支持多种组织的跨链交易。</p>
-<p><strong> Chain 大部分思想来自于比特币和以太坊。</strong> </p>
-<ul>
-<li>1.在比特币的基础上增加了多种资产自由发布。而比特币只支持btc。</li>
-<li>2.evm的功能介于比特币和以太坊之间。主要用于资产的发布与管理。</li>
-<li>3.采用了比特币的utxo模式。</li>
-<li>4.加入了以太坊的PAT树用于世界状态， 但该世界状态不是面向账户的， 而是面向utxo的。</li>
-</ul>
-<h2 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h2><p>Chain 的目的是管理数字资产的发行、所有权、 交易。资产的发布、转让和交换是通过向网络发送交易来完成的。 这些交易会被排序并分批打包成块，然后组成一条不可更改的区块链。<br><strong> 资产 </strong><br>每条区块链都可以支持多种类型的资产。 每种资产被一个256位字节的全局资产ID 所定位唯一（在所有的区块链中该ID唯一）。每种资产ID有相对应的发布程序，它定义了该资产的发布规则。一旦资产发布，资产的支出由控制程序决定。<br><strong> 交易 </strong><br>交易使用比特币的UTXO模式。但在这些基础上做了改进， inputs 可以选择发布资产或者是未消耗的发费，outputs可以选择控制程序的输出或者资产的销毁，并且在inputs和outputs上加了个资产ID字段，支持多种资产的混合交易， 只要inputs和outpus的价值相等即可。如下图：<br><img src="/img/tx.png" alt=" " title="tx"><br>为了提高性能，交易实现了类似比特币的隔离见证功能， 如下图：<br><img src="/img/segwit.png" alt=""><br><strong> 区块 </strong><br>为了防止双花，块引入了类似以太坊的世界状态，但世界状态是针对UTXO 存储的, 即每一笔交易的执行，都是在该世界状态中执行两步</p>
-<ul>
-<li>1.删除原来的已经发费了的outputs。</li>
-<li>2.增加产生的outputs。<br>区块中存储每一笔排序的交易，并链接成一条不可更改的区块链。如下图<br><img src="/img/world_state.png" alt=""><br>所有的交易在每一个块中排序好，成为不可更改的历史事实。世界状态作为当前区块链的快照。  当然块与块之间少不了共识， 共识程序的执行流程类似于上上图交易验证的流程。（recover(signature + message) <strong> ?= </strong> pubkey）<br>区块链的整体数据结构如下图：<br><img src="/img/chain.jpg" alt=" " title="基本数据结构关系图"></li>
-</ul>
-<h2 id="程序设计"><a href="#程序设计" class="headerlink" title="程序设计"></a>程序设计</h2><p>Chain 的协议使得编程非常灵活， 可根据不同的层次并行计算。</p>
-<ul>
-<li>1.发行资产程序指定相应的规则发行新资产。</li>
-<li>2.控制程序指定相应的规则在一种资产上作交易。</li>
-<li>3.共识程序指定相应的规则产生新的区块。<br>这些程序根据内存和时间的限制， 可以并行的运行。正因为如此，程序是足够灵活以允许实施广泛的金融工具（如期权、债券、互换），安全方案（存储资产），应用如提供，契据，拍卖。<h3 id="虚拟机-CVM"><a href="#虚拟机-CVM" class="headerlink" title="虚拟机(CVM)"></a>虚拟机(CVM)</h3>Chain 的虚拟机是一个栈式状态机： 任何指令都在该栈中执行。CVM 的指令集是图灵完备的，为了防止死循环， 采用了run limit 来限制陷入死循环， 协议允许网络去达成共识设置该run limit.  根据运行消耗来定价每一条一条指令的run limit。 这 非常类似于以太坊的gas机制， 和以太坊不同的是CVM 不会在每笔交易中给run limit 计费。CVM 指令集包含了push, pop等基本指令集， 同时还包括了SHA3, CHECKSIG, CHECKMULTISIG等复杂的数学加密运算。<br><strong> 自省功能 </strong></li>
-<li>交易自省： 可以在执行过程判断是否超过预定的时间，也可以增加自带控制程序，来对（价格，资产，运行过程， 索引）做一定自由控制。</li>
-<li>区块自省： 自省指令集（BLOCKHASH, NEXTPROGRAM）,只能在共识程序中执行。<br>因为丰富的指令集，可以组合使用完成不仅仅是交易签名和验签的功能。如：多重签名，多方签名，提前部署（我最喜欢的是：类似于微信红包功能， A给B发送交易，需要B确认才能上链）CHECKPREDICATE 提供了强大的其它跨链功能，包括实现类似于BTCRelay的功能。<h2 id="共识"><a href="#共识" class="headerlink" title="共识"></a>共识</h2>Chain 可以支持任意的共识程序， 目前实现的共识， 是不支持拜占庭容错的。 他是有N个节点对每个高度的块签名投票，当一个块收集到超过M个节点的签名时就出块。只要不超过2M-N-1的节点违反同时给同一高度的多个块签名投票， 就不会产生分叉。<h2 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h2>Chain 支持M-N 多重签名控制程序， 支持M-1 签名的发布程序来保证资产的安全。<br><strong> 隐私 </strong></li>
-<li>1.链上登记，不需要第三方中介信任。</li>
-<li>2.每一个控制程序都有一个唯一的公钥来防止同一个账户被别人发现。一个主密钥，该主密钥可以产生无数的公私钥对， 每次交易，不用主私钥，只需要衍生私钥， 这在一定程度上保证了安全性。</li>
-<li>3.可以保证一些敏感数据的隐私， 如期限，价格和利率。 可以通过每个分支链的merkle 后的程序隐藏。 只有执行中的分支链需要执行期间被显示。这样的合约，可以在交易时多方签名认证，（私人合约链下解决， 在链上签名认证即可。）和合同在现实世界中的工作方式相似 - 虽然在法庭执行时通常要求将合同的条款公开，但大多数合同都是私下解决的，公共系统只能作为一个隐含的支持者。</li>
-<li>4.共识安全性防范： 效率和安全不可兼得。<br><strong> 监管 </strong><br>Chain 允许本地的政策发布， 但监管方可以通过块生成器进行监管。如果块签名者在同一高度签署多个块，参与者可以使用不一致的签名来构建欺诈证据，以警告其他节点或为链下执行提供证据。<h2 id="伸缩性，扩展性，-互通性。"><a href="#伸缩性，扩展性，-互通性。" class="headerlink" title="伸缩性，扩展性， 互通性。"></a>伸缩性，扩展性， 互通性。</h2></li>
-<li>1.utxo 与以太坊账户模型不同， 可以并行验证交易， 只要用类似于nonce的机制保证每一个未花费outputs最多只能被一笔交易所引用。</li>
-<li>2.Chain 天然的比以太坊瘦， 不需要完整的世界状态， 参与者只需要记住未花费的outpus就可了， 因为交易会自带其他相关信息（如资产ID, 量额， 控制程序）， 超级轻客户端。</li>
-<li>3.compact 验证 ， 只允许客户端验证块中所相关的交易，而不需要验证所有的交易，只要信任签名者的数量即可。整个过程是用Merle证明。客户端也可以将监视整个区块链的任务委托给自己信任的服务器。<br>块可以通过软分叉的方式向前向后版本兼容。<br>Chain 不仅支持在实现本协议的区块链间通信， 但需要保证全局唯一资产ID。每一条分链是从另外一条链的块高度叉出去的，根据这点能保证资产ID唯一。 并支持不同的协议的链互相交互， 因为CVM提供了足够多的指令。</li>
-</ul>
-<p>星期四, 25. 五月 2017 10:06上午 </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/25/chain/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
     <article id="post-ipfs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -376,7 +263,120 @@
 </ul>
 <h4 id="3-5-1-路经"><a href="#3-5-1-路经" class="headerlink" title="3.5.1 路经"></a>3.5.1 路经</h4><p>IPFS对象可以遍历一个字符串路经。路经格式与传统UNIX文件系统以及Web一致。Merkle DAG的links使遍历变得很容易。全称路经在IPFS中的格式是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">*# 格式</div><div class="line">/ipfs/&lt;hash-of-object&gt;/&lt;name-path-to-object&gt;</div><div class="line">*# 例子</div><div class="line">/ipfs/XLYkgq61DYaQ8NhkcqyU7rLcnSa7dSHQ16x/foo.txt</div></pre></td></tr></table></figure></p>
 <p>/ipfs前缀允许只要在挂载点不冲突(挂载点名称当然是可配置的)的情况下挂载到一个已存在的系统上。第二个路经组成部分(第一个是IPFS)是一个对象的hash。通常都是这种情况，因为没有全局的根。一个根对象可能会有一个不可能完成的任务，就是在分布式环境(可能还断开链接)中处理百万对象的一致性。因此，我们用地址可寻址来模拟根。通过的hash所有的对象都是可访问的。这意思是说，给一个路经对象<foo>/bar/baz，最后一个对象可以可以被所有的访问的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/ipfs/&lt;hash-of-foo&gt;/bar/baz</div><div class="line">/ipfs/&lt;hash-of-bar&gt;/baz</div><div class="line">/ipfs/&lt;hash-of-baz&gt;</div></pre></td></tr></table></figure></foo></p>
-<h4 id="3-5-2-本地对象"><a href="#3-5-2-本地对象" class="headerlink" title="3.5.2 本地对象"></a>3.5.2 本地对象</h4>
+<h4 id="3-5-2-本地对象"><a href="#3-5-2-本地对象" class="headerlink" title="3.5.2 本地对象"></a>3.5.2 本地对象</h4><p>IPFS客户端需要一个本地存储器，一个外部系统可以为IPFS管理的对象存储以及检索本地原始数据。存储器的类型根据节点使用案例不同而不同。在大多数情况下，这个存储器只是硬盘空间的一部分（不是被本地的文件系统使用键值存储如leveldb来管理，就是直接被IPFS客户端管理），在其他的情况下，例如非持久性缓存，存储器就是RAM的一部分。<br>最终，所有的块在IPFS中都是能够获取的到的，块都存储在了一些节点的本地存储器中。当用户请求一个对象时，这个对象会被查找到并下载下来存储到本地，至少也是暂时的存储在本地。这为一些可配置时间量提供了快速的查找。</p>
+<h4 id="3-5-3对象锁定"><a href="#3-5-3对象锁定" class="headerlink" title="3.5.3对象锁定"></a>3.5.3对象锁定</h4><p>希望确保特定对象生存的节点可以锁定此对象。这保证此特定对象被保存在了节点的本地存储器上。也可以递归的进行锁定所有相关的派生对象。这使所有被指定的对象都保存在本地存储器上。这对长久保存文件特别有用，包括引用。这也同样让IPFS成为一个links是永久的Web，且对象可以确保其他被指定对象的生存。</p>
+<h4 id="3-5-4-发布对象"><a href="#3-5-4-发布对象" class="headerlink" title="3.5.4 发布对象"></a>3.5.4 发布对象</h4><p>IPFS是全球分布的。它设计为允许成千上万的用户文件可以共同的存在的。DHT使用内容哈希寻址技术，使发布对象是公平的，安全的，完全分布式的。任何人都可以发布对象，只需要将对象的key加入到DHT中，并且以对象是对等节点的方式加入进去，然后把路径给其他的用户。要注意的是，对象本质上是不可改变的，就像在Git中一样。新版本的哈希值不同，因此是新对象。跟踪版本则是额外版本对象的工作。</p>
+<h4 id="3-5-5-对象级别的加密"><a href="#3-5-5-对象级别的加密" class="headerlink" title="3.5.5 对象级别的加密"></a>3.5.5 对象级别的加密</h4><p>IPFS是具备可以处理对象级别加密操作的。一个已加密的或者已签名的对象包装在一个特殊的框架里，此框架允许加密和验证原始字节。<br>‘’‘ go<br>type EncryptedObject struct {<br>    Object []bytes // 已加密的原始对象数据<br>    Tag []bytes    // 可选择的加密标识<br>    type SignedObject struct {<br>    Object []bytes  // 已签名的原始对象数据<br>    Signature []bytes // HMAC签名<br>    PublicKey []multihash // 多重哈希身份键值<br>}<br>’‘’<br>加密操作改变了对象的哈希值，定义一个不同的新的对象。IPFS自动的验证签名以及使用用户指定的钥匙链解密数据。加密数据的links也同样的被保护着，没有解密秘钥就无法遍历对象。也存在着一种现象，可能父对象使用了一个秘钥进行了加密，而子对象使用了另一个秘钥进行加密或者根本没有加密。这可以保证links共享对象安全。</p>
+<h3 id="3-6-文件"><a href="#3-6-文件" class="headerlink" title="3.6 文件"></a>3.6 文件</h3><p>IPFS在Merkle DAG上还为模型化版本文件系统定义了一组对象。这个对象模型与Git比较相似：<br>Block：一个可变大小的数据块<br>List：块或者其他链表的集合<br>Tree：块，链表，或者其他树的集合<br>Commit：树在版本历史记录中的一个快照<br>我原本希望使用与Git对象格式一致的模型，但那就必须要分开来引进在分布式文件系统中有用的某些特征，如</p>
+<ul>
+<li>(a)快速大小查找(总字节大小已经加入到对象中)</li>
+<li>(b)大文件的重复删除(添加到list对象)</li>
+<li>(c)commits嵌入到trees中。不过，IPFS文件对象与Git还是非常相近的，两者之间进行交流都是有可能的。而且，Git的一个系列的对象可以被引进过来转换都不会丢失任何的信息。（UNIX文件权限等等）。<br>标记：下面的文件对象格式使用JSON。注意，虽然IPFS包含了JSON的互相转换，但是文件对象的结构体还是使用protobufs的二进制编码。<h4 id="3-6-1-文件对象：blob"><a href="#3-6-1-文件对象：blob" class="headerlink" title="3.6.1 文件对象：blob"></a>3.6.1 文件对象：blob</h4>blob对象代表一个文件且包含一个可寻址的数据单元，IPFS的blobs就像Git的blobs或者文件系统数据块。它们存储用户的数据。需要留意的是IPFS文件可以使用lists或者blobs来表示。Blobs没有links。<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"><span class="string">"data"</span>: <span class="string">"some data here"</span>,  <span class="comment">// blobs无links</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="3-6-2-文件对象-list"><a href="#3-6-2-文件对象-list" class="headerlink" title="3.6.2 文件对象: list"></a>3.6.2 文件对象: list</h4><p>List对象代表着由几个IPFS的blobs连接成的大文件或者重复数据删除文件。Lists包含着有序的blob序列或list对象。从某种程度上而言，IPFS的list函数就像一个间接块的文件系统。由于lists可以包含其他的lists，那么包含linked的链表和平衡树的拓扑结构是有可能的。有向图中相同的节点出现在多个不同地方允许在文件中重复数据删除。当然，循环是不可以能的，因为是被哈希寻址强制实行的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;data&quot;: [&quot;blob&quot;, &quot;list&quot;, &quot;blob&quot;], //lists有一个对象类型的数组作为数据</div><div class="line">&quot;links&quot;: [</div><div class="line">&#123; &quot;hash&quot;: &quot;XLYkgq61DYaQ8NhkcqyU7rLcnSa7dSHQ16x&quot;,</div><div class="line">&quot;size&quot;: 189458 &#125;,</div><div class="line">&#123; &quot;hash&quot;: &quot;XLHBNmRQ5sJJrdMPuu48pzeyTtRo39tNDR5&quot;,</div><div class="line">&quot;size&quot;: 19441 &#125;,</div><div class="line">&#123; &quot;hash&quot;: &quot;XLWVQDqxo9Km9zLyquoC9gAP8CL1gWnHZ7z&quot;,</div><div class="line">&quot;size&quot;: 5286 &#125; //在links中lists是没有名字的</div><div class="line">]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="3-6-3-文件对象：tree"><a href="#3-6-3-文件对象：tree" class="headerlink" title="3.6.3 文件对象：tree"></a>3.6.3 文件对象：tree</h4><p>IPFS中的tree对象与Git中相似，它代表着一个目录，一个名字到哈希值的映射。哈希值则表示着blobs，lists，其他的trees，或者commits。注意，传统路径的命名早已经被Merkle DAG实现了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;data&quot;: [&quot;blob&quot;, &quot;list&quot;, &quot;blob&quot;],//trees有一个对象类型的数组作为数据</div><div class="line">&quot;links&quot;: [</div><div class="line">&#123; &quot;hash&quot;: &quot;XLYkgq61DYaQ8NhkcqyU7rLcnSa7dSHQ16x&quot;,</div><div class="line">&quot;name&quot;: &quot;less&quot;, &quot;size&quot;: 189458 &#125;,</div><div class="line">&#123; &quot;hash&quot;: &quot;XLHBNmRQ5sJJrdMPuu48pzeyTtRo39tNDR5&quot;,</div><div class="line">&quot;name&quot;: &quot;script&quot;, &quot;size&quot;: 19441 &#125;,</div><div class="line">&#123; &quot;hash&quot;: &quot;XLWVQDqxo9Km9zLyquoC9gAP8CL1gWnHZ7z&quot;,</div><div class="line">&quot;name&quot;: &quot;template&quot;, &quot;size&quot;: 5286 &#125;//trees是有名字的</div><div class="line">]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="3-6-4-文件对象：commit"><a href="#3-6-4-文件对象：commit" class="headerlink" title="3.6.4 文件对象：commit"></a>3.6.4 文件对象：commit</h4><p>IPFS中的commit对象代表任何对象在版本历史记录中的一个快照。与Git中类似，但是它能够表示任何类型的对象。它同样link着发起对象。</p>
+<p>（一系列的图片以及数据拷贝省略）</p>
+<h4 id="3-6-5-版本控制"><a href="#3-6-5-版本控制" class="headerlink" title="3.6.5 版本控制"></a>3.6.5 版本控制</h4><p>Commit对象代表着一个对象在历史版本中的一个特定快照。在两个不同的commit中比较对象（和子对象）可以揭露出两个不同版本文件系统的区别。只要commit和它所有子对象的引用是能够被访问的，所有前版本是可获取的，所有文件系统改变的全部历史是可访问的，这就与Merkle DAG对象模型脱离开来了。</p>
+<p>Git版本控制工具的所有功能对于IPFS的用户是可用的。对象模型不完全一致，但也是可兼容的。这可能</p>
+<ul>
+<li>(a)构建一个Git工具版本改造成使用IPFS对象图，</li>
+<li>(b)构建一个挂载FUSE文件系统，挂载一个IPFS的tree作为Git的仓库，把Git文件系统的读/写转换为IPFS的格式。<h4 id="3-6-6-文件系统路径"><a href="#3-6-6-文件系统路径" class="headerlink" title="3.6.6 文件系统路径"></a>3.6.6 文件系统路径</h4>如我们在Merkle DAG中看到的一样，IPFS对象可以使用字符串路径API来遍历。IPFS文件对象是特意设计的，为了让挂载IPFS到UNIX文件系统更加简单。文件对象限制trees没有数据，为了使它们可以表示目录。Commits可以以代表目录的形式出现，也可以完全的隐藏在文件系统中。</li>
+</ul>
+<h4 id="3-6-7-将文件分隔成Lists和Blobs"><a href="#3-6-7-将文件分隔成Lists和Blobs" class="headerlink" title="3.6.7 将文件分隔成Lists和Blobs"></a>3.6.7 将文件分隔成Lists和Blobs</h4><p>版本控制和分发大文件其中一个最主要的挑战是：找到一个正确的方法来将它们分隔成独立的块。与其认为IPFS可以为每个不同类型的文件提供正确的分隔方法，不如说IPFS提供了以下的几个可选选择：<br>就像在LIBFS[?]中一样使用Rabin Fingerprints [?]来选择一个比较合适的块边界。<br>使用rsync[?] rolling-checksum算法，来检测块在版本之间的改变。<br>允许用户指定专为特定文件而调整的’快分隔’函数。</p>
+<h4 id="3-6-8路径查找性能"><a href="#3-6-8路径查找性能" class="headerlink" title="3.6.8路径查找性能"></a>3.6.8路径查找性能</h4><p>基于路径的访问需要遍历对象图。获取每个对象要求在DHT中查找它们的key，连接到对等节点，然后获取它的块。这造成相当大的开销，特别是查找的路径由很多子路径组成时。下面的方法可以减缓开销：</p>
+<ul>
+<li>tree缓存：由于所有的对象都是哈希寻址的，它们可以被无限的缓存。另外，trees一般比较小，所以比起blobs，IPFS会优先缓存trees。</li>
+<li>flattened trees：对于任何tree，一个特殊的 flattened tree可以构建一个链表，所有对象都可以从这个tree中访问得到。在flattened tree中名字就是一个从原始tree分离的路径，用斜线分隔。<br>例如，对于上面的ttt111的flattened tree如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;data&quot;:</div><div class="line">[&quot;tree&quot;, &quot;blob&quot;, &quot;tree&quot;, &quot;list&quot;, &quot;blob&quot; &quot;blob&quot;],</div><div class="line">&quot;links&quot;: [</div><div class="line">&#123; &quot;hash&quot;: &quot;&lt;ttt222-hash&gt;&quot;, &quot;size&quot;: 1234</div><div class="line">&quot;name&quot;: &quot;ttt222-name&quot; &#125;,</div><div class="line">&#123; &quot;hash&quot;: &quot;&lt;bbb111-hash&gt;&quot;, &quot;size&quot;: 123,</div><div class="line">&quot;name&quot;: &quot;ttt222-name/bbb111-name&quot; &#125;,</div><div class="line">&#123; &quot;hash&quot;: &quot;&lt;ttt333-hash&gt;&quot;, &quot;size&quot;: 3456,</div><div class="line">&quot;name&quot;: &quot;ttt333-name&quot; &#125;,</div><div class="line">&#123; &quot;hash&quot;: &quot;&lt;lll111-hash&gt;&quot;, &quot;size&quot;: 587,</div><div class="line">&quot;name&quot;: &quot;ttt333-name/lll111-name&quot;&#125;,</div><div class="line">&#123; &quot;hash&quot;: &quot;&lt;bbb222-hash&gt;&quot;, &quot;size&quot;: 22,</div><div class="line">&quot;name&quot;: &quot;ttt333-name/lll111-name/bbb222-name&quot; &#125;,</div><div class="line">&#123; &quot;hash&quot;: &quot;&lt;bbb222-hash&gt;&quot;, &quot;size&quot;: 22</div><div class="line">&quot;name&quot;: &quot;bbb222-name&quot; &#125;</div><div class="line">] &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-7-IPNS：命名以及易变状态"><a href="#3-7-IPNS：命名以及易变状态" class="headerlink" title="3.7 IPNS：命名以及易变状态"></a>3.7 IPNS：命名以及易变状态</h3><p>目前为止，IPFS桟形成了一个对等块交换组成一个内容可寻址的DAG对象。这提供了发布和获取不可改变的对象。这甚至可以跟踪这些对象的版本历史记录。但是，这里有一个关键成分遗漏了：易变的命名。没有这个，发送IPFS的links，所有新内容的通信肯定都会有所偏差。现在所需就是能有某些方法可以获取相同路径的的易变状态。<br>这值得详述原因—如果最终易变数据是必须的—我们费了很大的力气构建了一个不可改变的Merkle DAG。就当做IPFS脱离了Merkle DAG的特征：对象可以</p>
+<ul>
+<li>(a)通过哈希值可以获取</li>
+<li>(b)完整性的检查</li>
+<li>(c)link其他的对象</li>
+<li>(d)无限缓存。从某种意义上说：<br>对象就是永恒的<br>这些就是一个高性能分布式系统的关键特征，在此系统上跨网络links之间移动文件是非常昂贵的。对象内容可寻址构建了一个具有以下特点的Web，(a)优秀的宽带优化(b)不受信任的内容服务(c)永恒的links(d)能够永久备任何对象以及它的引用。</li>
+</ul>
+<p>不可变的内容可寻址对象和命名的Merkle DAG，    可变指针指向Merkle DAG，实例化了一个出现在很多成功分布式系统中的二分法。这些系统包括Git的版本控制系统，使用不可变的对象和可变的引用；还有UNIX分布式的继承者Plan9[?]文件系统，使用可变的Fossil和不可变的Venti[?]。LBFS[?]同样使用可变的索引以及不可变的块。</p>
+<h4 id="3-7-1-自我认证名称"><a href="#3-7-1-自我认证名称" class="headerlink" title="3.7.1 自我认证名称"></a>3.7.1 自我认证名称</h4><p>使用SFS[12,11]中的命名方案，给我们提供了一个种可以构建自我认证名称的方法，<br>在一个加密指定的全局命名空间中，这是可变的。IPFS的方案如下：</p>
+<ul>
+<li>1.回想一下在IPFS中：NodeId = hash(node.PubKey)</li>
+<li>2.我们给每个用户分配一个可变的命名空间，在此路径下：/ipns/<nodeid> </nodeid></li>
+<li>3.一个用户可以在此路径下发布一个用自己私钥签名的对象，比如说：/ipns/XLF2ipQ4jD3UdeX5xp1KBgeHRhemUtaA8Vm/</li>
+<li>4.当其他用户获取对象时，他们可以检测签名是否与公钥和NodeId匹配。这个验证了用户发布对象的真实性，达到了可变状态的获取。</li>
+</ul>
+<p>注意下面的细节：</p>
+<ul>
+<li>IPNS(InterPlanetary的命名空间)分开前缀是在可变和不可变的路径之间建立一个很容易辨认的区别，为了程序也为了人类阅读的便利。</li>
+<li><p>因为这不是一个内容可寻址的对象，所以发布它就要依靠IPFS中的唯一的可变状态分配制度，路由系统。过程是(a)首先把此对象做一个常规的不可变IPFS的对象来发布(b)将此对象的哈希值作为元数据的值发布到路由系统上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">routing.setValue(NodeId, &lt;ns-object-hash&gt;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>发布的对象中任何links在命令空间中充当子名称：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/ipns/XLF2ipQ4jD3UdeX5xp1KBgeHRhemUtaA8Vm/</div><div class="line">/ipns/XLF2ipQ4jD3UdeX5xp1KBgeHRhemUtaA8Vm/docs</div><div class="line">/ipns/XLF2ipQ4jD3UdeX5xp1KBgeHRhemUtaA8Vm/docs/ipfs</div></pre></td></tr></table></figure>
+</li>
+<li><p>一般建议发布一个commit对象或者其他对象的时候，要使用历史版本记录，因为这样就用户就可以找到之前使用过的名字。不过由于这并不总是需要的，所以留个用户自己选择。<br>注意当用户发布一个对象的时候，他不能使用相同的方式来发布对象。</p>
+</li>
+</ul>
+<h4 id="3-7-2人类友好名称"><a href="#3-7-2人类友好名称" class="headerlink" title="3.7.2人类友好名称"></a>3.7.2人类友好名称</h4><p>IPNS的确是一个分配和在分配名称的好方法，但是对用户却不是十分友好的，因为它使用很长的哈希值作为名称，众所周知这样的名称很难被记住。IPNS足够应付URLs，但对于很多线下的传输工作就没有这么好用了。因此，IPFS使用下面的技术来增加IPNS的用户友好度。<br>对等节点Links<br>被SFS所鼓舞，用户可以直接将其他用户的对象link到自己的对象上（命令空间，家目录等等）。这有一个好处就是创建了一个可信任的Web（也支持老的真实性认证模型）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># Alice links 到Bob上</div><div class="line">ipfs link /&lt;alice-pk-hash&gt;/friends/bob /&lt;bob-pk-hash&gt;</div><div class="line"># Eve links 到Alice上</div><div class="line">ipfs link /&lt;eve-pk-hash/friends/alice /&lt;alice-pk-hash&gt;</div><div class="line"># Eve 也可以访问Bob</div><div class="line">/&lt;eve-pk-hash/friends/alice/friends/bob</div><div class="line"># 访问Verisign 认证域</div><div class="line">/&lt;verisign-pk-hash&gt;/foo.com</div></pre></td></tr></table></figure></p>
+<p>DNS TXT IPNS 记录<br>如果/ipns/<domain>是一个有效的域名称，IPFS会在DNS TXT记录中查找关键的ipns。IPFS会将查找到的值翻译为一个对象的哈希值或者另一个ipns的路径：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># DNS TXT 记录</div><div class="line">ipfs.benet.ai. TXT &quot;ipfs=XLF2ipQ4jD3U ...&quot;</div><div class="line"># 表现为符号链接</div><div class="line">ln -s /ipns/XLF2ipQ4jD3U /ipns/fs.benet.ai</div></pre></td></tr></table></figure></domain></p>
+<p>Proquint 可读的标识符<br>总是会有将二进制编码翻译成可读文件的方法。IPNS则支持Proquint[?].。如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># proquint语句</div><div class="line">/ipns/dahih-dolij-sozuk-vosah-luvar-fuluh</div><div class="line"># 分解为相应的下面形式</div><div class="line">/ipns/KhAwNprxYVxKqpDZ</div></pre></td></tr></table></figure></p>
+<p>缩短名称服务<br>会涌现出很多服务器提供缩短名称的服务，向用户提供他们的命名空间。就像我们现在看到的DNS和Web的URLs：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 用户可以从下面获取一个link</div><div class="line">/ipns/shorten.er/foobar</div><div class="line"># 然后放到自己的命名空间</div><div class="line">/ipns/XLF2ipQ4jD3UdeX5xp1KBgeHRhemUtaA8Vm</div></pre></td></tr></table></figure></p>
+<h3 id="3-8使用IPFS"><a href="#3-8使用IPFS" class="headerlink" title="3.8使用IPFS"></a>3.8使用IPFS</h3><p>IPFS设计为可以使用多种不同的方法来使用的，下面就是一些我将会继续追求的使用方式：</p>
+<ul>
+<li><ol>
+<li>作为一个挂载的全局文件系统，挂载在/ipfs和/ipns下</li>
+</ol>
+</li>
+<li><ol>
+<li>作为一个挂载的个人同步文件夹，自动的进行版本管理，发布，以及备份任何的写入</li>
+</ol>
+</li>
+<li><ol>
+<li>作为一个加密的文件或者数据共享系统</li>
+</ol>
+</li>
+<li><ol>
+<li>作为所有软件的版本包管理者 </li>
+</ol>
+</li>
+<li><ol>
+<li>作为虚拟机器的根文件系统</li>
+</ol>
+</li>
+<li><ol>
+<li>作为VM的启动文件系统 (在管理程序下)</li>
+</ol>
+</li>
+<li><ol>
+<li>作为一个数据库：应用可以直接将数据写入Merkle DAG数据模型中，获取所有的版本，缓冲，以及IPFS提供的分配</li>
+</ol>
+</li>
+<li><ol>
+<li>作为一个linked（和加密的）通信平台</li>
+</ol>
+</li>
+<li><ol>
+<li>作为一个为大文件的完整性检查CDN（不使用SSL的情况下）</li>
+</ol>
+</li>
+<li><ol>
+<li>作为一个加密的CDN</li>
+</ol>
+</li>
+<li><ol>
+<li>在网页上，作为一个web CDN</li>
+</ol>
+</li>
+<li><ol>
+<li>作为一个links永远存在新的永恒的Web<br>IPFS实现的目标：</li>
+</ol>
+</li>
+<li>(a) 一个IPFS库可以导出到你自己应用中使用</li>
+<li>(b) 命令行工具可以直接操作对象</li>
+<li>(c) 使用FUSE[?]或者内核的模型挂载文件系统<h2 id="4-未来"><a href="#4-未来" class="headerlink" title="4. 未来"></a>4. 未来</h2>IPFS的思想是几十年成功的分布式系统的探索和开源的产物。IPFS综合了很多迄今为止很成功的系统中优秀的思想。除了BitSwap新协议之外，IPFS最大的特色就是系统的耦合以及设计的综合性。<br>IPFS是去中心化网络基础设施的一个野心设想，很多不同类型的应用都可以建立在IPFS上。最低限度，它可以用来作为一个全局的，挂载性，版本控制文件系统和命名空间，或者作为下一代的文件共享系统。而最好的情况是，IPFS可以让Web升级一个层次，当发布一个有价值的信息时，任何感兴趣的人都可以进行发布而不会强迫性的必须只允许发布机构进行发布，用户可以信任信息的内容，信不信任信息的发送者都是无关紧要的，还有一个特点就是，一些重要但很老的文件也不会丢失。IPFS期待着带我们进入到一个永恒Wdb的世界。<h2 id="5-感谢"><a href="#5-感谢" class="headerlink" title="5. 感谢"></a>5. 感谢</h2>IPFS是一个很多很棒的主意以及系统的综合体。没有站在巨人的肩膀上，IPFS也不可能敢于有一个这么有野心的目标。个人感谢参与这些主意长期讨论的人：David Dalrymple, Joe Zimmerman, and Ali Yahya，特别是：揭开Merkle DAG的总体架构(David, Joe),滚动哈希阻塞(David), s/kademlia sybill 保护(David, Ali)，特别感谢David Mazieres,为他之前非常聪明的主意。<h2 id="6-引用备忘录"><a href="#6-引用备忘录" class="headerlink" title="6. 引用备忘录"></a>6. 引用备忘录</h2><h2 id="7-引用"><a href="#7-引用" class="headerlink" title="7. 引用"></a>7. 引用</h2>[1].I. Baumgart and S. Mies. S/kademlia:一个安全的基于秘钥路由的可行方法。2007年国际会议，第2卷，1-8页，在《并发和分布式系统》中。IEEE，2007年。<br>[2].I. BitTorrent.Bittorrent和Attorrent软件超过1亿5000万用户里程碑，Jan。2012<br>[3].B. Cohen.激励机制在bittorrent中建立了健壮性。在《对等系统经济研讨会》中，第6卷，68-72页，2003年。<br>[4].J. Dean and S. Ghemawat.  Leveldb - 一个快速和轻量级键值存储数据库，谷歌提供，2011年。<br>[5].M. J. Freedman, E. Freudenthal, and D. Mazieres. Coral民主内容发布。在NSDI中，第4卷，18-18页，2004年。<br>[6].J. H. Howard, M. L. Kazar, S. G. Menees, D. A,Nichols, M. Satyanarayanan, R. N. Sidebotham, 以及M. J. West.分布式文件系统的规模和性能。“ACM 电脑系统上的交易 （TOCS）” 6(1):51-81, 1988年<br>[7].</li>
+</ul>
+
       
 
       
@@ -388,7 +388,120 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/22/ipfs/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/05/28/ipfs/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-raiden" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="雷电网络"><a href="#雷电网络" class="headerlink" title="雷电网络"></a>雷电网络</h1><h2 id="基于以太坊的快速数字资产交易"><a href="#基于以太坊的快速数字资产交易" class="headerlink" title="基于以太坊的快速数字资产交易"></a>基于以太坊的快速数字资产交易</h2><p><strong> 以太坊上网络支付通道 </strong><br>Raiden 利用链下网络状态技术给以太坊上的数字资产带来了许多nice的属性：</p>
+<ul>
+<li>1.可扩展性: 它与参与者的数量呈线性关系（每秒可能有1,000,000+次转帐)。</li>
+<li>2.快速： 转账在一秒钟的时间内被确认和确定。</li>
+<li>3.匿名性：单次转帐不会显示在全局分布式帐本中。</li>
+<li>4.互操作性： 以太坊上任何实现了标准代币的接口的代币都可以互相交易。</li>
+<li>5.低额交易费： 交易费比区块链上的交易费低7个数量级。</li>
+<li>6.小额支付： 低交易费允许有效的转移小额资金。<br><strong> 技术点 </strong><br>该技术类似于比特币的闪电网络。<br>基本思想是： 所有的交易需要记载到区块链上的共享账本上（这是区块链的瓶颈），而该技术是通过交易双方私下签名交易信息， 不需要全部上链。Raiden 使用一个p2p支付通道网络，并在以太坊的区块链上存一定的押金。Raiden 是以太坊上的一个扩展应用。Raiden 节点和以太坊的节点互相联通工作，作为交易的基础设施， 并用以太坊上的链来管理通道的存证信息。Raiden 提供了简单的API, 使得DApps 非常容易实现。<br><strong> 应用 </strong></li>
+<li>为内容分发做小额计费：Paywalls,广告和订阅。 </li>
+<li>去中心化的M2M市场： 特别是在物联网中， 微小的带宽， 存储， cpu占有率， 能量， 传感器数据等可以交易。</li>
+<li>没有交集的代币系统： 游戏代币， 奖励代币， 私有货币。</li>
+<li>API 访问： 对于即将来临的M2M经济，每次API 访问计费。</li>
+<li>快速去中心话交易。<br><strong> 与以太坊相辅相成 </strong><br>Vitalik Buterin 说：“ 状态通道是一种重要技术， 有可能大大提高许多区块链应用程序的可扩展性和隐私性； 结合分片和其他隐私秘密保护技术， 他们是一个重要的组合，可以实现去中心化的许多属性，而这些属性是圈内人和机构所期望，也应该实现的“</li>
+</ul>
+<p>Raiden 1.0 详解：<br>Raiden 1.0 通过合约的方式实现了token 的线下状态通道支付。<br>Registry 合约是系统注册合约，以太坊上的每一种代币都可以一次注册， 然后会产生一个基于该token的状态通道管理合约。每个有该token的用户都可以选择一个搭档建立一个状态通道合约，通过设置押金（会在链上存证）实现线下通道支付，线下交易都是双方各自签名确认即可， 撤出时， 再双方提供证据， 链上交易存证。合约如下：<br><img src="/img/raiden.jpg" alt=""><br>私有链上运行步骤：（geth 需要 &lt; 1.6.0的版本）<br>1，编译合约，并生成到genesis.json。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python tools/config_builder.py full_genesis &gt; mycustomgenesis.json</div></pre></td></tr></table></figure></p>
+<p>2， 根据genesis.json初始化内容到指定目录。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">geth --datadir /tmp/privategeth init mycustomgenesis.json</div></pre></td></tr></table></figure></p>
+<p>3，启动geth<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">geth --datadir /tmp/privategeth --networkid 123 --nodiscover --maxpeers 0 --rpc --minerthreads 1 --etherbase c13f2e8e9c92d81de806023d68cc64fe85bf6740 --mine</div></pre></td></tr></table></figure></p>
+<p>4，启动雷电网络<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">raiden --eth_rpc_endpoint 127.0.0.1:8545 --registry_contract_address 79eafd0b5ec8d3f945e6bb2817ed90b046c0d0af --discovery_contract_address 2ce636d6240f8955d085a896e12429f8b3c7db26</div></pre></td></tr></table></figure></p>
+<p>Raiden 2.0 正在准备实现側链的功能。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/27/raiden/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-chain" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Chain"><a href="#Chain" class="headerlink" title="Chain"></a>Chain</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>chain设计了一种多种资产可以互相交易发布的分布式账本协议。用该协议的多条链可以独立的存在， 并且可以跨链交易， 这样不同的运营商可以以相同的形式互相交易。坚持最小权限原则， 资产的管理和分布式账本同步控制相分离。<br>链协议允许任何网络参与者通过编写自定义“发布程序”来定义和发行资产。一旦发行，资产单元由“控制程序”控制。 控制程序是用图灵完备的编程语言实现， 该语言可用于编写复杂的智能合约。<br>每个网络由“块签名者“组成的联盟来保护安全性。 只要法定的块签名者遵循协议， 该系统就可以安全的抵抗分叉。为了提高效率，所有出块人可以达成协议， 委托单个节点出块，类似于raft协议。 网络的任何节点都可以验证块并广播交易。<br>Chain 主要是面向企业软件产品的联盟链。 Chain的代码是长久开源的， 并且搭建了一个测试链，供大家自由测试。</p>
+<h2 id="设计Chain-的动机"><a href="#设计Chain-的动机" class="headerlink" title="设计Chain 的动机"></a>设计Chain 的动机</h2><p>当今社会的货币， 证券以及衍生品是以电子支付的形式进行交易的。电子支付需要太多的第三方中介参与，需要太多的人力物力去对帐。比特币虽然去中介化了，但堆栈式脚本实现的功能太少， 只支持本币的简单交易合约。以太坊的evm 又太过于复杂， 有太多的安全不确定性。再者， 他们是公有链，所有数据在公众的眼皮底下。 这时， Chain 恰好能够解决这些痛点。 Chain 是联盟链，支持多种资产的发布和交易， 也支持多种组织的跨链交易。</p>
+<p><strong> Chain 大部分思想来自于比特币和以太坊。</strong> </p>
+<ul>
+<li>1.在比特币的基础上增加了多种资产自由发布。而比特币只支持btc。</li>
+<li>2.evm的功能介于比特币和以太坊之间。主要用于资产的发布与管理。</li>
+<li>3.采用了比特币的utxo模式。</li>
+<li>4.加入了以太坊的PAT树用于世界状态， 但该世界状态不是面向账户的， 而是面向utxo的。</li>
+</ul>
+<h2 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h2><p>Chain 的目的是管理数字资产的发行、所有权、 交易。资产的发布、转让和交换是通过向网络发送交易来完成的。 这些交易会被排序并分批打包成块，然后组成一条不可更改的区块链。<br><strong> 资产 </strong><br>每条区块链都可以支持多种类型的资产。 每种资产被一个256位字节的全局资产ID 所定位唯一（在所有的区块链中该ID唯一）。每种资产ID有相对应的发布程序，它定义了该资产的发布规则。一旦资产发布，资产的支出由控制程序决定。<br><strong> 交易 </strong><br>交易使用比特币的UTXO模式。但在这些基础上做了改进， inputs 可以选择发布资产或者是未消耗的发费，outputs可以选择控制程序的输出或者资产的销毁，并且在inputs和outputs上加了个资产ID字段，支持多种资产的混合交易， 只要inputs和outpus的价值相等即可。如下图：<br><img src="/img/tx.png" alt=" " title="tx"><br>为了提高性能，交易实现了类似比特币的隔离见证功能， 如下图：<br><img src="/img/segwit.png" alt=""><br><strong> 区块 </strong><br>为了防止双花，块引入了类似以太坊的世界状态，但世界状态是针对UTXO 存储的, 即每一笔交易的执行，都是在该世界状态中执行两步</p>
+<ul>
+<li>1.删除原来的已经发费了的outputs。</li>
+<li>2.增加产生的outputs。<br>区块中存储每一笔排序的交易，并链接成一条不可更改的区块链。如下图<br><img src="/img/world_state.png" alt=""><br>所有的交易在每一个块中排序好，成为不可更改的历史事实。世界状态作为当前区块链的快照。  当然块与块之间少不了共识， 共识程序的执行流程类似于上上图交易验证的流程。（recover(signature + message) <strong> ?= </strong> pubkey）<br>区块链的整体数据结构如下图：<br><img src="/img/chain.jpg" alt=" " title="基本数据结构关系图"></li>
+</ul>
+<h2 id="程序设计"><a href="#程序设计" class="headerlink" title="程序设计"></a>程序设计</h2><p>Chain 的协议使得编程非常灵活， 可根据不同的层次并行计算。</p>
+<ul>
+<li>1.发行资产程序指定相应的规则发行新资产。</li>
+<li>2.控制程序指定相应的规则在一种资产上作交易。</li>
+<li>3.共识程序指定相应的规则产生新的区块。<br>这些程序根据内存和时间的限制， 可以并行的运行。正因为如此，程序是足够灵活以允许实施广泛的金融工具（如期权、债券、互换），安全方案（存储资产），应用如提供，契据，拍卖。<h3 id="虚拟机-CVM"><a href="#虚拟机-CVM" class="headerlink" title="虚拟机(CVM)"></a>虚拟机(CVM)</h3>Chain 的虚拟机是一个栈式状态机： 任何指令都在该栈中执行。CVM 的指令集是图灵完备的，为了防止死循环， 采用了run limit 来限制陷入死循环， 协议允许网络去达成共识设置该run limit.  根据运行消耗来定价每一条一条指令的run limit。 这 非常类似于以太坊的gas机制， 和以太坊不同的是CVM 不会在每笔交易中给run limit 计费。CVM 指令集包含了push, pop等基本指令集， 同时还包括了SHA3, CHECKSIG, CHECKMULTISIG等复杂的数学加密运算。<br><strong> 自省功能 </strong></li>
+<li>交易自省： 可以在执行过程判断是否超过预定的时间，也可以增加自带控制程序，来对（价格，资产，运行过程， 索引）做一定自由控制。</li>
+<li>区块自省： 自省指令集（BLOCKHASH, NEXTPROGRAM）,只能在共识程序中执行。<br>因为丰富的指令集，可以组合使用完成不仅仅是交易签名和验签的功能。如：多重签名，多方签名，提前部署（我最喜欢的是：类似于微信红包功能， A给B发送交易，需要B确认才能上链）CHECKPREDICATE 提供了强大的其它跨链功能，包括实现类似于BTCRelay的功能。<h2 id="共识"><a href="#共识" class="headerlink" title="共识"></a>共识</h2>Chain 可以支持任意的共识程序， 目前实现的共识， 是不支持拜占庭容错的。 他是有N个节点对每个高度的块签名投票，当一个块收集到超过M个节点的签名时就出块。只要不超过2M-N-1的节点违反同时给同一高度的多个块签名投票， 就不会产生分叉。<h2 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h2>Chain 支持M-N 多重签名控制程序， 支持M-1 签名的发布程序来保证资产的安全。<br><strong> 隐私 </strong></li>
+<li>1.链上登记，不需要第三方中介信任。</li>
+<li>2.每一个控制程序都有一个唯一的公钥来防止同一个账户被别人发现。一个主密钥，该主密钥可以产生无数的公私钥对， 每次交易，不用主私钥，只需要衍生私钥， 这在一定程度上保证了安全性。</li>
+<li>3.可以保证一些敏感数据的隐私， 如期限，价格和利率。 可以通过每个分支链的merkle 后的程序隐藏。 只有执行中的分支链需要执行期间被显示。这样的合约，可以在交易时多方签名认证，（私人合约链下解决， 在链上签名认证即可。）和合同在现实世界中的工作方式相似 - 虽然在法庭执行时通常要求将合同的条款公开，但大多数合同都是私下解决的，公共系统只能作为一个隐含的支持者。</li>
+<li>4.共识安全性防范： 效率和安全不可兼得。<br><strong> 监管 </strong><br>Chain 允许本地的政策发布， 但监管方可以通过块生成器进行监管。如果块签名者在同一高度签署多个块，参与者可以使用不一致的签名来构建欺诈证据，以警告其他节点或为链下执行提供证据。<h2 id="伸缩性，扩展性，-互通性。"><a href="#伸缩性，扩展性，-互通性。" class="headerlink" title="伸缩性，扩展性， 互通性。"></a>伸缩性，扩展性， 互通性。</h2></li>
+<li>1.utxo 与以太坊账户模型不同， 可以并行验证交易， 只要用类似于nonce的机制保证每一个未花费outputs最多只能被一笔交易所引用。</li>
+<li>2.Chain 天然的比以太坊瘦， 不需要完整的世界状态， 参与者只需要记住未花费的outpus就可了， 因为交易会自带其他相关信息（如资产ID, 量额， 控制程序）， 超级轻客户端。</li>
+<li>3.compact 验证 ， 只允许客户端验证块中所相关的交易，而不需要验证所有的交易，只要信任签名者的数量即可。整个过程是用Merle证明。客户端也可以将监视整个区块链的任务委托给自己信任的服务器。<br>块可以通过软分叉的方式向前向后版本兼容。<br>Chain 不仅支持在实现本协议的区块链间通信， 但需要保证全局唯一资产ID。每一条分链是从另外一条链的块高度叉出去的，根据这点能保证资产ID唯一。 并支持不同的协议的链互相交互， 因为CVM提供了足够多的指令。</li>
+</ul>
+<p>星期四, 25. 五月 2017 10:06上午 </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/25/chain/">展开全文 >></a>
         </p>
       
 
