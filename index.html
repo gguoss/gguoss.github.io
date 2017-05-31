@@ -147,12 +147,93 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-ipfs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-raiden" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/31/raiden/">雷电网络</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/31/raiden/" class="archive-article-date">
+  	<time datetime="2017-05-30T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-31</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="IPFS-内容可快速索引的版本化的点对点文件系统（草稿3）"><a href="#IPFS-内容可快速索引的版本化的点对点文件系统（草稿3）" class="headerlink" title="IPFS - 内容可快速索引的版本化的点对点文件系统（草稿3）"></a>IPFS - 内容可快速索引的版本化的点对点文件系统（草稿3）</h1><p><strong> 作者：</strong>    Juan Benet (juan@benet.ai)<br><strong> 译者：</strong>    郭光华(gavin@8btc.com)</p>
+        <h1 id="雷电网络"><a href="#雷电网络" class="headerlink" title="雷电网络"></a>雷电网络</h1><h2 id="基于以太坊的快速数字资产交易"><a href="#基于以太坊的快速数字资产交易" class="headerlink" title="基于以太坊的快速数字资产交易"></a>基于以太坊的快速数字资产交易</h2><p><strong> 以太坊上网络支付通道 </strong><br>Raiden 利用链下网络状态技术给以太坊上的数字资产带来了许多nice的属性：</p>
+<ul>
+<li>1.可扩展性: 它与参与者的数量呈线性关系（每秒可能有1,000,000+次转帐)。</li>
+<li>2.快速： 转账在一秒钟的时间内被确认和确定。</li>
+<li>3.匿名性：单次转帐不会显示在全局分布式帐本中。</li>
+<li>4.互操作性： 以太坊上任何实现了标准代币的接口的代币都可以互相交易。</li>
+<li>5.低额交易费： 交易费比区块链上的交易费低7个数量级。</li>
+<li>6.小额支付： 低交易费允许有效的转移小额资金。<br><strong> 技术点 </strong><br>该技术类似于比特币的闪电网络。<br>基本思想是： 所有的交易需要记载到区块链上的共享账本上（这是区块链的瓶颈），而该技术是通过交易双方私下签名交易信息， 不需要全部上链。Raiden 使用一个p2p支付通道网络，并在以太坊的区块链上存一定的押金。Raiden 是以太坊上的一个扩展应用。Raiden 节点和以太坊的节点互相联通工作，作为交易的基础设施， 并用以太坊上的链来管理通道的存证信息。Raiden 提供了简单的API, 使得DApps 非常容易实现。<br><strong> 应用 </strong></li>
+<li>为内容分发做小额计费：Paywalls,广告和订阅。 </li>
+<li>去中心化的M2M市场： 特别是在物联网中， 微小的带宽， 存储， cpu占有率， 能量， 传感器数据等可以交易。</li>
+<li>没有交集的代币系统： 游戏代币， 奖励代币， 私有货币。</li>
+<li>API 访问： 对于即将来临的M2M经济，每次API 访问计费。</li>
+<li>快速去中心话交易。<br><strong> 与以太坊相辅相成 </strong><br>Vitalik Buterin 说：“ 状态通道是一种重要技术， 有可能大大提高许多区块链应用程序的可扩展性和隐私性； 结合分片和其他隐私秘密保护技术， 他们是一个重要的组合，可以实现去中心化的许多属性，而这些属性是圈内人和机构所期望，也应该实现的“</li>
+</ul>
+<p>Raiden 1.0 详解：<br>Raiden 1.0 通过合约的方式实现了token 的线下状态通道支付。<br>Registry 合约是系统注册合约，以太坊上的每一种代币都可以一次注册， 然后会产生一个基于该token的状态通道管理合约。每个有该token的用户都可以选择一个搭档建立一个状态通道合约，通过设置押金（会在链上存证）实现线下通道支付，线下交易都是双方各自签名确认即可， 撤出时， 再双方提供证据， 链上交易存证。合约如下：<br><img src="/img/raiden.jpg" alt=""><br>私有链上运行步骤：（geth 需要 &lt; 1.6.0的版本）<br>1，编译合约，并生成到genesis.json。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python tools/config_builder.py full_genesis &gt; mycustomgenesis.json</div></pre></td></tr></table></figure></p>
+<p>2， 根据genesis.json初始化内容到指定目录。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">geth --datadir /tmp/privategeth init mycustomgenesis.json</div></pre></td></tr></table></figure></p>
+<p>3，启动geth<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">geth --datadir /tmp/privategeth --networkid 123 --nodiscover --maxpeers 0 --rpc --minerthreads 1 --etherbase c13f2e8e9c92d81de806023d68cc64fe85bf6740 --mine</div></pre></td></tr></table></figure></p>
+<p>4，启动雷电网络<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">raiden --eth_rpc_endpoint 127.0.0.1:8545 --registry_contract_address 79eafd0b5ec8d3f945e6bb2817ed90b046c0d0af --discovery_contract_address 2ce636d6240f8955d085a896e12429f8b3c7db26</div></pre></td></tr></table></figure></p>
+<p>Raiden 2.0 正在准备实现側链的功能。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/31/raiden/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-ipfs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/28/ipfs/">IPFS(中文白皮书)</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/28/ipfs/" class="archive-article-date">
+  	<time datetime="2017-05-27T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="IPFS-可快速索引的版本化的点对点文件系统（草稿3）"><a href="#IPFS-可快速索引的版本化的点对点文件系统（草稿3）" class="headerlink" title="IPFS - 可快速索引的版本化的点对点文件系统（草稿3）"></a>IPFS - 可快速索引的版本化的点对点文件系统（草稿3）</h1><p><strong> 作者：</strong>    Juan Benet (juan@benet.ai)<br><strong> 译者：</strong>    郭光华(gavin@8btc.com)</p>
 <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>星际文件系统是一种点对点的分布式文件系统， 旨在连接所有有相同的文件系统的计算机设备。在某些方面， IPFS类似于web, 但web 是中心化的，而IPFS是一个单一的Bittorrent 群集， 用git 仓库分布式存储。换句话说，  IPFS 提供了高吞吐量的内容寻址块存储模型， 具有内容寻址的超链接。这形成了一个广义的Merkle DAG 数据结构，可以用这个数据结构构建版本文件系统，区块链，甚至是永久性网站。。IPFS 结合了分布式哈希表， 带有激励机制的块交换和自我认证命名空间。IPFS 没有单故障点， 节点不需要相互信任。</p>
 <h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h2><p>在全球分布式文件系统这领域， 已经有许多人的尝试。一些系统已经取得了重大的成功， 而很多却完全失败了。在学术尝试中， AFS【6】就是成功的例子，如今已经得到广泛的应用， 然而，其他的【7， ？】却没有得到相同的结果。在学术界之外，应用最广泛的是面向音视频媒体的点对点文件共享系统。 最值得注意的是， Napster, KaZaA  和BitTorrent[2]部署的文件分发系统支持1亿用户的同时在线。即使在今天， BitTorrent 也维持着每天千万节点的活跃数。 基于这些学术文件系统理论而实现的应用程序有很多的用户量， 然而，这些系统理论是在应用层，而没有放在基础层。以致没有出现通用的文件系统基础框架， 给全球提供低延迟的分发。<br>也许是因为HTTP这样“足够好“的系统已经存在。到目前为止，HTTP已经作为“分布式文件系统“的协议，并且已经大量部署，再与浏览器相结合，具有巨大的技术和社会影响力。在现在， 它已经成为互联网传输文件的事实标准。然而，他没有采用最近15年的发明的数十种先进的文件分发技术。 从一方面讲， 由于向后兼容的限制 和 当前新模式的投入， 不断发展http web 的基础设施几乎是不可能的。但从一个角度看， 从http 出现以来， 已经有许多新协议出现并被广泛使用。升级http协议虽然能引入新功能和加强当前http协议，但会降低用户的体验。<br> 有些行业已经摆脱使用HTTP 这么久， 因为移动小文件相对便宜，即使对拥有大流量的小组织也是如此。但是，随着新的挑战，我们正在进入数据分发的新纪元。</p>
 <ul>
@@ -348,58 +429,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/30/ipfs/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-raiden" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="雷电网络"><a href="#雷电网络" class="headerlink" title="雷电网络"></a>雷电网络</h1><h2 id="基于以太坊的快速数字资产交易"><a href="#基于以太坊的快速数字资产交易" class="headerlink" title="基于以太坊的快速数字资产交易"></a>基于以太坊的快速数字资产交易</h2><p><strong> 以太坊上网络支付通道 </strong><br>Raiden 利用链下网络状态技术给以太坊上的数字资产带来了许多nice的属性：</p>
-<ul>
-<li>1.可扩展性: 它与参与者的数量呈线性关系（每秒可能有1,000,000+次转帐)。</li>
-<li>2.快速： 转账在一秒钟的时间内被确认和确定。</li>
-<li>3.匿名性：单次转帐不会显示在全局分布式帐本中。</li>
-<li>4.互操作性： 以太坊上任何实现了标准代币的接口的代币都可以互相交易。</li>
-<li>5.低额交易费： 交易费比区块链上的交易费低7个数量级。</li>
-<li>6.小额支付： 低交易费允许有效的转移小额资金。<br><strong> 技术点 </strong><br>该技术类似于比特币的闪电网络。<br>基本思想是： 所有的交易需要记载到区块链上的共享账本上（这是区块链的瓶颈），而该技术是通过交易双方私下签名交易信息， 不需要全部上链。Raiden 使用一个p2p支付通道网络，并在以太坊的区块链上存一定的押金。Raiden 是以太坊上的一个扩展应用。Raiden 节点和以太坊的节点互相联通工作，作为交易的基础设施， 并用以太坊上的链来管理通道的存证信息。Raiden 提供了简单的API, 使得DApps 非常容易实现。<br><strong> 应用 </strong></li>
-<li>为内容分发做小额计费：Paywalls,广告和订阅。 </li>
-<li>去中心化的M2M市场： 特别是在物联网中， 微小的带宽， 存储， cpu占有率， 能量， 传感器数据等可以交易。</li>
-<li>没有交集的代币系统： 游戏代币， 奖励代币， 私有货币。</li>
-<li>API 访问： 对于即将来临的M2M经济，每次API 访问计费。</li>
-<li>快速去中心话交易。<br><strong> 与以太坊相辅相成 </strong><br>Vitalik Buterin 说：“ 状态通道是一种重要技术， 有可能大大提高许多区块链应用程序的可扩展性和隐私性； 结合分片和其他隐私秘密保护技术， 他们是一个重要的组合，可以实现去中心化的许多属性，而这些属性是圈内人和机构所期望，也应该实现的“</li>
-</ul>
-<p>Raiden 1.0 详解：<br>Raiden 1.0 通过合约的方式实现了token 的线下状态通道支付。<br>Registry 合约是系统注册合约，以太坊上的每一种代币都可以一次注册， 然后会产生一个基于该token的状态通道管理合约。每个有该token的用户都可以选择一个搭档建立一个状态通道合约，通过设置押金（会在链上存证）实现线下通道支付，线下交易都是双方各自签名确认即可， 撤出时， 再双方提供证据， 链上交易存证。合约如下：<br><img src="/img/raiden.jpg" alt=""><br>私有链上运行步骤：（geth 需要 &lt; 1.6.0的版本）<br>1，编译合约，并生成到genesis.json。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python tools/config_builder.py full_genesis &gt; mycustomgenesis.json</div></pre></td></tr></table></figure></p>
-<p>2， 根据genesis.json初始化内容到指定目录。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">geth --datadir /tmp/privategeth init mycustomgenesis.json</div></pre></td></tr></table></figure></p>
-<p>3，启动geth<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">geth --datadir /tmp/privategeth --networkid 123 --nodiscover --maxpeers 0 --rpc --minerthreads 1 --etherbase c13f2e8e9c92d81de806023d68cc64fe85bf6740 --mine</div></pre></td></tr></table></figure></p>
-<p>4，启动雷电网络<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">raiden --eth_rpc_endpoint 127.0.0.1:8545 --registry_contract_address 79eafd0b5ec8d3f945e6bb2817ed90b046c0d0af --discovery_contract_address 2ce636d6240f8955d085a896e12429f8b3c7db26</div></pre></td></tr></table></figure></p>
-<p>Raiden 2.0 正在准备实现側链的功能。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/27/raiden/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/05/28/ipfs/">展开全文 >></a>
         </p>
       
 
@@ -417,6 +447,21 @@
     <article id="post-chain" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/26/chain/">Chain 简介</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/26/chain/" class="archive-article-date">
+  	<time datetime="2017-05-25T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-26</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Chain"><a href="#Chain" class="headerlink" title="Chain"></a>Chain</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>chain设计了一种多种资产可以互相交易发布的分布式账本协议。用该协议的多条链可以独立的存在， 并且可以跨链交易， 这样不同的运营商可以以相同的形式互相交易。坚持最小权限原则， 资产的管理和分布式账本同步控制相分离。<br>链协议允许任何网络参与者通过编写自定义“发布程序”来定义和发行资产。一旦发行，资产单元由“控制程序”控制。 控制程序是用图灵完备的编程语言实现， 该语言可用于编写复杂的智能合约。<br>每个网络由“块签名者“组成的联盟来保护安全性。 只要法定的块签名者遵循协议， 该系统就可以安全的抵抗分叉。为了提高效率，所有出块人可以达成协议， 委托单个节点出块，类似于raft协议。 网络的任何节点都可以验证块并广播交易。<br>Chain 主要是面向企业软件产品的联盟链。 Chain的代码是长久开源的， 并且搭建了一个测试链，供大家自由测试。</p>
@@ -425,7 +470,7 @@
 <ul>
 <li>1.在比特币的基础上增加了多种资产自由发布。而比特币只支持btc。</li>
 <li>2.evm的功能介于比特币和以太坊之间。主要用于资产的发布与管理。</li>
-<li>3.采用了比特币的utxo模式。</li>
+<li>3.采用了比特币的utxo模式并且采用隔离见证的数据格式，交易状态和交易验证相隔离。</li>
 <li>4.加入了以太坊的PAT树用于世界状态， 但该世界状态不是面向账户的， 而是面向utxo的。</li>
 </ul>
 <h2 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h2><p>Chain 的目的是管理数字资产的发行、所有权、 交易。资产的发布、转让和交换是通过向网络发送交易来完成的。 这些交易会被排序并分批打包成块，然后组成一条不可更改的区块链。<br><strong> 资产 </strong><br>每条区块链都可以支持多种类型的资产。 每种资产被一个256位字节的全局资产ID 所定位唯一（在所有的区块链中该ID唯一）。每种资产ID有相对应的发布程序，它定义了该资产的发布规则。一旦资产发布，资产的支出由控制程序决定。<br><strong> 交易 </strong><br>交易使用比特币的UTXO模式。但在这些基础上做了改进， inputs 可以选择发布资产或者是未消耗的发费，outputs可以选择控制程序的输出或者资产的销毁，并且在inputs和outputs上加了个资产ID字段，支持多种资产的混合交易， 只要inputs和outpus的价值相等即可。如下图：<br><img src="/img/tx.png" alt=" " title="tx"><br>为了提高性能，交易实现了类似比特币的隔离见证功能， 如下图：<br><img src="/img/segwit.png" alt=""><br><strong> 区块 </strong><br>为了防止双花，块引入了类似以太坊的世界状态，但世界状态是针对UTXO 存储的, 即每一笔交易的执行，都是在该世界状态中执行两步</p>
@@ -461,7 +506,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/25/chain/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/05/26/chain/">展开全文 >></a>
         </p>
       
 
