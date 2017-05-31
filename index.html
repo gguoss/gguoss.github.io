@@ -181,7 +181,77 @@
 <li>API 访问： 对于即将来临的M2M经济，每次API 访问计费。</li>
 <li>快速去中心话交易。<br><strong> 与以太坊相辅相成 </strong><br>Vitalik Buterin 说：“ 状态通道是一种重要技术， 有可能大大提高许多区块链应用程序的可扩展性和隐私性； 结合分片和其他隐私秘密保护技术， 他们是一个重要的组合，可以实现去中心化的许多属性，而这些属性是圈内人和机构所期望，也应该实现的“</li>
 </ul>
-<p>Raiden 1.0 详解：<br>Raiden 1.0 通过合约的方式实现了token 的线下状态通道支付。<br>Registry 合约是系统注册合约，以太坊上的每一种代币都可以一次注册， 然后会产生一个基于该token的状态通道管理合约。每个有该token的用户都可以选择一个搭档建立一个状态通道合约，通过设置押金（会在链上存证）实现线下通道支付，线下交易都是双方各自签名确认即可， 撤出时， 再双方提供证据， 链上交易存证。合约如下：<br><img src="/img/raiden.jpg" alt=""><br>私有链上运行步骤：（geth 需要 &lt; 1.6.0的版本）<br>1，编译合约，并生成到genesis.json。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python tools/config_builder.py full_genesis &gt; mycustomgenesis.json</div></pre></td></tr></table></figure></p>
+<p>Raiden 1.0 详解：<br>Raiden 1.0 通过合约的方式实现了token 的线下状态通道支付。<br>Registry 合约是系统注册合约，以太坊上的每一种代币都可以一次注册， 然后会产生一个基于该token的状态通道管理合约。每个有该token的用户都可以选择一个搭档建立一个状态通道合约，通过设置押金（会在链上存证）实现线下通道支付，线下交易都是双方各自签名确认即可， 撤出时， 再双方提供证据， 链上交易存证。合约如下：<br><img src="/img/raiden.jpg" alt=""> </p>
+<h3 id="Raiden-的类介绍："><a href="#Raiden-的类介绍：" class="headerlink" title="Raiden 的类介绍："></a>Raiden 的类介绍：</h3><h4 id="Asset"><a href="#Asset" class="headerlink" title="Asset"></a>Asset</h4><ul>
+<li>a. 没有特殊规范来规定哪样的资产。</li>
+<li>b.只要是上链的一个简单合约地址就可以（如Toke address）。<h4 id="RaidenProtocol"><a href="#RaidenProtocol" class="headerlink" title="RaidenProtocol"></a>RaidenProtocol</h4></li>
+<li>a.节点间的传输层交互</li>
+<li>b.RaidenService 的网络事件通知。<h4 id="Raiden-Service"><a href="#Raiden-Service" class="headerlink" title="Raiden Service"></a>Raiden Service</h4></li>
+<li>a.链下运行。</li>
+<li>b.Raiden 的根类。</li>
+<li>c.暴露Raiden 与Raiden的接口。</li>
+<li>d.需要直接访问本地的Blockchain节点。</li>
+<li>e.管理所有的链上链下交互路由。</li>
+<li>f.维护AssetManagers列表。</li>
+<li>g.每个维护的AssetManagers只负责一个资产。<h4 id="AssetManager"><a href="#AssetManager" class="headerlink" title="AssetManager"></a>AssetManager</h4></li>
+<li>a.链下运行。</li>
+<li>b.完全由RaidenService实例拥有。</li>
+<li>c.与一个单一资产相关联。</li>
+<li>d.与链上的ChannelManagerContract相关联，负责同一个资产。</li>
+<li>e.在单一资产上维护一组到其他节点的通道。</li>
+<li>f.从链上的ChannelManagerContract获取通道初始化列表。<h4 id="ChannelManagerContract"><a href="#ChannelManagerContract" class="headerlink" title="ChannelManagerContract"></a>ChannelManagerContract</h4></li>
+<li>a.链上运行。</li>
+<li>b.关联实实在在的一种资产。</li>
+<li>c. 维护链上的NettingChannelContracts列表。<h4 id="NettingChannelContract"><a href="#NettingChannelContract" class="headerlink" title="NettingChannelContract"></a>NettingChannelContract</h4></li>
+<li>a.链上运行。</li>
+<li>b.和一种资产相关联。</li>
+<li>c.知道同一通道的两个参与方(链上 地址）</li>
+<li>d.持有双方存款</li>
+<li>e.在链上执行一个通道的结算。<h4 id="TransferManager"><a href="#TransferManager" class="headerlink" title="TransferManager"></a>TransferManager</h4></li>
+<li>a.链下运行。</li>
+<li>b.负责处理TransferTasks，它们代表了脱机通道中双方之间的单一转移。</li>
+<li>c.在没有直接目标通道打开的情况下，会产生TransferTask 作为中介转移。</li>
+<li>d.如果具有接收到的转移目标的通道打开，则可以启动到目标的转移。<h4 id="TransferTask-UML-transfer-activity-transfer-state"><a href="#TransferTask-UML-transfer-activity-transfer-state" class="headerlink" title="TransferTask(UML: transfer_activity, transfer_state)"></a>TransferTask(UML: transfer_activity, transfer_state)</h4></li>
+<li>a.链下运行。</li>
+<li>b.异步运行， 通过网络事件触发。</li>
+<li>c.和AssetManager, TransferManager 和RaidenService 相关联。</li>
+<li>d. 和transfer完全相关联。</li>
+<li>e.负责找到与之相关联的传输路径。</li>
+<li>i. 路径是活跃的。</li>
+<li>ii.路径有足够的资金用于转移。</li>
+<li>f.如果找不到路径，则启动CancelTransfer。<h4 id="Transfer"><a href="#Transfer" class="headerlink" title="Transfer"></a>Transfer</h4></li>
+<li>a.包含nonce, 资产, 金额，参与方，locksroot[, secret]。</li>
+<li>b. nonce: 跟踪消息序列的计数器。Transfers的nonce 在通道中更新, 参与方的nonce在参与方的本地镜像中更新。</li>
+<li>c.是一个merkle树的树根。它记录了他们的hashlocks的最精简locked_ammounts。<h4 id="LockedTransfer"><a href="#LockedTransfer" class="headerlink" title="LockedTransfer"></a>LockedTransfer</h4></li>
+<li>a. 如果收款人知道hashlock的secret, 那么他就可以声明locked_amount。 locked_amount不是余额的一部分，而是在locksroot中隐含。<h4 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h4></li>
+<li>a.链下运行。</li>
+<li>b.被本地或者伙伴节点初始化。</li>
+<li>c.在链上有一个相对应的NettingChannelContract。</li>
+<li>d.在每个资产的对端节点中最多有一个通道。也就是说，（目前）最多两个(不同的)节点可以为每个资产设置一个通道。</li>
+<li>e.和伙伴节点维护最终的交易账本。</li>
+<li>f.执行创造和取消transfers。</li>
+<li>g.维护LockedTransfers列表。</li>
+<li>h. 执行LockedTransfers的声明。</li>
+<li>i.更新自己和伙伴的账目（接受或者发送）。<h3 id="核心步骤。"><a href="#核心步骤。" class="headerlink" title="核心步骤。"></a>核心步骤。</h3><h4 id="Transfers-in-a-channel"><a href="#Transfers-in-a-channel" class="headerlink" title="Transfers in a channel"></a>Transfers in a channel</h4></li>
+<li>a.类型: Transfer, LockedTransfer (Parent class for): MediatedTransfer, CancelTransfer。</li>
+<li>b.Trasfers 接收到一个RaidenProtocol实例化的消息，并转发给RaidenService,由TransferManager来真正的处理。</li>
+<li>c.TransferManager 从AssetManager中获得相关联的通道。</li>
+<li>d.任何通道可以追踪Transfers和LockedTransfers。</li>
+<li>e.Transfers 可以通过通道发送给参与方的节点， 也可以注册本地通道。因此，通道中的transfer既可以是用于发送的， 也可以是用于接收的。</li>
+<li>f.一旦接收到transfer, 由通道注册。</li>
+<li>i.Transfer 接收者必须要有正确的nonce。这个nonce是当每次接收到伙伴节点transfer而增加。这个nonce 在本地伙伴节点维护。参与双方维护相同的增加。保证参与transfer双方的序列一致性。</li>
+<li>ii.收到的transfer包含secret, 解锁secret得到金额, 并相应更新余额。</li>
+<li>iii.如果我们收到了LockerTransfer，LockedTransfer将被注册。</li>
+<li>iiii.最后，自己的余额和合作伙伴的余额根据allowance（= transfer.balance  -  self.balance）进行更新。如果转让包含secreted, 余儿则根据步骤ii中触发的声明进行。</li>
+<li>g.如果Transfer被发送， 则由Channel注册：</li>
+<li>i.对于接收方，是对称的。</li>
+<li>ii.我们不需要验证lockroots是否正确。</li>
+<li>h.只有节点的当前余额超过传送的额度并且未达到到期的块高度(后者仅与LockedTransfers相关)，Transfers才能被初始化。</li>
+</ul>
+<h3 id="选择多条Transfer的场景"><a href="#选择多条Transfer的场景" class="headerlink" title="选择多条Transfer的场景"></a>选择多条Transfer的场景</h3><h4 id="正常的Transfer"><a href="#正常的Transfer" class="headerlink" title="正常的Transfer"></a>正常的Transfer</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">A 通过B 转帐给C：</div><div class="line">A： 初始化secret</div><div class="line">A： MediatedTransfer -&gt; B</div><div class="line">B：MediatedTransfer -&gt;  C</div><div class="line">C：secretRequest -&gt; A (证明收到的transfer是有效的)</div><div class="line">A：Secret -&gt; C</div><div class="line">C：Secret -&gt; B</div></pre></td></tr></table></figure>
+<h4 id="CancelTransfer"><a href="#CancelTransfer" class="headerlink" title="CancelTransfer:"></a>CancelTransfer:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">A： 初始化Secret</div><div class="line">A： MediatedTransfer -&gt; B</div><div class="line">B： MediatedTransfer -&gt; C(失败： C 不能和D建立路经)</div><div class="line">C：CancelTransfer -&gt; B</div><div class="line">B：MediatedTransfer -&gt; C2</div><div class="line">C2：MediatedTransfer -&gt; D</div></pre></td></tr></table></figure>
+<h4 id="TimeoutTransfer"><a href="#TimeoutTransfer" class="headerlink" title="TimeoutTransfer"></a>TimeoutTransfer</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">A： 初始化Secret</div><div class="line">B： MediatedTransfer -&gt; B</div><div class="line">B： MediatedTransfer -&gt; C (失败：没有接收到C的ACK消息)</div><div class="line">B: TransferTimeout -&gt; A</div><div class="line">决议：A不会透露secret，尝试新的transfer，B禁止C</div></pre></td></tr></table></figure>
+<h3 id="私有链上运行步骤：（geth-需要-lt-1-6-0的版本）"><a href="#私有链上运行步骤：（geth-需要-lt-1-6-0的版本）" class="headerlink" title="私有链上运行步骤：（geth 需要 &lt; 1.6.0的版本）"></a>私有链上运行步骤：（geth 需要 &lt; 1.6.0的版本）</h3><p>1，编译合约，并生成到genesis.json。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python tools/config_builder.py full_genesis &gt; mycustomgenesis.json</div></pre></td></tr></table></figure></p>
 <p>2， 根据genesis.json初始化内容到指定目录。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">geth --datadir /tmp/privategeth init mycustomgenesis.json</div></pre></td></tr></table></figure></p>
 <p>3，启动geth<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">geth --datadir /tmp/privategeth --networkid 123 --nodiscover --maxpeers 0 --rpc --minerthreads 1 --etherbase c13f2e8e9c92d81de806023d68cc64fe85bf6740 --mine</div></pre></td></tr></table></figure></p>
 <p>4，启动雷电网络<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">raiden --eth_rpc_endpoint 127.0.0.1:8545 --registry_contract_address 79eafd0b5ec8d3f945e6bb2817ed90b046c0d0af --discovery_contract_address 2ce636d6240f8955d085a896e12429f8b3c7db26</div></pre></td></tr></table></figure></p>
