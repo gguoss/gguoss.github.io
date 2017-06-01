@@ -147,6 +147,60 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-区块链上的分布式存储" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/01/区块链上的分布式存储/">区块链相关的分布式存储之IPFS</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/01/区块链上的分布式存储/" class="archive-article-date">
+  	<time datetime="2017-06-01T08:08:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>区块链百花争鸣的时代， 各种应用场景争相开放，就算在同一个领域，也会有各种产品出现。如分布式存储领域， 有storj, maidsafe, swarm, zeronet, ipfs等。在这里， 主角当然是IPFS。<br>正如比特币一样， 它没有产生新的技术，而是总结前人的技术， 它是p2p, 密码学，共识学等技术的组合体。IPFS则组合了4大技术点如下：</p>
+<ul>
+<li>1.分布式哈希表(kad算法，coral dsht算法，s/kad 算法）</li>
+<li>2.百度种子用到的技术BitTorrent</li>
+<li>3.版本控制系统git</li>
+<li>4.自我认证文件系统-SFS<br>IPFS是位于TCP/IP协议的应用层协议（与http协议是竞争关系）。IPFS协议栈是漂亮的, 是对现有臃肿的http协议的一次革命。看如下两幅漂亮的图：<br><img src="/img/ipfs_stack.png" alt=""><br><img src="/img/ipfs_protocol.png" alt=""><br>正如图上所画的一样，IPFS很强大， 这是对http的革命。以前的web等应用面对瓶颈，都是改良http。然而IPFS是革命http。革命，是需要流血的。撼动能满足现在的http协议不容易， 所以IPFS在寻找革命的战友， 它提出来了用区块链来作为革命的导火索。为了应用区块链，最大的大山是共识。目前为止，得到世人验证的防拜占庭共识只有POW。而IPFS想发布基于POR(带宽，存储容量等资源)的filecoin，这无疑是困难的。所以这也是，持续这么久， IPFS都没出正式版白皮书的原因。所有分布式应用成为一条区块链必须要解决难点–共识。<br>总结一下，IPFS最优点是实现了libp2p库，该库综合了目前大多数点对点分布式存储的优点。IPFS最难点， 对于要发行的基于POR共识的filecoin，开发者还没有发布最实际的有效做法。</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/01/区块链上的分布式存储/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-raiden" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -594,7 +648,7 @@
 <li>4.共识安全性防范： 效率和安全不可兼得。<br><strong> 监管 </strong><br>Chain 允许本地的政策发布， 但监管方可以通过块生成器进行监管。如果块签名者在同一高度签署多个块，参与者可以使用不一致的签名来构建欺诈证据，以警告其他节点或为链下执行提供证据。<h2 id="伸缩性，扩展性，-互通性。"><a href="#伸缩性，扩展性，-互通性。" class="headerlink" title="伸缩性，扩展性， 互通性。"></a>伸缩性，扩展性， 互通性。</h2></li>
 <li>1.utxo 与以太坊账户模型不同， 可以并行验证交易， 只要用类似于nonce的机制保证每一个未花费outputs最多只能被一笔交易所引用。</li>
 <li>2.Chain 天然的比以太坊瘦， 不需要完整的世界状态， 参与者只需要记住未花费的outpus就可了， 因为交易会自带其他相关信息（如资产ID, 量额， 控制程序）， 超级轻客户端。</li>
-<li>3.compact 验证 ， 只允许客户端验证块中所相关的交易，而不需要验证所有的交易，只要信任签名者的数量即可。整个过程是用Merle证明。客户端也可以将监视整个区块链的任务委托给自己信任的服务器。<br>块可以通过软分叉的方式向前向后版本兼容。<br>Chain 不仅支持在实现本协议的区块链间通信， 但需要保证全局唯一资产ID。每一条分链是从另外一条链的块高度叉出去的，根据这点能保证资产ID唯一。 并支持不同的协议的链互相交互， 因为CVM提供了足够多的指令。</li>
+<li>3.compact 验证 ， 只允许客户端验证块中所相关的交易，而不需要验证所有的交易，只要信任签名者的数量即可。整个过程是用Merkle证明。客户端也可以将监视整个区块链的任务委托给自己信任的服务器。<br>块可以通过软分叉的方式向前向后版本兼容。<br>Chain 不仅支持在实现本协议的区块链间通信， 但需要保证全局唯一资产ID。每一条分链是从另外一条链的块高度叉出去的，根据这点能保证资产ID唯一。 并支持不同的协议的链互相交互， 因为CVM提供了足够多的指令。</li>
 </ul>
 <p>星期四, 25. 五月 2017 10:06上午 </p>
 

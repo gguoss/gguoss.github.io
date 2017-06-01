@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://yoursite.com/img/segwit.png">
 <meta property="og:image" content="http://yoursite.com/img/world_state.png">
 <meta property="og:image" content="http://yoursite.com/img/chain.jpg">
-<meta property="og:updated_time" content="2017-05-31T01:56:53.311Z">
+<meta property="og:updated_time" content="2017-06-01T12:43:33.935Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chain 简介">
 <meta name="twitter:description" content="Chain简介chain设计了一种多种资产可以互相交易发布的分布式账本协议。用该协议的多条链可以独立的存在， 并且可以跨链交易， 这样不同的运营商可以以相同的形式互相交易。坚持最小权限原则， 资产的管理和分布式账本同步控制相分离。链协议允许任何网络参与者通过编写自定义“发布程序”来定义和发行资产。一旦发行，资产单元由“控制程序”控制。 控制程序是用图灵完备的编程语言实现， 该语言可用于编写复杂的智">
@@ -201,7 +201,7 @@
 <li>4.共识安全性防范： 效率和安全不可兼得。<br><strong> 监管 </strong><br>Chain 允许本地的政策发布， 但监管方可以通过块生成器进行监管。如果块签名者在同一高度签署多个块，参与者可以使用不一致的签名来构建欺诈证据，以警告其他节点或为链下执行提供证据。<h2 id="伸缩性，扩展性，-互通性。"><a href="#伸缩性，扩展性，-互通性。" class="headerlink" title="伸缩性，扩展性， 互通性。"></a>伸缩性，扩展性， 互通性。</h2></li>
 <li>1.utxo 与以太坊账户模型不同， 可以并行验证交易， 只要用类似于nonce的机制保证每一个未花费outputs最多只能被一笔交易所引用。</li>
 <li>2.Chain 天然的比以太坊瘦， 不需要完整的世界状态， 参与者只需要记住未花费的outpus就可了， 因为交易会自带其他相关信息（如资产ID, 量额， 控制程序）， 超级轻客户端。</li>
-<li>3.compact 验证 ， 只允许客户端验证块中所相关的交易，而不需要验证所有的交易，只要信任签名者的数量即可。整个过程是用Merle证明。客户端也可以将监视整个区块链的任务委托给自己信任的服务器。<br>块可以通过软分叉的方式向前向后版本兼容。<br>Chain 不仅支持在实现本协议的区块链间通信， 但需要保证全局唯一资产ID。每一条分链是从另外一条链的块高度叉出去的，根据这点能保证资产ID唯一。 并支持不同的协议的链互相交互， 因为CVM提供了足够多的指令。</li>
+<li>3.compact 验证 ， 只允许客户端验证块中所相关的交易，而不需要验证所有的交易，只要信任签名者的数量即可。整个过程是用Merkle证明。客户端也可以将监视整个区块链的任务委托给自己信任的服务器。<br>块可以通过软分叉的方式向前向后版本兼容。<br>Chain 不仅支持在实现本协议的区块链间通信， 但需要保证全局唯一资产ID。每一条分链是从另外一条链的块高度叉出去的，根据这点能保证资产ID唯一。 并支持不同的协议的链互相交互， 因为CVM提供了足够多的指令。</li>
 </ul>
 <p>星期四, 25. 五月 2017 10:06上午 </p>
 
