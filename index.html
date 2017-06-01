@@ -255,6 +255,39 @@
 <p>2， 根据genesis.json初始化内容到指定目录。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">geth --datadir /tmp/privategeth init mycustomgenesis.json</div></pre></td></tr></table></figure></p>
 <p>3，启动geth<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">geth --datadir /tmp/privategeth --networkid 123 --nodiscover --maxpeers 0 --rpc --minerthreads 1 --etherbase c13f2e8e9c92d81de806023d68cc64fe85bf6740 --mine</div></pre></td></tr></table></figure></p>
 <p>4，启动雷电网络<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">raiden --eth_rpc_endpoint 127.0.0.1:8545 --registry_contract_address 79eafd0b5ec8d3f945e6bb2817ed90b046c0d0af --discovery_contract_address 2ce636d6240f8955d085a896e12429f8b3c7db26</div></pre></td></tr></table></figure></p>
+<h3 id="进入Raiden-控制台"><a href="#进入Raiden-控制台" class="headerlink" title="进入Raiden 控制台"></a>进入Raiden 控制台</h3><p>举一个 alice 给 bob 转帐的例子：</p>
+<ul>
+<li><p>1.创建token, 或者用已有toke</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">token_address = tools.create_token(initial_alloc=1000, name=&quot;mytoken&quot;, symbol=&quot;MT&quot;, decimals=2)</div></pre></td></tr></table></figure>
+</li>
+<li><p>2.Bob的地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bob = &apos;addresss of partner without leading 0x&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>3.确保可以链接bob</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tools.ping(bob)</div></pre></td></tr></table></figure>
+</li>
+<li><p>4.打开状态通道</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tools.open_channel_with_funding(token_address, bob, amount)</div></pre></td></tr></table></figure>
+</li>
+<li><p>5.bob的操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">raiden.api.deposit(token_address, alice, amount)</div></pre></td></tr></table></figure>
+</li>
+<li><p>6.可以互相转帐</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">alice -&gt; bob</div><div class="line">raiden.api.transfer(token_address, 73, bob)</div><div class="line">bob -&gt; alice</div><div class="line">raiden.api.transfer(token_address, 50, alice)</div></pre></td></tr></table></figure>
+</li>
+<li><p>7.可以查看通道的状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tools.channel_stats_for(token_address, bob, pretty=True)</div></pre></td></tr></table></figure>
+</li>
+<li><p>8.关闭通道</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">raiden.api.close(token_address, bob)</div></pre></td></tr></table></figure>
+</li>
+<li><p>9.为了防止对方欺骗，设置了settle过程，有10个块的timeout, 等待对方确认</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">raiden.api.settle(token_address, bob)</div></pre></td></tr></table></figure>
+</li>
+<li><p>10.可以查看双方的资金状况：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">asset.balance_of(raiden.address)</div><div class="line">asset.balance_of(bob)</div></pre></td></tr></table></figure>
+</li>
+</ul>
 <p>Raiden 2.0 正在准备实现側链的功能。</p>
 
       
