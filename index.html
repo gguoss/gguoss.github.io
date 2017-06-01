@@ -232,7 +232,7 @@
 <li>f.执行创造和取消transfers。</li>
 <li>g.维护LockedTransfers列表。</li>
 <li>h. 执行LockedTransfers的声明。</li>
-<li>i.更新自己和伙伴的账目（接受或者发送）。<h3 id="核心步骤。"><a href="#核心步骤。" class="headerlink" title="核心步骤。"></a>核心步骤。</h3><h4 id="Transfers-in-a-channel"><a href="#Transfers-in-a-channel" class="headerlink" title="Transfers in a channel"></a>Transfers in a channel</h4></li>
+<li>i.更新自己和伙伴的账目（接受或者发送）。<h3 id="各模块关系图如下："><a href="#各模块关系图如下：" class="headerlink" title="各模块关系图如下："></a>各模块关系图如下：</h3><img src="/img/concept_relationships.png" alt=""> <h3 id="核心步骤。"><a href="#核心步骤。" class="headerlink" title="核心步骤。"></a>核心步骤。</h3><h4 id="Transfers-in-a-channel"><a href="#Transfers-in-a-channel" class="headerlink" title="Transfers in a channel"></a>Transfers in a channel</h4></li>
 <li>a.类型: Transfer, LockedTransfer (Parent class for): MediatedTransfer, CancelTransfer。</li>
 <li>b.Trasfers 接收到一个RaidenProtocol实例化的消息，并转发给RaidenService,由TransferManager来真正的处理。</li>
 <li>c.TransferManager 从AssetManager中获得相关联的通道。</li>
