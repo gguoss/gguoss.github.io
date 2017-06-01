@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Block Chain">
 <meta property="og:description" content="雷电网络基于以太坊的快速数字资产交易 以太坊上网络支付通道 Raiden 利用链下网络状态技术给以太坊上的数字资产带来了许多nice的属性：  1.可扩展性: 它与参与者的数量呈线性关系（每秒可能有1,000,000+次转帐)。 2.快速： 转账在一秒钟的时间内被确认和确定。 3.匿名性：单次转帐不会显示在全局分布式帐本中。 4.互操作性： 以太坊上任何实现了标准代币的接口的代币都可以互相交易。">
 <meta property="og:image" content="http://yoursite.com/img/raiden.jpg">
-<meta property="og:updated_time" content="2017-05-31T09:30:58.109Z">
+<meta property="og:updated_time" content="2017-06-01T01:44:37.617Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="雷电网络">
 <meta name="twitter:description" content="雷电网络基于以太坊的快速数字资产交易 以太坊上网络支付通道 Raiden 利用链下网络状态技术给以太坊上的数字资产带来了许多nice的属性：  1.可扩展性: 它与参与者的数量呈线性关系（每秒可能有1,000,000+次转帐)。 2.快速： 转账在一秒钟的时间内被确认和确定。 3.匿名性：单次转帐不会显示在全局分布式帐本中。 4.互操作性： 以太坊上任何实现了标准代币的接口的代币都可以互相交易。">
@@ -246,7 +246,7 @@
 <li>i.Transfer 接收者必须要有正确的nonce。这个nonce是当每次接收到伙伴节点transfer而增加。这个nonce 在本地伙伴节点维护。参与双方维护相同的增加。保证参与transfer双方的序列一致性。</li>
 <li>ii.收到的transfer包含secret, 解锁secret得到金额, 并相应更新余额。</li>
 <li>iii.如果我们收到了LockerTransfer，LockedTransfer将被注册。</li>
-<li>iiii.最后，自己的余额和合作伙伴的余额根据allowance（= transfer.balance  -  self.balance）进行更新。如果转让包含secreted, 余儿则根据步骤ii中触发的声明进行。</li>
+<li>iiii.最后，自己的余额和合作伙伴的余额根据allowance（= transfer.balance  -  self.balance）进行更新。如果转让包含secreted, 余额则根据步骤ii中触发的声明进行。</li>
 <li>g.如果Transfer被发送， 则由Channel注册：</li>
 <li>i.对于接收方，是对称的。</li>
 <li>ii.我们不需要验证lockroots是否正确。</li>

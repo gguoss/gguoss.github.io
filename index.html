@@ -242,7 +242,7 @@
 <li>i.Transfer 接收者必须要有正确的nonce。这个nonce是当每次接收到伙伴节点transfer而增加。这个nonce 在本地伙伴节点维护。参与双方维护相同的增加。保证参与transfer双方的序列一致性。</li>
 <li>ii.收到的transfer包含secret, 解锁secret得到金额, 并相应更新余额。</li>
 <li>iii.如果我们收到了LockerTransfer，LockedTransfer将被注册。</li>
-<li>iiii.最后，自己的余额和合作伙伴的余额根据allowance（= transfer.balance  -  self.balance）进行更新。如果转让包含secreted, 余儿则根据步骤ii中触发的声明进行。</li>
+<li>iiii.最后，自己的余额和合作伙伴的余额根据allowance（= transfer.balance  -  self.balance）进行更新。如果转让包含secreted, 余额则根据步骤ii中触发的声明进行。</li>
 <li>g.如果Transfer被发送， 则由Channel注册：</li>
 <li>i.对于接收方，是对称的。</li>
 <li>ii.我们不需要验证lockroots是否正确。</li>
