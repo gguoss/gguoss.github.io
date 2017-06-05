@@ -8,16 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>tendermint | Block Chain</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Tendermint 是分布式一致性软件。即使有1/3的机器叛变了， 也能保证其余机器上的数据一致。容忍机器以任意方式失败的能力， 包括变得恶意， 被称为拜占庭容错(BFT)。该理论被提出来数十年了，由于bitcoin和ethereum”区块链技术”的成功，才变得流行起来。区块链用点对点和加密认证技术组成了一个现代化BFT实例。Tendermint包含了两个主要的组件：区块链共识引擎和通用应用层接">
+  <meta name="description" content="简介Tendermint 是分布式一致性软件。即使有1/3的机器叛变了， 也能保证其余机器上的数据一致。容忍机器以任意方式失败的能力， 包括变得恶意， 被称为拜占庭容错(BFT)。该理论被提出来数十年了，由于bitcoin和ethereum”区块链技术”的成功，才变得流行起来。区块链用点对点和加密认证技术组成了一个现代化BFT实例。Tendermint包含了两个主要的组件：区块链共识引擎和通用应用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tendermint">
 <meta property="og:url" content="http://yoursite.com/2017/06/05/tendermint/index.html">
 <meta property="og:site_name" content="Block Chain">
-<meta property="og:description" content="Tendermint 是分布式一致性软件。即使有1/3的机器叛变了， 也能保证其余机器上的数据一致。容忍机器以任意方式失败的能力， 包括变得恶意， 被称为拜占庭容错(BFT)。该理论被提出来数十年了，由于bitcoin和ethereum”区块链技术”的成功，才变得流行起来。区块链用点对点和加密认证技术组成了一个现代化BFT实例。Tendermint包含了两个主要的组件：区块链共识引擎和通用应用层接">
-<meta property="og:updated_time" content="2017-06-05T07:28:48.001Z">
+<meta property="og:description" content="简介Tendermint 是分布式一致性软件。即使有1/3的机器叛变了， 也能保证其余机器上的数据一致。容忍机器以任意方式失败的能力， 包括变得恶意， 被称为拜占庭容错(BFT)。该理论被提出来数十年了，由于bitcoin和ethereum”区块链技术”的成功，才变得流行起来。区块链用点对点和加密认证技术组成了一个现代化BFT实例。Tendermint包含了两个主要的组件：区块链共识引擎和通用应用">
+<meta property="og:image" content="http://yoursite.com/img/architecture.png">
+<meta property="og:updated_time" content="2017-06-05T09:33:39.566Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tendermint">
-<meta name="twitter:description" content="Tendermint 是分布式一致性软件。即使有1/3的机器叛变了， 也能保证其余机器上的数据一致。容忍机器以任意方式失败的能力， 包括变得恶意， 被称为拜占庭容错(BFT)。该理论被提出来数十年了，由于bitcoin和ethereum”区块链技术”的成功，才变得流行起来。区块链用点对点和加密认证技术组成了一个现代化BFT实例。Tendermint包含了两个主要的组件：区块链共识引擎和通用应用层接">
+<meta name="twitter:description" content="简介Tendermint 是分布式一致性软件。即使有1/3的机器叛变了， 也能保证其余机器上的数据一致。容忍机器以任意方式失败的能力， 包括变得恶意， 被称为拜占庭容错(BFT)。该理论被提出来数十年了，由于bitcoin和ethereum”区块链技术”的成功，才变得流行起来。区块链用点对点和加密认证技术组成了一个现代化BFT实例。Tendermint包含了两个主要的组件：区块链共识引擎和通用应用">
+<meta name="twitter:image" content="http://yoursite.com/img/architecture.png">
   
     <link rel="alternative" href="/atom.xml" title="Block Chain" type="application/atom+xml">
   
@@ -169,7 +171,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Tendermint 是分布式一致性软件。即使有1/3的机器叛变了， 也能保证其余机器上的数据一致。容忍机器以任意方式失败的能力， 包括变得恶意， 被称为拜占庭容错(BFT)。该理论被提出来数十年了，由于bitcoin和ethereum”区块链技术”的成功，才变得流行起来。区块链用点对点和加密认证技术组成了一个现代化BFT实例。Tendermint包含了两个主要的组件：区块链共识引擎和通用应用层接口。共识引擎叫Tendermint Core，确保每一台机器上的交易列表是相同。应用层接口名字是ABCI，提供能为任何语言处理交易的接口。与其他区块链的解决方案（内置的状态机预先打包块）不同，如ethereum的基于世界状态树的键值对存储、比特币的脚本语言处理。开发人员可以在任何开发环境下用任何语言通过ABCI来使用Tendermint进行状态机应用层的复制。</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Tendermint 是分布式一致性软件。即使有1/3的机器叛变了， 也能保证其余机器上的数据一致。容忍机器以任意方式失败的能力， 包括变得恶意， 被称为拜占庭容错(BFT)。该理论被提出来数十年了，由于bitcoin和ethereum”区块链技术”的成功，才变得流行起来。区块链用点对点和加密认证技术组成了一个现代化BFT实例。Tendermint包含了两个主要的组件：区块链共识引擎和通用应用层接口。共识引擎叫Tendermint Core，确保每一台机器上的交易列表相同。应用层接口名字是ABCI，提供能为任何语言处理交易的接口。与其他区块链的解决方案（内置的状态机预先打包块）不同，如ethereum的基于世界状态树的键值对存储、bitcoin的脚本语言处理。开发人员可以在任何开发环境下用任何语言通过ABCI来使用Tendermint进行状态机应用层的复制。</p>
+<h2 id="基于Tendermint的应用架构"><a href="#基于Tendermint的应用架构" class="headerlink" title="基于Tendermint的应用架构"></a>基于Tendermint的应用架构</h2><p>区块链应用不仅仅包括共识引擎和交易逻辑（如，智能合约，商业逻辑）。同时也包括（手机端， web端，桌面端）链接上的应用。在这些链接中安全很重要，DoSed攻击是通过攻破的1/3的验证节点去攻击其他2/3的验证节点。一种常见的攻击就是ABCI应用和tendermint core之间的通信。所以ABCI应用和tendemint core之间的通信安全性很重要。通信安全由强到弱 unix socket &gt; local tcp socket &gt; vpn &gt; 外网tcp socket。<br>通用的应用框架如下图：<br><img src="/img/architecture.png" alt=""><br><strong> 优点</strong></p>
+<ul>
+<li>应用层和区块链层相分离。</li>
+<li>支持更丰富，更灵活的客户端API。</li>
+<li>支持pub-sub模式，观察关键字段等。<br><strong> 注意点 </strong></li>
+<li>直接调用ABCI接口非常危险（写数据接口调用时需要非常小心，除非来自验证节点的消息）</li>
+<li>不能直接访问区块链的头和验证交易。</li>
+<li>自己必须实现自己的API。</li>
+</ul>
 
       
 
