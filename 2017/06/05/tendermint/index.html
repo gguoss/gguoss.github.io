@@ -15,7 +15,8 @@
 <meta property="og:site_name" content="Block Chain">
 <meta property="og:description" content="简介Tendermint 是分布式一致性软件。即使有1/3的机器叛变了， 也能保证其余机器上的数据一致。容忍机器以任意方式失败的能力， 包括变得恶意， 被称为拜占庭容错(BFT)。该理论被提出来数十年了，由于bitcoin和ethereum”区块链技术”的成功，才变得流行起来。区块链用点对点和加密认证技术组成了一个现代化BFT实例。Tendermint包含了两个主要的组件：区块链共识引擎和通用应用">
 <meta property="og:image" content="http://yoursite.com/img/architecture.png">
-<meta property="og:updated_time" content="2017-06-05T09:33:39.566Z">
+<meta property="og:image" content="http://yoursite.com/img/ABCI.png">
+<meta property="og:updated_time" content="2017-06-05T11:16:34.805Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tendermint">
 <meta name="twitter:description" content="简介Tendermint 是分布式一致性软件。即使有1/3的机器叛变了， 也能保证其余机器上的数据一致。容忍机器以任意方式失败的能力， 包括变得恶意， 被称为拜占庭容错(BFT)。该理论被提出来数十年了，由于bitcoin和ethereum”区块链技术”的成功，才变得流行起来。区块链用点对点和加密认证技术组成了一个现代化BFT实例。Tendermint包含了两个主要的组件：区块链共识引擎和通用应用">
@@ -179,7 +180,23 @@
 <li>支持pub-sub模式，观察关键字段等。<br><strong> 注意点 </strong></li>
 <li>直接调用ABCI接口非常危险（写数据接口调用时需要非常小心，除非来自验证节点的消息）</li>
 <li>不能直接访问区块链的头和验证交易。</li>
-<li>自己必须实现自己的API。</li>
+<li>自己必须实现自己的API。<h2 id="应用层开发"><a href="#应用层开发" class="headerlink" title="应用层开发"></a>应用层开发</h2>ABCI的目的在一台交易处理状态机和多台提供复制机制的计算机之间提供清晰的接口。前者称之为“应用逻辑“， 后者称之为“共识引擎“。应用程序逻辑验证事务，并可选地针对某些持久状态执行事务。共识引擎可确保在每台机器上以相同的顺序复制所有事务。我们将共识引擎中的每个机器称为“验证器”，并且每个验证器通过相同的应用程序逻辑运行相同的事务。特别是对区块链的共识引擎，其中交易在链式哈希块中提交。<br>ABCI的设计有几个不同的模块：</li>
+<li>消息协议</li>
+<li>1.一对请求和响应消息。</li>
+<li>2.共识提出请求，应用响应。</li>
+<li>3.使用protobuf的定义。</li>
+<li>server/client</li>
+<li>1.共识引擎作为client端运行。</li>
+<li>2.应用程序作为server端运行。</li>
+<li>3.两个实现：</li>
+<li>a.异步raw字节。</li>
+<li>b.grpc。</li>
+<li>区块链协议</li>
+<li>1.abci是面上链接的。</li>
+<li>2.Terdermint Core 维护了三个链接：</li>
+<li>a.mempool链接：CheckTx</li>
+<li>b.consensus链接：交易列表执行后打包提交，消息队列对于每个块：BeginBlock, [DeliverTx, …], EndBlock, Commit。</li>
+<li>c.query链接：查询应用状态。<br><img src="/img/ABCI.png" alt=""><br>mempool和Consensus Logic作为客户端，和应用（ABCI 服务器端）间维护一个open ABCI，上图展示了链接请求和响应类型 。</li>
 </ul>
 
       
