@@ -6,21 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>tendermint | Block Chain</title>
+  <title>BFT | Block Chain</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介Tendermint 是分布式一致性软件。即使有1/3的机器叛变了， 也能保证其余机器上的数据一致。容忍机器以任意方式失败的能力， 包括变得恶意， 被称为拜占庭容错(BFT)。该理论被提出来数十年了，由于bitcoin和ethereum”区块链技术”的成功，才变得流行起来。区块链用点对点和加密认证技术组成了一个现代化BFT实例。Tendermint包含了两个主要的组件：区块链共识引擎和通用应用">
+  <meta name="description" content="比特币将世界的注意力引向到了区块链。但可惜的是，比特币版本的区块链不能解决区块链行业的很多问题。那是因为：  比特币的POW共识会乱费大量能源。 交易非常缓慢， 一笔交易需要花一个小时甚至更长的时间。 没有什么激励机制来激励POW矿工忠于一条链，所以会导致升级很苦难。我们需要一种安全的共识，并且不会给我们的星球施加巨大的能源成本。这种方法是基于拜占庭容错（BFT）的权益证明（POS ）。我们称之为">
 <meta property="og:type" content="article">
-<meta property="og:title" content="tendermint">
-<meta property="og:url" content="http://yoursite.com/2017/06/05/tendermint/index.html">
+<meta property="og:title" content="BFT">
+<meta property="og:url" content="http://yoursite.com/2017/06/06/BFT/index.html">
 <meta property="og:site_name" content="Block Chain">
-<meta property="og:description" content="简介Tendermint 是分布式一致性软件。即使有1/3的机器叛变了， 也能保证其余机器上的数据一致。容忍机器以任意方式失败的能力， 包括变得恶意， 被称为拜占庭容错(BFT)。该理论被提出来数十年了，由于bitcoin和ethereum”区块链技术”的成功，才变得流行起来。区块链用点对点和加密认证技术组成了一个现代化BFT实例。Tendermint包含了两个主要的组件：区块链共识引擎和通用应用">
-<meta property="og:image" content="http://yoursite.com/img/architecture.png">
-<meta property="og:image" content="http://yoursite.com/img/ABCI.png">
-<meta property="og:updated_time" content="2017-06-05T11:17:39.707Z">
+<meta property="og:description" content="比特币将世界的注意力引向到了区块链。但可惜的是，比特币版本的区块链不能解决区块链行业的很多问题。那是因为：  比特币的POW共识会乱费大量能源。 交易非常缓慢， 一笔交易需要花一个小时甚至更长的时间。 没有什么激励机制来激励POW矿工忠于一条链，所以会导致升级很苦难。我们需要一种安全的共识，并且不会给我们的星球施加巨大的能源成本。这种方法是基于拜占庭容错（BFT）的权益证明（POS ）。我们称之为">
+<meta property="og:updated_time" content="2017-06-06T05:06:00.948Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tendermint">
-<meta name="twitter:description" content="简介Tendermint 是分布式一致性软件。即使有1/3的机器叛变了， 也能保证其余机器上的数据一致。容忍机器以任意方式失败的能力， 包括变得恶意， 被称为拜占庭容错(BFT)。该理论被提出来数十年了，由于bitcoin和ethereum”区块链技术”的成功，才变得流行起来。区块链用点对点和加密认证技术组成了一个现代化BFT实例。Tendermint包含了两个主要的组件：区块链共识引擎和通用应用">
-<meta name="twitter:image" content="http://yoursite.com/img/architecture.png">
+<meta name="twitter:title" content="BFT">
+<meta name="twitter:description" content="比特币将世界的注意力引向到了区块链。但可惜的是，比特币版本的区块链不能解决区块链行业的很多问题。那是因为：  比特币的POW共识会乱费大量能源。 交易非常缓慢， 一笔交易需要花一个小时甚至更长的时间。 没有什么激励机制来激励POW矿工忠于一条链，所以会导致升级很苦难。我们需要一种安全的共识，并且不会给我们的星球施加巨大的能源成本。这种方法是基于拜占庭容错（BFT）的权益证明（POS ）。我们称之为">
   
     <link rel="alternative" href="/atom.xml" title="Block Chain" type="application/atom+xml">
   
@@ -152,51 +149,31 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-tendermint" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-BFT" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      tendermint
+      BFT
     </h1>
   
 
         
-        <a href="/2017/06/05/tendermint/" class="archive-article-date">
-  	<time datetime="2017-06-05T06:19:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-05</time>
+        <a href="/2017/06/06/BFT/" class="archive-article-date">
+  	<time datetime="2017-06-06T04:23:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Tendermint 是分布式一致性软件。即使有1/3的机器叛变了， 也能保证其余机器上的数据一致。容忍机器以任意方式失败的能力， 包括变得恶意， 被称为拜占庭容错(BFT)。该理论被提出来数十年了，由于bitcoin和ethereum”区块链技术”的成功，才变得流行起来。区块链用点对点和加密认证技术组成了一个现代化BFT实例。Tendermint包含了两个主要的组件：区块链共识引擎和通用应用层接口。共识引擎叫Tendermint Core，确保每一台机器上的交易列表相同。应用层接口名字是ABCI，提供能为任何语言处理交易的接口。与其他区块链的解决方案（内置的状态机预先打包块）不同，如ethereum的基于世界状态树的键值对存储、bitcoin的脚本语言处理。开发人员可以在任何开发环境下用任何语言通过ABCI来使用Tendermint进行状态机应用层的复制。</p>
-<h2 id="基于Tendermint的应用架构"><a href="#基于Tendermint的应用架构" class="headerlink" title="基于Tendermint的应用架构"></a>基于Tendermint的应用架构</h2><p>区块链应用不仅仅包括共识引擎和交易逻辑（如，智能合约，商业逻辑）。同时也包括（手机端， web端，桌面端）链接上的应用。在这些链接中安全很重要，DoSed攻击是通过攻破的1/3的验证节点去攻击其他2/3的验证节点。一种常见的攻击就是ABCI应用和tendermint core之间的通信。所以ABCI应用和tendemint core之间的通信安全性很重要。通信安全由强到弱 unix socket &gt; local tcp socket &gt; vpn &gt; 外网tcp socket。<br>通用的应用框架如下图：<br><img src="/img/architecture.png" alt=""><br><strong> 优点</strong></p>
+        <p>比特币将世界的注意力引向到了区块链。但可惜的是，比特币版本的区块链不能解决区块链行业的很多问题。那是因为：</p>
 <ul>
-<li>应用层和区块链层相分离。</li>
-<li>支持更丰富，更灵活的客户端API。</li>
-<li>支持pub-sub模式，观察关键字段等。<br><strong> 注意点 </strong></li>
-<li>直接调用ABCI接口非常危险（写数据接口调用时需要非常小心，除非来自验证节点的消息）</li>
-<li>不能直接访问区块链的头和验证交易。</li>
-<li>自己必须实现自己的API。<h2 id="应用层开发"><a href="#应用层开发" class="headerlink" title="应用层开发"></a>应用层开发</h2>ABCI的目的在一台交易处理状态机和多台提供复制机制的计算机之间提供清晰的接口。前者称之为“应用逻辑“， 后者称之为“共识引擎“。应用程序逻辑验证事务，并可选地针对某些持久状态执行事务。共识引擎可确保在每台机器上以相同的顺序复制所有事务。我们将共识引擎中的每个机器称为“验证器”，并且每个验证器通过相同的应用程序逻辑运行相同的事务。特别是对区块链的共识引擎，其中交易在链式哈希块中提交。<br>ABCI的设计有几个不同的模块：</li>
-<li>消息协议</li>
-<li>1.一对请求和响应消息。</li>
-<li>2.共识提出请求，应用响应。</li>
-<li>3.使用protobuf的定义。</li>
-<li>server/client</li>
-<li>1.共识引擎作为client端运行。</li>
-<li>2.应用程序作为server端运行。</li>
-<li>3.两个实现：</li>
-<li>a.异步raw字节。</li>
-<li>b.grpc。</li>
-<li>区块链协议</li>
-<li>1.abci是面上链接的。</li>
-<li>2.Terdermint Core 维护了三个链接：</li>
-<li>a.mempool链接：CheckTx</li>
-<li>b.consensus链接：交易列表执行后打包提交，消息队列对于每个块：BeginBlock, [DeliverTx, …], EndBlock, Commit。</li>
-<li>c.query链接：查询应用状态。<br><img src="/img/ABCI.png" alt=""><br>mempool和Consensus Logic作为客户端，和应用（ABCI 服务器端）间维护一个open ABCI，上图展示了链接请求和响应类型 。</li>
+<li>比特币的POW共识会乱费大量能源。</li>
+<li>交易非常缓慢， 一笔交易需要花一个小时甚至更长的时间。</li>
+<li>没有什么激励机制来激励POW矿工忠于一条链，所以会导致升级很苦难。<br>我们需要一种安全的共识，并且不会给我们的星球施加巨大的能源成本。这种方法是基于拜占庭容错（BFT）的权益证明（<a href="https://bitcointalk.org/index.php?topic=27787.0" target="_blank" rel="external">POS</a> ）。我们称之为BFT-PoS。<br>在我们深入了解BFT-PoS之前，我们只需要知道拜占庭错误，而不需要知道<a href="http://pages.cs.wisc.edu/~sschang/OS-Qual/reliability/byzantine.htm" target="_blank" rel="external">拜占庭将军问题</a> 的细节。<br>在分布式系统中，数据在数百或数千个节点上进行复制，需要有一些容错机制或共识算法，因为计算机时不时网络中断或脱机的简单事实。那么如果这些节点的一部分失败，整个系统仍然需要达成共识。<br>标准的容错共识算法（如<a href="https://raft.github.io/raft.pdf" target="_blank" rel="external">Raft</a> 和<a href="https://en.wikipedia.org/wiki/Paxos_(computer_science" target="_blank" rel="external">Paxos</a>) ）假设当一个节点出现故障时，它只是停止工作，不会回复消息。谷歌，Facebook和一些现有的数据库产品已经在他们的防火墙内使用了这一系列的共识算法，使有故障机器产生时也能确保服务仍然可用。<br>但这些算法不适用于公共块链，因为公共块链中没有防火墙。任何拥有算力（PoW）或代币（PoS）的人都可以参与，甚至试图破坏网络。为了达成共识，我们需要拜占庭的容错能力。在拜占庭故障中，故障节点可以以完全任意的方式运行。节点甚至可以串通尝试作恶并最大限度地发挥其破坏力。<br>因此，本质上，BFT共识算法的目的是在不信任网络中（如万维网）的节点间建立信任。</li>
 </ul>
 
       
@@ -282,7 +259,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/05/tendermint/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/06/BFT/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -296,18 +273,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/06/06/BFT/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          BFT
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/06/01/区块链上的分布式存储/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">区块链相关的分布式存储之IPFS</div>
+    <a href="/2017/06/05/tendermint/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">tendermint</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -323,8 +291,8 @@
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "http://yoursite.com/2017/06/05/tendermint/", 
-    sourceId: "tendermint",
+    url: "http://yoursite.com/2017/06/06/BFT/", 
+    sourceId: "BFT",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };

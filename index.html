@@ -147,6 +147,59 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-BFT" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/06/BFT/">BFT</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/06/BFT/" class="archive-article-date">
+  	<time datetime="2017-06-06T04:23:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>比特币将世界的注意力引向到了区块链。但可惜的是，比特币版本的区块链不能解决区块链行业的很多问题。那是因为：</p>
+<ul>
+<li>比特币的POW共识会乱费大量能源。</li>
+<li>交易非常缓慢， 一笔交易需要花一个小时甚至更长的时间。</li>
+<li>没有什么激励机制来激励POW矿工忠于一条链，所以会导致升级很苦难。<br>我们需要一种安全的共识，并且不会给我们的星球施加巨大的能源成本。这种方法是基于拜占庭容错（BFT）的权益证明（<a href="https://bitcointalk.org/index.php?topic=27787.0" target="_blank" rel="external">POS</a> ）。我们称之为BFT-PoS。<br>在我们深入了解BFT-PoS之前，我们只需要知道拜占庭错误，而不需要知道<a href="http://pages.cs.wisc.edu/~sschang/OS-Qual/reliability/byzantine.htm" target="_blank" rel="external">拜占庭将军问题</a> 的细节。<br>在分布式系统中，数据在数百或数千个节点上进行复制，需要有一些容错机制或共识算法，因为计算机时不时网络中断或脱机的简单事实。那么如果这些节点的一部分失败，整个系统仍然需要达成共识。<br>标准的容错共识算法（如<a href="https://raft.github.io/raft.pdf" target="_blank" rel="external">Raft</a> 和<a href="https://en.wikipedia.org/wiki/Paxos_(computer_science" target="_blank" rel="external">Paxos</a>) ）假设当一个节点出现故障时，它只是停止工作，不会回复消息。谷歌，Facebook和一些现有的数据库产品已经在他们的防火墙内使用了这一系列的共识算法，使有故障机器产生时也能确保服务仍然可用。<br>但这些算法不适用于公共块链，因为公共块链中没有防火墙。任何拥有算力（PoW）或代币（PoS）的人都可以参与，甚至试图破坏网络。为了达成共识，我们需要拜占庭的容错能力。在拜占庭故障中，故障节点可以以完全任意的方式运行。节点甚至可以串通尝试作恶并最大限度地发挥其破坏力。<br>因此，本质上，BFT共识算法的目的是在不信任网络中（如万维网）的节点间建立信任。</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/06/BFT/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-tendermint" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
