@@ -169,6 +169,31 @@
       
         <h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>Ethermint 把Ethereum的pow挖矿模块去掉了，不需要miners了，它实现了tendermint的ABCI接口并且以cosmos hub的身份运行。<br>这意味着Ethermint是一个换了共识模块(POW-&gt;Tendermint)的Ethereum。这使得Ethereum的现有工具链可以直接在Ethermint上使用。</p>
 <h2 id="Ethermint-全局依赖图如下："><a href="#Ethermint-全局依赖图如下：" class="headerlink" title="Ethermint 全局依赖图如下："></a>Ethermint 全局依赖图如下：</h2><p><img src="/img/dependency-graph.png" alt=""> </p>
+<h2 id="软件安装-Tendermint-geth-Ethermint"><a href="#软件安装-Tendermint-geth-Ethermint" class="headerlink" title="软件安装(Tendermint, geth, Ethermint)"></a>软件安装(Tendermint, geth, Ethermint)</h2><ul>
+<li><p>1，Tendermint 安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">go get github.com/tendermint/tendermint/cmd/tendermint</div></pre></td></tr></table></figure>
+</li>
+<li><p>2，geth 安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/ethereum/go-ethereum</div><div class="line">cd go-ethereum</div><div class="line">make geth &amp; make install</div></pre></td></tr></table></figure>
+</li>
+<li><p>3，Ethermint 安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/tendermint/ethermint.git</div><div class="line">make install</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><p>由于谷歌被墙，会有一些库无法从golang.org下，可以更改路经到github。</p>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><ul>
+<li>1，Ethermint 运行<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ethermint --datadir ~/.ethermint init dev/genesis.json</div><div class="line">cp -r dev/keystore ~/.ethermint/keystore</div><div class="line">ethermint --datadir ~/.ethermint --rpc --rpcaddr=0.0.0.0 --ws --wsaddr=0.0.0.0 --rpcapi eth,net,web3,personal,admin</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/img/ethermint_start.png" alt="Ethermint 启动图"> </p>
+<ul>
+<li>2，Tendermint 运行<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tendermint init --home ~/.ethermint/tendermint</div><div class="line">tendermint node --home ~/.ethermint/tendermint</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/img/tendermint_start.png" alt="Tendermint 启动图"> </p>
+<ul>
+<li>3, Geth 运行<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">geth attach ~/.ethermint/geth.ipc</div><div class="line">![Geth 启动图](/img/geth_start.png)</div></pre></td></tr></table></figure></li>
+</ul>
 
       
 
