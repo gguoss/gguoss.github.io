@@ -147,6 +147,61 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-比原链设计思考-扩展性UTXO模型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/12/比原链设计思考-扩展性UTXO模型/">比原链设计思考: 扩展性UTXO模型</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/12/比原链设计思考-扩展性UTXO模型/" class="archive-article-date">
+  	<time datetime="2017-06-12T12:43:30.783Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="UTXO-的起源（来自高明的中本聪）"><a href="#UTXO-的起源（来自高明的中本聪）" class="headerlink" title="UTXO 的起源（来自高明的中本聪）"></a>UTXO 的起源（来自高明的中本聪）</h2><p>中本聪对比特币的设计，让整个世界进入了数字货币时代。比特币起源于中本聪，UTXO出自比特币。自然，UTXO来自高明的中本聪。UTXO的优点：</p>
+<ul>
+<li>1，在版本控制方面的考虑，svn 是中心化的数据库保持一份账本，这和区块链的设计自然是相违背的，git 是去中心化的数据库，但会保存太多冗余数据，对于分布式性能肯定是要大打折扣。UTXO数据库是抛弃了历史包袱的git， 只存储了最后一个版本。简易实用。<br><img src="/img/utxo.png" alt="高明的UTXO"></li>
+<li>2，UTXO 具有天然的匿名效果，一个账户所对应的未花费交易是难以发现的，如门罗币就是采用混币的方式实现隐私的。</li>
+</ul>
+<h2 id="设计的易实现性-–-Gavin-Wood-弃UTXO用账户模型"><a href="#设计的易实现性-–-Gavin-Wood-弃UTXO用账户模型" class="headerlink" title="设计的易实现性 – Gavin Wood 弃UTXO用账户模型"></a>设计的易实现性 – Gavin Wood 弃UTXO用账户模型</h2><p>以太坊黄皮书的设计者Gavin Wood 对UTXO的理解，不可能不深刻， 既然UTXO有这么多的优点，他为什么弃用UTXO了？ 这时你应该提出个问题，以太坊的最大亮点是什么？你肯定会回答：智能合约。是的，就是因为智能合约的考虑，Gavin Wood要基于UTXO去实现图灵完备的智能合约（功能多样性的超级电脑）是困难的。而账户模型是天然的面向对象的，对每一笔交易，都是在相对应账户上加一笔(nonce++)， 多接地气阿。为了易于管理账户，而引入了世界状态，每一笔交易都会改变这个世界状态。这和现实世界是相对应的，每一个微小的改变，都会改变这个世界。<br><img src="/img/ethertransition.png" alt="现实的世界状态"> </p>
+<h2 id="并行的思考-–-Gavin-Wood-弃cpp用rust"><a href="#并行的思考-–-Gavin-Wood-弃cpp用rust" class="headerlink" title="并行的思考 – Gavin Wood 弃cpp用rust"></a>并行的思考 – Gavin Wood 弃cpp用rust</h2><p>从以上讨论中不难看出，UTXO是函数式编程风格(haskell)，以太坊账户模型是面向对象编程风格(cpp)。以太坊的账户模型很容易的实现了超级电脑模型。然而，性能一直是一道难以逾越的坎。在性能方面，utxo天然的可以并行运行，而基于世界状态的以太坊难以扩展。Gavin Wood当然是认识到这一点的，但要去改变，很难。那到不如用带有函数式编程特点的rust 去重写以太坊，也算是一种折中方案。</p>
+<h2 id="我们的思考"><a href="#我们的思考" class="headerlink" title="我们的思考"></a>我们的思考</h2><p>马克思哲学的否定之否定规律，事物的发展变化是螺旋式上升的。在区块链领域也是适合的，前进一步，也需要后退半步，仔细思考后， 慎重前行。UTXO和状态模型的思考，正是如此。量子链看到了这一点，但至今还没有有效的代码开源出来。我们思考过，像量子链一样，基于比特币代码去拿以太坊EVM过来结合。这是几乎不可能的，也是不太实用的，这好比用haskell语言，去实现cpp风格的面向对象编程。我是看不到有什么实际的意义。<br>然而，我们比原链的功能是介于比特币和以太坊之间。实现数字资产方面的图灵完备的智能合约即可。比比特币非图灵完备智能合约进半步，比以太坊包容万象的智能合约退半步。我们可以用UTXO 加 Ivy式的轻量级虚拟机去包容他们两者的优点。既有了UTXO的并行性，又有了数字资产的发行和管理的功能。<br><img src="/img/bvm.jpg" alt="运行机制"><br>如上图，我们可能会采取如下的方案。<br>对于每一种资产都有相对应的轻量级世界状态存在，该树我们可能会选择以太坊的PAT树，或者cosmos的IVAL（不可更改的平衡二叉树） ，每一种资产在执行交易时，会实例化相对应的BVM去执行，可以支持多种不相关的资产并行运行。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/12/比原链设计思考-扩展性UTXO模型/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-ethermint" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
