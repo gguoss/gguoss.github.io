@@ -6,23 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Ethermint | Block Chain</title>
+  <title>Bytom&#39;s data structure. | Block Chain</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="综述Ethermint 把Ethereum的pow挖矿模块去掉了，不需要miners了，它实现了tendermint的ABCI接口并且以cosmos hub的身份运行。这意味着Ethermint是一个换了共识模块(POW-&amp;gt;Tendermint)的Ethereum。这使得Ethereum的现有工具链可以直接在Ethermint上使用。 Ethermint 全局依赖图如下：  软件安装(Ten">
+  <meta name="description" content="##引文设计Bytom 数据结构，组合了许多技术点，如 patricia tree，utxo， bvm， account model，protobuf，sql，memcache 等。本文会对每一个技术点做以下两点分析。  Bytom 为什么要采用该技术点？ Bytom 如何应用该技术点？ 最后介绍综合这些技术点如何实现Bytom。  patricial tree 为什么要采用PAT树？-1.PAT">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ethermint">
-<meta property="og:url" content="http://yoursite.com/2017/06/08/ethermint/index.html">
+<meta property="og:title" content="Bytom&#39;s data structure.">
+<meta property="og:url" content="http://yoursite.com/2017/06/28/Bytom-s-data-structure/index.html">
 <meta property="og:site_name" content="Block Chain">
-<meta property="og:description" content="综述Ethermint 把Ethereum的pow挖矿模块去掉了，不需要miners了，它实现了tendermint的ABCI接口并且以cosmos hub的身份运行。这意味着Ethermint是一个换了共识模块(POW-&amp;gt;Tendermint)的Ethereum。这使得Ethereum的现有工具链可以直接在Ethermint上使用。 Ethermint 全局依赖图如下：  软件安装(Ten">
-<meta property="og:image" content="http://yoursite.com/img/dependency-graph.png">
-<meta property="og:image" content="http://yoursite.com/img/ethermint_start.png">
-<meta property="og:image" content="http://yoursite.com/img/tendermint_start.png">
-<meta property="og:image" content="http://yoursite.com/img/geth_start.png">
-<meta property="og:updated_time" content="2017-06-09T09:39:12.681Z">
+<meta property="og:description" content="##引文设计Bytom 数据结构，组合了许多技术点，如 patricia tree，utxo， bvm， account model，protobuf，sql，memcache 等。本文会对每一个技术点做以下两点分析。  Bytom 为什么要采用该技术点？ Bytom 如何应用该技术点？ 最后介绍综合这些技术点如何实现Bytom。  patricial tree 为什么要采用PAT树？-1.PAT">
+<meta property="og:image" content="http://yoursite.com/img/radix_tree.png">
+<meta property="og:image" content="http://yoursite.com/img/merkle_tree.png">
+<meta property="og:updated_time" content="2017-06-28T09:35:03.977Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ethermint">
-<meta name="twitter:description" content="综述Ethermint 把Ethereum的pow挖矿模块去掉了，不需要miners了，它实现了tendermint的ABCI接口并且以cosmos hub的身份运行。这意味着Ethermint是一个换了共识模块(POW-&amp;gt;Tendermint)的Ethereum。这使得Ethereum的现有工具链可以直接在Ethermint上使用。 Ethermint 全局依赖图如下：  软件安装(Ten">
-<meta name="twitter:image" content="http://yoursite.com/img/dependency-graph.png">
+<meta name="twitter:title" content="Bytom&#39;s data structure.">
+<meta name="twitter:description" content="##引文设计Bytom 数据结构，组合了许多技术点，如 patricia tree，utxo， bvm， account model，protobuf，sql，memcache 等。本文会对每一个技术点做以下两点分析。  Bytom 为什么要采用该技术点？ Bytom 如何应用该技术点？ 最后介绍综合这些技术点如何实现Bytom。  patricial tree 为什么要采用PAT树？-1.PAT">
+<meta name="twitter:image" content="http://yoursite.com/img/radix_tree.png">
   
     <link rel="alternative" href="/atom.xml" title="Block Chain" type="application/atom+xml">
   
@@ -154,55 +152,34 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ethermint" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Bytom-s-data-structure" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Ethermint
+      Bytom&#39;s data structure.
     </h1>
   
 
         
-        <a href="/2017/06/08/ethermint/" class="archive-article-date">
-  	<time datetime="2017-06-08T02:46:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-08</time>
+        <a href="/2017/06/28/Bytom-s-data-structure/" class="archive-article-date">
+  	<time datetime="2017-06-28T08:43:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>Ethermint 把Ethereum的pow挖矿模块去掉了，不需要miners了，它实现了tendermint的ABCI接口并且以cosmos hub的身份运行。<br>这意味着Ethermint是一个换了共识模块(POW-&gt;Tendermint)的Ethereum。这使得Ethereum的现有工具链可以直接在Ethermint上使用。</p>
-<h2 id="Ethermint-全局依赖图如下："><a href="#Ethermint-全局依赖图如下：" class="headerlink" title="Ethermint 全局依赖图如下："></a>Ethermint 全局依赖图如下：</h2><p><img src="/img/dependency-graph.png" alt=""> </p>
-<h2 id="软件安装-Tendermint-geth-Ethermint"><a href="#软件安装-Tendermint-geth-Ethermint" class="headerlink" title="软件安装(Tendermint, geth, Ethermint)"></a>软件安装(Tendermint, geth, Ethermint)</h2><ul>
-<li><p>1，Tendermint 安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">go get github.com/tendermint/tendermint/cmd/tendermint</div></pre></td></tr></table></figure>
-</li>
-<li><p>2，geth 安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/ethereum/go-ethereum</div><div class="line">cd go-ethereum</div><div class="line">make geth &amp; make install</div></pre></td></tr></table></figure>
-</li>
-<li><p>3，Ethermint 安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/tendermint/ethermint.git</div><div class="line">make install</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><p>由于谷歌被墙，会有一些库无法从golang.org下，可以更改路经到github。</p>
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><ul>
-<li>1，Ethermint 运行<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ethermint --datadir ~/.ethermint init dev/genesis.json</div><div class="line">cp -r dev/keystore ~/.ethermint/keystore</div><div class="line">ethermint --datadir ~/.ethermint --rpc --rpcaddr=0.0.0.0 --ws --wsaddr=0.0.0.0 --rpcapi eth,net,web3,personal,admin</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="/img/ethermint_start.png" alt="Ethermint 启动图"> </p>
+        <p>##引文<br><strong>设计Bytom 数据结构，组合了许多技术点，如 patricia tree，utxo， bvm， account model，protobuf，sql，memcache 等。本文会对每一个技术点做以下两点分析。</strong></p>
 <ul>
-<li>2，Tendermint 运行<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tendermint init --home ~/.ethermint/tendermint</div><div class="line">tendermint node --home ~/.ethermint/tendermint</div></pre></td></tr></table></figure>
-</li>
+<li>Bytom 为什么要采用该技术点？</li>
+<li>Bytom 如何应用该技术点？<br><strong> 最后介绍综合这些技术点如何实现Bytom。</strong></li>
 </ul>
-<p><img src="/img/tendermint_start.png" alt="Tendermint 启动图"> </p>
-<ul>
-<li>3, Geth 运行<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">geth attach ~/.ethermint/geth.ipc</div></pre></td></tr></table></figure>
-</li>
+<h3 id="patricial-tree"><a href="#patricial-tree" class="headerlink" title="patricial tree"></a><a href="http://www.allisons.org/ll/AlgDS/Tree/PATRICIA/" target="_blank" rel="external">patricial tree</a></h3><ul>
+<li>为什么要采用PAT树？<br>-1.PAT树具有<a href="https://en.wikipedia.org/wiki/Radix_tree" target="_blank" rel="external">基数树</a> 的特点，内容可快速追踪。<br><img src="/img/radix_tree.png" alt="Radix tree"><br>-2.PAT树具有<a href="https://en.wikipedia.org/wiki/Merkle_tree" target="_blank" rel="external">merkle树</a> 的数据可快速证明的特点。<br><img src="/img/merkle_tree.png" alt="merkle tree"> </li>
 </ul>
-<p><img src="/img/geth_start.png" alt="Geth 启动图"> </p>
 
       
 
@@ -287,7 +264,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/08/ethermint/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/28/Bytom-s-data-structure/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -301,18 +278,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/06/13/比原链设计思考-扩展性UTXO模型/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          比原链设计思考: 扩展性UTXO模型
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/06/06/BFT/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">BFT</div>
+    <a href="/2017/06/13/比原链设计思考-扩展性UTXO模型/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">比原链设计思考: 扩展性UTXO模型</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -328,8 +296,8 @@
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "http://yoursite.com/2017/06/08/ethermint/", 
-    sourceId: "ethermint",
+    url: "http://yoursite.com/2017/06/28/Bytom-s-data-structure/", 
+    sourceId: "Bytom-s-data-structure",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
