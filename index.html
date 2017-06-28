@@ -172,9 +172,13 @@
 <li>Bytom 为什么要采用该技术点？</li>
 <li>Bytom 如何应用该技术点？<br><strong> 最后介绍综合这些技术点如何实现Bytom。</strong></li>
 </ul>
-<h3 id="patricial-tree"><a href="#patricial-tree" class="headerlink" title="patricial tree"></a><a href="http://www.allisons.org/ll/AlgDS/Tree/PATRICIA/" target="_blank" rel="external">patricial tree</a></h3><ul>
+<h2 id="patricial-tree"><a href="#patricial-tree" class="headerlink" title="patricial tree"></a><a href="http://www.allisons.org/ll/AlgDS/Tree/PATRICIA/" target="_blank" rel="external">patricial tree</a></h2><ul>
 <li>为什么要采用PAT树？<br>-1.PAT树具有<a href="https://en.wikipedia.org/wiki/Radix_tree" target="_blank" rel="external">基数树</a> 的特点，内容可快速追踪。<br><img src="/img/radix_tree.png" alt="Radix tree"><br>-2.PAT树具有<a href="https://en.wikipedia.org/wiki/Merkle_tree" target="_blank" rel="external">merkle树</a> 的特点，数据可快速证明。<br><img src="/img/merkle_tree.png" alt="merkle tree"> </li>
 <li>Bytom 如何用PAT树？<br>Ethereum的PAT树是16叉基数树，分两层，第一层管理的是所有的账户，第二层管理是各账户的存储内容。<br><img src="/img/ethereum_pat.png" alt=""><br>Bytom 的PAT树与Ethereum 不同<br>-1. Bytom 的PAT树是二叉基数树。<br>-2. Bytom的PAT树是用来管理未花费的outputs。<br><img src="/img/bytom_pat.png" alt="">  </li>
+</ul>
+<h2 id="UTXO"><a href="#UTXO" class="headerlink" title="UTXO"></a><a href="https://bitcoin.org/en/glossary/unspent-transaction-output" target="_blank" rel="external">UTXO</a></h2><ul>
+<li>为什么要使用UTXO?<br>UTXO诞生于比特币，和现实世界的RMB一样，从央行诞生的那一刻起，他流转无数人的账户，但他的价值面额始终和原来一样，这样以币为中心，而不是以人为中心，资产便于监管和统计。Bytom 就是用于资产的发布和管理的，所以，UTXO的这种以资产为中心的设计模式，是很适合Bytom上面的资产管理。</li>
+<li>怎么使用UTXO？<br><img src="/home/gavin/work/shell/blog/themes/yilia/source/img/utxo_structure.png" alt=""><br>相比比特币的UTXO, bytom的UTXO多了三个字段<br>-1. assertid, 因为bytom是一个多资产发布与管理的平台，所以使用该字段来唯一确定各种资产。<br>-2. accountid, 这是便于各账户对utxo的索引和管理，bytom 相比bitcoin,引入了账户模型，后面会介绍。<br>-3, program, 拥有该utxo的账户可以用Ivy语言编写自己想要的程序放在该字段，以便在交易时，图灵完备的BVM会执行该程序。</li>
 </ul>
 
       
