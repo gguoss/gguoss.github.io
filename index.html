@@ -167,13 +167,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##引文<br><strong>设计Bytom 数据结构，组合了许多技术点，如 patricia tree，utxo， bvm， account model，protobuf，sql，memcache 等。本文会对每一个技术点做以下两点分析。</strong></p>
+        <h2 id="引文"><a href="#引文" class="headerlink" title="引文"></a>引文</h2><p><strong>设计Bytom 数据结构，组合了许多技术点，如 patricia tree，utxo， bvm， account model，protobuf，sql，memcache 等。本文会对每一个技术点做以下两点分析。</strong></p>
 <ul>
 <li>Bytom 为什么要采用该技术点？</li>
 <li>Bytom 如何应用该技术点？<br><strong> 最后介绍综合这些技术点如何实现Bytom。</strong></li>
 </ul>
 <h3 id="patricial-tree"><a href="#patricial-tree" class="headerlink" title="patricial tree"></a><a href="http://www.allisons.org/ll/AlgDS/Tree/PATRICIA/" target="_blank" rel="external">patricial tree</a></h3><ul>
-<li>为什么要采用PAT树？<br>-1.PAT树具有<a href="https://en.wikipedia.org/wiki/Radix_tree" target="_blank" rel="external">基数树</a> 的特点，内容可快速追踪。<br><img src="/img/radix_tree.png" alt="Radix tree"><br>-2.PAT树具有<a href="https://en.wikipedia.org/wiki/Merkle_tree" target="_blank" rel="external">merkle树</a> 的数据可快速证明的特点。<br><img src="/img/merkle_tree.png" alt="merkle tree"> </li>
+<li>为什么要采用PAT树？<br>-1.PAT树具有<a href="https://en.wikipedia.org/wiki/Radix_tree" target="_blank" rel="external">基数树</a> 的特点，内容可快速追踪。<br><img src="/img/radix_tree.png" alt="Radix tree"><br>-2.PAT树具有<a href="https://en.wikipedia.org/wiki/Merkle_tree" target="_blank" rel="external">merkle树</a> 的特点，数据可快速证明。<br><img src="/img/merkle_tree.png" alt="merkle tree"> </li>
 </ul>
 
       
