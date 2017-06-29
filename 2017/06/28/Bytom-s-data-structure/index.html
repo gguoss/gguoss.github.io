@@ -21,7 +21,9 @@
 <meta property="og:image" content="http://yoursite.com/img/utxo_structure.png">
 <meta property="og:image" content="http://yoursite.com/img/bytom_snapshort.png">
 <meta property="og:image" content="http://yoursite.com/img/bytom_bvm.png">
-<meta property="og:updated_time" content="2017-06-29T02:23:25.079Z">
+<meta property="og:image" content="http://yoursite.com/home/gavin/work/shell/blog/themes/yilia/source/img/bytom_asset.png">
+<meta property="og:image" content="http://yoursite.com/home/gavin/work/shell/blog/themes/yilia/source/img/bytom_account.png">
+<meta property="og:updated_time" content="2017-06-29T03:12:47.228Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bytom&#39;s data structure.">
 <meta name="twitter:description" content="引文设计Bytom 数据结构，组合了许多技术点，如 patricia tree，utxo， bvm， account model，protobuf，sql，memcache 等。本文会对一些技术点做以下两点分析。  Bytom 为什么要采用该技术点？ Bytom 如何应用该技术点？ 最后介绍综合这些技术点如何实现Bytom。  patricial tree 为什么要采用PAT树？-1.PAT树具有">
@@ -193,7 +195,25 @@
 </li>
 <li><p>为什么需要使用BVM?<br>bitcoin 中的非图灵完备栈式脚本语言，所表达的功能极少，很难实现一些稍微复杂的功能，如verify_spv(跨链锚定验证的功能，如btc_relay），再如简单的去实现multi_lock(M人加密，只要收集N人私钥就能解密，0 &lt; N &lt; M)功能。<br>ethereum中的evm能简单的用solidity语言编写程序实现这些功能，但EVM过于复杂，它号称超级世界计算机，对于bytom这种只对资产有兴趣的区块链是没必要的。因此bytom不如基于<a href="https://chain.com/" target="_blank" rel="external">Chain</a> 公司的能用<a href="https://chain.com/docs/1.2/ivy-playground/docs" target="_blank" rel="external">Ivy</a> 高级语言编程的CVM去做自己的扩展，灵活易用。</p>
 </li>
-<li>如何应用BVM?<br><img src="/img/bytom_bvm.png" alt=""><br>用户在发送每一笔交易时，可以自己编写自己所需要的程序，等到交易打包进块时，BVM会去执行该代码，由于BVM是图灵完备的虚拟机，所以需要加入feed计价机制（feed 等同于ethereum的gas * gasprice）来解决停机问题。 </li>
+<li>如何应用BVM?<br><img src="/img/bytom_bvm.png" alt=""><br>用户在发送每一笔交易时，可以自己编写自己所需要的程序，等到交易打包进块时，BVM会去执行该代码，由于BVM是图灵完备的虚拟机，所以需要加入feed计价机制（feed 等同于ethereum的gas * gasprice）来解决停机问题。 <h2 id="account-model"><a href="#account-model" class="headerlink" title="account model"></a>account model</h2></li>
+<li>为什么要采用账户模型？<br>账户模型易于管理相关数据，是以人为中心，十分的直观。对于BVM来说，基于账户代码去执行也十分便捷。再者我们引入了资产模型，类似于账户模型，这样易于资产的监管和查询。</li>
+<li>bytom怎么去实现账户模型？<br>bytom 中的账户模型也分两类，但不同于ethereum中的个人帐户和合约账户， 它是指资产账户和个人账户。<br>-1 资产账户：<br><img src="/home/gavin/work/shell/blog/themes/yilia/source/img/bytom_asset.png" alt=""> <ul>
+<li>assetid 是全局唯一的资产识别id。</li>
+<li>alias 是资产的别名，可便于记忆，如(gold, silver) 。</li>
+<li>vmversion 是为了软分叉时，做到动态过度。</li>
+<li>program 是指发布该资产时需要执行的程序。</li>
+<li>initialblockhash 是指该资产是在哪个块高度被登记。</li>
+<li>signer 管理公私钥对，以便用该资产的私钥签名，只有拥有该资产私钥的人才能发布该资产。</li>
+<li>definition 对该资产的解释说明等。<br>-2 个人账户：<br><img src="/home/gavin/work/shell/blog/themes/yilia/source/img/bytom_account.png" alt=""> <ul>
+<li>accountid 全局唯一可识别账户id</li>
+<li>alais 帐户名</li>
+<li>signer, 私钥对，用于发送交易。</li>
+<li>*utxos 该账户所有的未花费交易的索引，便于快速管理该账户下资产。</li>
+<li>program, 该账户发送交易时可插入需要的程序。</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
       
