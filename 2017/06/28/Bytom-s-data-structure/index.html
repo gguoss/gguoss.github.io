@@ -25,7 +25,7 @@
 <meta property="og:image" content="http://yoursite.com/img/bytom_account.png">
 <meta property="og:image" content="http://yoursite.com/img/bytom_asset_account.png">
 <meta property="og:image" content="http://yoursite.com/img/bytom_uml.png">
-<meta property="og:updated_time" content="2017-06-30T06:43:41.819Z">
+<meta property="og:updated_time" content="2017-06-30T09:01:04.692Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bytom&#39;s data structure.">
 <meta name="twitter:description" content="引文设计Bytom 数据结构，组合了许多技术点，如 patricia tree，utxo， bvm， account model，protobuf，sql，memcache 等。本文会对一些技术点做以下两点分析。  Bytom 为什么要采用该技术点？ Bytom 如何应用该技术点？ 最后介绍综合这些技术点如何实现Bytom。  patricial tree 为什么要采用PAT树？-1.PAT树具有">
@@ -224,7 +224,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p><img src="/img/bytom_asset_account.png" alt=""><br>UTXO的物理结构，用memcache 存着。UTXO的逻辑结构则是用二叉PAT树来管理。<br>个人账户 根据AccountId 能够快速的索引其相关的utxo。资产账户根据AssetId能够快速的管理相关的utxo。<br><img src="/img/bytom_uml.png" alt=""><br>上图是描述bytom主要数据结构的uml图。</p>
+<h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p><img src="/img/bytom_asset_account.png" alt=""><br>UTXO的物理结构，用memcache 存着。UTXO的逻辑结构则是用二叉PAT树来管理。<br>个人账户 根据AccountId 能够快速的索引其相关的utxo。资产账户根据AssetId能够快速的管理相关的utxo。<br><img src="/img/bytom_uml.png" alt=""><br>上图是描述bytom主要数据结构的uml图。<br>Bytom 用PAT树来组织utxo作为世界状态树。<br>账户模型分两种，资产账户和个人账户，账户可以索引管理其相关的utxo。<br>UTXO 池会采用如memcache的内存数据库，落盘数据库会选择关系型数据库，数据会选择protobuf来序列化。<br>在账户做交易时，每个账户都可以从世界状态树去查找选择自己的utxo,并编写自己所需的资产程序，将其做为TxInput。<br>在交易打包进块时，验证节点会去实例化BVM，并执行该交易中所有TxInput中的程序。</p>
 
       
 
