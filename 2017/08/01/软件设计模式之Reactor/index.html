@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | Block Chain</title>
+  <title>程序设计模式之Reactor | Block Chain</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Block Chain">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+  <meta name="description" content="反应堆设计模式是一种并行处理服务请求分发的事件模型。服务处理器分离收到的请求并调度相对用的请求处理器同步的处理各自的请求。 组成结构Resources(可以被监听的事件)任何可以向系统输入或者消耗输出的资源(linux 上对应的可以用epoll监听的事件)。Synchronous Event Demultiplexer(同步的事件解复用器)用一个EventLoop 阻塞所有的资源。解复用器触发调度">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程序设计模式之Reactor">
+<meta property="og:url" content="http://yoursite.com/2017/08/01/软件设计模式之Reactor/index.html">
 <meta property="og:site_name" content="Block Chain">
+<meta property="og:description" content="反应堆设计模式是一种并行处理服务请求分发的事件模型。服务处理器分离收到的请求并调度相对用的请求处理器同步的处理各自的请求。 组成结构Resources(可以被监听的事件)任何可以向系统输入或者消耗输出的资源(linux 上对应的可以用epoll监听的事件)。Synchronous Event Demultiplexer(同步的事件解复用器)用一个EventLoop 阻塞所有的资源。解复用器触发调度">
+<meta property="og:updated_time" content="2017-08-01T08:09:14.801Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Block Chain">
+<meta name="twitter:title" content="程序设计模式之Reactor">
+<meta name="twitter:description" content="反应堆设计模式是一种并行处理服务请求分发的事件模型。服务处理器分离收到的请求并调度相对用的请求处理器同步的处理各自的请求。 组成结构Resources(可以被监听的事件)任何可以向系统输入或者消耗输出的资源(linux 上对应的可以用epoll监听的事件)。Synchronous Event Demultiplexer(同步的事件解复用器)用一个EventLoop 阻塞所有的资源。解复用器触发调度">
   
     <link rel="alternative" href="/atom.xml" title="Block Chain" type="application/atom+xml">
   
@@ -145,292 +149,165 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-软件设计模式之Reactor" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      程序设计模式之Reactor
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/01/软件设计模式之Reactor/" class="archive-article-date">
+
+        
+        <a href="/2017/08/01/软件设计模式之Reactor/" class="archive-article-date">
   	<time datetime="2017-08-01T05:54:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-01</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/01/软件设计模式之Reactor/">程序设计模式之Reactor</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="反应堆设计模式"><a href="#反应堆设计模式" class="headerlink" title="反应堆设计模式"></a>反应堆设计模式</h2><p>是一种并行处理服务请求分发的事件模型。服务处理器分离收到的请求并调度相对用的请求处理器同步的处理各自的请求。</p>
+<h3 id="组成结构"><a href="#组成结构" class="headerlink" title="组成结构"></a>组成结构</h3><p><strong><em>Resources(可以被监听的事件)</em></strong><br>任何可以向系统输入或者消耗输出的资源(linux 上对应的可以用epoll监听的事件)。<br><strong><em>Synchronous Event Demultiplexer(同步的事件解复用器)</em></strong><br>用一个EventLoop 阻塞所有的资源。解复用器触发调度器，同步的操作变为非阻塞的资源。(实例：</p>
+<ul>
+<li>同步系统调用read()函数 将会在没有数据可读时是阻塞的。</li>
+<li>解复用器用select()函数来监听该资源，直到该资源变为可读时。</li>
+<li>read()函数不会被阻塞， 解复用器可以将该资源发送给调度器。)<br><strong>Dispatcher(调度器)</strong><br>处理请求处理程序的注册和注销。将资源从多路分解器调度到相关联的请求处理程序。<br><strong>Request Handler(请求处理程序)</strong><br>应用程序定义的与它自己相关联资源的请求处理程序。<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3>所有反应堆系统都是单线程的，但可以存在于多线程环境中。<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3>反应堆模式完全将应用程序特定的代码与反应堆实现分离，这意味着应用程序组件可以分为模块化的，可重复使用的部分。此外，由于请求处理程序的同步调用，反应器模式允许简单的粗粒度并发，而不会将多个线程的复杂性增加到系统。<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3>由于反向控制流程，反应堆模式可能比由程序模式更难调试。而且，通过只同时调用请求处理程序，反应堆模式限制了最大的并发性，特别是在对称多处理硬件上。反应堆模式的可扩展性不仅受到同步调用请求处理程序的限制，还受到解复用器的限制。</li>
+</ul>
+<h3 id="tendermint-的reactor-模式实例"><a href="#tendermint-的reactor-模式实例" class="headerlink" title="tendermint 的reactor 模式实例"></a>tendermint 的reactor 模式实例</h3><p><strong><em>解复用器， EventLoop 循环， 将资源传送给调度器调用</em></strong><br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// recvRoutine reads msgPackets and reconstructs the message using the channels' "recving" buffer.</span></div><div class="line"><span class="comment">// After a whole message has been assembled, it's pushed to onReceive().</span></div><div class="line"><span class="comment">// Blocks depending on how the connection is throttled.</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *MConnection)</span> <span class="title">recvRoutine</span><span class="params">()</span></span> &#123;</div><div class="line">    <span class="keyword">defer</span> c._recover()</div><div class="line"></div><div class="line">FOR_LOOP:</div><div class="line">    <span class="keyword">for</span> &#123;</div><div class="line">        <span class="comment">// Block until .recvMonitor says we can read.</span></div><div class="line">        c.recvMonitor.Limit(maxMsgPacketTotalSize, atomic.LoadInt64(&amp;c.config.RecvRate), <span class="literal">true</span>)</div><div class="line"></div><div class="line">        <span class="comment">/*</span></div><div class="line">            // Peek into bufReader for debugging</div><div class="line">            if numBytes := c.bufReader.Buffered(); numBytes &gt; 0 &#123;</div><div class="line">                log.Info("Peek connection buffer", "numBytes", numBytes, "bytes", log15.Lazy&#123;func() []byte &#123;</div><div class="line">                    bytes, err := c.bufReader.Peek(MinInt(numBytes, 100))</div><div class="line">                    if err == nil &#123;</div><div class="line">                        return bytes</div><div class="line">                    &#125; else &#123;</div><div class="line">                        log.Warn("Error peeking connection buffer", "error", err)</div><div class="line">                        return nil</div><div class="line">                    &#125;</div><div class="line">                &#125;&#125;)</div><div class="line">            &#125;</div><div class="line">        */</div><div class="line"></div><div class="line">        <span class="comment">// Read packet type</span></div><div class="line">        <span class="keyword">var</span> n <span class="keyword">int</span></div><div class="line">        <span class="keyword">var</span> err error</div><div class="line">        pktType := wire.ReadByte(c.bufReader, &amp;n, &amp;err)</div><div class="line">        c.recvMonitor.Update(<span class="keyword">int</span>(n))</div><div class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</div><div class="line">            <span class="keyword">if</span> c.IsRunning() &#123;</div><div class="line">                c.Logger.Error(<span class="string">"Connection failed @ recvRoutine (reading byte)"</span>, <span class="string">"conn"</span>, c, <span class="string">"error"</span>, err)</div><div class="line">                c.stopForError(err)</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span> FOR_LOOP</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// Read more depending on packet type.</span></div><div class="line">        <span class="keyword">switch</span> pktType &#123;</div><div class="line">        <span class="keyword">case</span> packetTypePing:</div><div class="line">            <span class="comment">// <span class="doctag">TODO:</span> prevent abuse, as they cause flush()'s.</span></div><div class="line">            c.Logger.Debug(<span class="string">"Receive Ping"</span>)</div><div class="line">            c.pong &lt;- <span class="keyword">struct</span>&#123;&#125;&#123;&#125;</div><div class="line">        <span class="keyword">case</span> packetTypePong:</div><div class="line">            <span class="comment">// do nothing</span></div><div class="line">            c.Logger.Debug(<span class="string">"Receive Pong"</span>)</div><div class="line">        <span class="keyword">case</span> packetTypeMsg:</div><div class="line">            pkt, n, err := msgPacket&#123;&#125;, <span class="keyword">int</span>(<span class="number">0</span>), error(<span class="literal">nil</span>)</div><div class="line">            wire.ReadBinaryPtr(&amp;pkt, c.bufReader, maxMsgPacketTotalSize, &amp;n, &amp;err)</div><div class="line">            c.recvMonitor.Update(<span class="keyword">int</span>(n))</div><div class="line">            <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</div><div class="line">                <span class="keyword">if</span> c.IsRunning() &#123;</div><div class="line">                    c.Logger.Error(<span class="string">"Connection failed @ recvRoutine"</span>, <span class="string">"conn"</span>, c, <span class="string">"error"</span>, err)</div><div class="line">                    c.stopForError(err)</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">break</span> FOR_LOOP</div><div class="line">            &#125;</div><div class="line">            channel, ok := c.channelsIdx[pkt.ChannelID]</div><div class="line">            <span class="keyword">if</span> !ok || channel == <span class="literal">nil</span> &#123;</div><div class="line">                cmn.PanicQ(cmn.Fmt(<span class="string">"Unknown channel %X"</span>, pkt.ChannelID))</div><div class="line">            &#125;</div><div class="line">            msgBytes, err := channel.recvMsgPacket(pkt)</div><div class="line">            <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</div><div class="line">                <span class="keyword">if</span> c.IsRunning() &#123;</div><div class="line">                    c.Logger.Error(<span class="string">"Connection failed @ recvRoutine"</span>, <span class="string">"conn"</span>, c, <span class="string">"error"</span>, err)</div><div class="line">                    c.stopForError(err)</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">break</span> FOR_LOOP</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> msgBytes != <span class="literal">nil</span> &#123;</div><div class="line">                c.Logger.Debug(<span class="string">"Received bytes"</span>, <span class="string">"chID"</span>, pkt.ChannelID, <span class="string">"msgBytes"</span>, msgBytes)</div><div class="line">                c.onReceive(pkt.ChannelID, msgBytes)</div><div class="line">            &#125;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            cmn.PanicSanity(cmn.Fmt(<span class="string">"Unknown message type %X"</span>, pktType))</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// <span class="doctag">TODO:</span> shouldn't this go in the sendRoutine?</span></div><div class="line">        <span class="comment">// Better to send a ping packet when *we* haven't sent anything for a while.</span></div><div class="line">        c.pingTimer.Reset()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Cleanup</span></div><div class="line">    <span class="built_in">close</span>(c.pong)</div><div class="line">    <span class="keyword">for</span> _ = <span class="keyword">range</span> c.pong &#123;</div><div class="line">        <span class="comment">// Drain</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong><em>调度器 负责注册资源，以及资源和请求程序的绑定</em></strong><br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(sw *Switch)</span> <span class="title">AddReactor</span><span class="params">(name <span class="keyword">string</span>, reactor Reactor)</span> <span class="title">Reactor</span></span> &#123;</div><div class="line">    <span class="comment">// Validate the reactor.</span></div><div class="line">    <span class="comment">// No two reactors can share the same channel.</span></div><div class="line">    reactorChannels := reactor.GetChannels()</div><div class="line">    <span class="keyword">for</span> _, chDesc := <span class="keyword">range</span> reactorChannels &#123;</div><div class="line">        chID := chDesc.ID</div><div class="line">        <span class="keyword">if</span> sw.reactorsByCh[chID] != <span class="literal">nil</span> &#123;</div><div class="line">            cmn.PanicSanity(fmt.Sprintf(<span class="string">"Channel %X has multiple reactors %v &amp; %v"</span>, chID, sw.reactorsByCh[chID], reactor))</div><div class="line">        &#125;</div><div class="line">        sw.chDescs = <span class="built_in">append</span>(sw.chDescs, chDesc)</div><div class="line">        sw.reactorsByCh[chID] = reactor</div><div class="line">    &#125;</div><div class="line">    sw.reactors[name] = reactor</div><div class="line">    reactor.SetSwitch(sw)</div><div class="line">    <span class="keyword">return</span> reactor</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong><em>抽象出来的接口， 编程只要继承这些接口即可</em></strong><br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> BaseReactor <span class="keyword">struct</span> &#123;</div><div class="line">    cmn.BaseService <span class="comment">// Provides Start, Stop, .Quit</span></div><div class="line">    Switch          *Switch</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewBaseReactor</span><span class="params">(name <span class="keyword">string</span>, impl Reactor)</span> *<span class="title">BaseReactor</span></span> &#123;</div><div class="line">    <span class="keyword">return</span> &amp;BaseReactor&#123;</div><div class="line">        BaseService: *cmn.NewBaseService(<span class="literal">nil</span>, name, impl),</div><div class="line">        Switch:      <span class="literal">nil</span>,</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(br *BaseReactor)</span> <span class="title">SetSwitch</span><span class="params">(sw *Switch)</span></span> &#123;</div><div class="line">    br.Switch = sw</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(_ *BaseReactor)</span> <span class="title">GetChannels</span><span class="params">()</span> []*<span class="title">ChannelDescriptor</span></span>              &#123; <span class="keyword">return</span> <span class="literal">nil</span> &#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(_ *BaseReactor)</span> <span class="title">AddPeer</span><span class="params">(peer *Peer)</span></span>                             &#123;&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(_ *BaseReactor)</span> <span class="title">RemovePeer</span><span class="params">(peer *Peer, reason <span class="keyword">interface</span>&#123;&#125;)</span></span>      &#123;&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(_ *BaseReactor)</span> <span class="title">Receive</span><span class="params">(chID <span class="keyword">byte</span>, peer *Peer, msgBytes []<span class="keyword">byte</span>)</span></span> &#123;&#125;</div></pre></td></tr></table></figure></p>
+<p><strong><em>编写代码范本</em></strong><br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> MyReactor <span class="keyword">struct</span>&#123;&#125;</div><div class="line"></div><div class="line"><span class="comment">// 对应于资源</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(reactor MyReactor)</span> <span class="title">GetChannels</span><span class="params">()</span> []*<span class="title">ChannelDescriptor</span></span> &#123;</div><div class="line">    <span class="keyword">return</span> []*ChannelDescriptor&#123;ChannelDescriptor&#123;ID:MyChannelID, Priority: <span class="number">1</span>&#125;&#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 资源相对应的请求处理程序</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(reactor MyReactor)</span> <span class="title">Receive</span><span class="params">(chID <span class="keyword">byte</span>, peer *Peer, msgBytes []<span class="keyword">byte</span>)</span></span> &#123;</div><div class="line">    r, n, err := bytes.NewBuffer(msgBytes), <span class="built_in">new</span>(<span class="keyword">int64</span>), <span class="built_in">new</span>(error)</div><div class="line">    msgString := ReadString(r, n, err)</div><div class="line">    fmt.Println(msgString)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>微信支付<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wenxin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/01/软件设计模式之Reactor/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/28/Bytom-s-data-structure/" class="archive-article-date">
-  	<time datetime="2017-06-28T08:43:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-28</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/28/Bytom-s-data-structure/">Bytom&#39;s data structure.</a>
-    </h1>
+  
+    <a href="/2017/06/28/Bytom-s-data-structure/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Bytom&#39;s data structure.</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://yoursite.com/2017/08/01/软件设计模式之Reactor/", 
+    sourceId: "软件设计模式之Reactor",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/13/比原链设计思考-扩展性UTXO模型/" class="archive-article-date">
-  	<time datetime="2017-06-13T01:41:44.357Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/13/比原链设计思考-扩展性UTXO模型/">比原链设计思考: 扩展性UTXO模型</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/08/ethermint/" class="archive-article-date">
-  	<time datetime="2017-06-08T02:46:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/08/ethermint/">Ethermint</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/06/BFT/" class="archive-article-date">
-  	<time datetime="2017-06-06T04:23:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/06/BFT/">BFT</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/05/tendermint/" class="archive-article-date">
-  	<time datetime="2017-06-05T06:19:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/05/tendermint/">tendermint</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/01/区块链上的分布式存储/" class="archive-article-date">
-  	<time datetime="2017-06-01T08:08:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/01/区块链上的分布式存储/">区块链相关的分布式存储之IPFS</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/31/raiden/" class="archive-article-date">
-  	<time datetime="2017-05-30T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/31/raiden/">雷电网络</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/28/ipfs/" class="archive-article-date">
-  	<time datetime="2017-05-27T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/28/ipfs/">IPFS(中文白皮书)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/26/chain/" class="archive-article-date">
-  	<time datetime="2017-05-25T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/26/chain/">Chain 简介</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -453,8 +330,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
