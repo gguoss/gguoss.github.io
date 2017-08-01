@@ -147,6 +147,60 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-程序设计模式之Reactor" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/01/程序设计模式之Reactor/">程序设计模式之Reactor</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/01/程序设计模式之Reactor/" class="archive-article-date">
+  	<time datetime="2017-08-01T05:54:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>反应堆设计模式</strong><br>是一种并行处理服务请求分发的事件模型。服务处理器分离收到的请求并调度相对用的请求处理器同步的处理各自的请求。</p>
+<p><strong>组成结构</strong><br><strong><em>Resources(可以被监听的事件)</em></strong><br>任何可以向系统输入或者消耗输出的资源(linux 上对应的可以用epoll监听的事件)。<br><strong><em>Synchronous Event Demultiplexer(同步的事件解复用器)</em></strong><br>用一个EventLoop 阻塞所有的资源。解复用器触发调度器，同步的操作变为非阻塞的资源。(实例：</p>
+<ul>
+<li>同步系统调用read()函数 将会在没有数据可读时是阻塞的。</li>
+<li>解复用器用select()函数来监听该资源，直到该资源变为可读时。</li>
+<li>read()函数不会被阻塞， 解复用器可以将该资源发送给调度器。)<br><strong>Dispatcher(调度器)</strong><br>处理请求处理程序的注册和注销。将资源从多路分解器调度到相关联的请求处理程序。<br><strong>Request Handler(请求处理程序)</strong><br>应用程序定义的与它自己相关联资源的请求处理程序。<br><strong> 属性 </strong><br>所有反应堆系统都是单线程的，但可以存在于多线程环境中。<br><strong>优点</strong><br>反应堆模式完全将应用程序特定的代码与反应堆实现分离，这意味着应用程序组件可以分为模块化的，可重复使用的部分。此外，由于请求处理程序的同步调用，反应器模式允许简单的粗粒度并发，而不会将多个线程的复杂性增加到系统。<br><strong>缺点</strong><br>由于反向控制流程，反应堆模式可能比由程序模式更难调试。而且，通过只同时调用请求处理程序，反应堆模式限制了最大的并发性，特别是在对称多处理硬件上。反应堆模式的可扩展性不仅受到同步调用请求处理程序的限制，还受到解复用器的限制。</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/01/程序设计模式之Reactor/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-Bytom-s-data-structure" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

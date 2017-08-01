@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Block Chain</title>
+  <title>程序设计模式之Reactor | Block Chain</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Block Chain">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="反应堆设计模式是一种并行处理服务请求分发的事件模型。服务处理器分离收到的请求并调度相对用的请求处理器同步的处理各自的请求。 组成结构Resources(可以被监听的事件)任何可以向系统输入或者消耗输出的资源(linux 上对应的可以用epoll监听的事件)。Synchronous Event Demultiplexer(同步的事件解复用器)用一个EventLoop 阻塞所有的资源。解复用器触发调度">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程序设计模式之Reactor">
+<meta property="og:url" content="http://yoursite.com/2017/08/01/程序设计模式之Reactor/index.html">
 <meta property="og:site_name" content="Block Chain">
+<meta property="og:description" content="反应堆设计模式是一种并行处理服务请求分发的事件模型。服务处理器分离收到的请求并调度相对用的请求处理器同步的处理各自的请求。 组成结构Resources(可以被监听的事件)任何可以向系统输入或者消耗输出的资源(linux 上对应的可以用epoll监听的事件)。Synchronous Event Demultiplexer(同步的事件解复用器)用一个EventLoop 阻塞所有的资源。解复用器触发调度">
+<meta property="og:updated_time" content="2017-08-01T07:05:51.339Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Block Chain">
+<meta name="twitter:title" content="程序设计模式之Reactor">
+<meta name="twitter:description" content="反应堆设计模式是一种并行处理服务请求分发的事件模型。服务处理器分离收到的请求并调度相对用的请求处理器同步的处理各自的请求。 组成结构Resources(可以被监听的事件)任何可以向系统输入或者消耗输出的资源(linux 上对应的可以用epoll监听的事件)。Synchronous Event Demultiplexer(同步的事件解复用器)用一个EventLoop 阻塞所有的资源。解复用器触发调度">
   
     <link rel="alternative" href="/atom.xml" title="Block Chain" type="application/atom+xml">
   
@@ -145,292 +149,161 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-程序设计模式之Reactor" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      程序设计模式之Reactor
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/01/程序设计模式之Reactor/" class="archive-article-date">
+
+        
+        <a href="/2017/08/01/程序设计模式之Reactor/" class="archive-article-date">
   	<time datetime="2017-08-01T05:54:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-01</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/01/程序设计模式之Reactor/">程序设计模式之Reactor</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>反应堆设计模式</strong><br>是一种并行处理服务请求分发的事件模型。服务处理器分离收到的请求并调度相对用的请求处理器同步的处理各自的请求。</p>
+<p><strong>组成结构</strong><br><strong><em>Resources(可以被监听的事件)</em></strong><br>任何可以向系统输入或者消耗输出的资源(linux 上对应的可以用epoll监听的事件)。<br><strong><em>Synchronous Event Demultiplexer(同步的事件解复用器)</em></strong><br>用一个EventLoop 阻塞所有的资源。解复用器触发调度器，同步的操作变为非阻塞的资源。(实例：</p>
+<ul>
+<li>同步系统调用read()函数 将会在没有数据可读时是阻塞的。</li>
+<li>解复用器用select()函数来监听该资源，直到该资源变为可读时。</li>
+<li>read()函数不会被阻塞， 解复用器可以将该资源发送给调度器。)<br><strong>Dispatcher(调度器)</strong><br>处理请求处理程序的注册和注销。将资源从多路分解器调度到相关联的请求处理程序。<br><strong>Request Handler(请求处理程序)</strong><br>应用程序定义的与它自己相关联资源的请求处理程序。<br><strong> 属性 </strong><br>所有反应堆系统都是单线程的，但可以存在于多线程环境中。<br><strong>优点</strong><br>反应堆模式完全将应用程序特定的代码与反应堆实现分离，这意味着应用程序组件可以分为模块化的，可重复使用的部分。此外，由于请求处理程序的同步调用，反应器模式允许简单的粗粒度并发，而不会将多个线程的复杂性增加到系统。<br><strong>缺点</strong><br>由于反向控制流程，反应堆模式可能比由程序模式更难调试。而且，通过只同时调用请求处理程序，反应堆模式限制了最大的并发性，特别是在对称多处理硬件上。反应堆模式的可扩展性不仅受到同步调用请求处理程序的限制，还受到解复用器的限制。</li>
+</ul>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>微信支付<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wenxin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/01/程序设计模式之Reactor/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/28/Bytom-s-data-structure/" class="archive-article-date">
-  	<time datetime="2017-06-28T08:43:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-28</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/28/Bytom-s-data-structure/">Bytom&#39;s data structure.</a>
-    </h1>
+  
+    <a href="/2017/06/28/Bytom-s-data-structure/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Bytom&#39;s data structure.</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://yoursite.com/2017/08/01/程序设计模式之Reactor/", 
+    sourceId: "程序设计模式之Reactor",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/13/比原链设计思考-扩展性UTXO模型/" class="archive-article-date">
-  	<time datetime="2017-06-13T01:41:44.357Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/13/比原链设计思考-扩展性UTXO模型/">比原链设计思考: 扩展性UTXO模型</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/08/ethermint/" class="archive-article-date">
-  	<time datetime="2017-06-08T02:46:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/08/ethermint/">Ethermint</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/06/BFT/" class="archive-article-date">
-  	<time datetime="2017-06-06T04:23:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/06/BFT/">BFT</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/05/tendermint/" class="archive-article-date">
-  	<time datetime="2017-06-05T06:19:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/05/tendermint/">tendermint</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/01/区块链上的分布式存储/" class="archive-article-date">
-  	<time datetime="2017-06-01T08:08:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/01/区块链上的分布式存储/">区块链相关的分布式存储之IPFS</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/31/raiden/" class="archive-article-date">
-  	<time datetime="2017-05-30T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/31/raiden/">雷电网络</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/28/ipfs/" class="archive-article-date">
-  	<time datetime="2017-05-27T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/28/ipfs/">IPFS(中文白皮书)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/26/chain/" class="archive-article-date">
-  	<time datetime="2017-05-25T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/26/chain/">Chain 简介</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -453,8 +326,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
