@@ -169,22 +169,10 @@
       
         <h2 id="chainmint-Tendermint-Chain"><a href="#chainmint-Tendermint-Chain" class="headerlink" title="chainmint  = Tendermint + Chain"></a><a href="https://github.com/chainx-org/chainmint" target="_blank" rel="external">chainmint</a>  <strong>=</strong> <a href="https://tendermint.com/" target="_blank" rel="external">Tendermint</a> <strong>+</strong> <a href="https://chain.com/" target="_blank" rel="external">Chain</a></h2><p>chainmint 是基于tendermint 共识，继承了Chain的UTXO, CVM的区块链。将来会成为cosmos的一个zone, 用于Chain（纳斯达克股市采用的区块链技术）和 cosmos hub之间通信转帐。</p>
 <h2 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h2><ul>
-<li><ol>
 <li>tendermint(<a href="https://github.com/tendermint/tendermint" target="_blank" rel="external">https://github.com/tendermint/tendermint</a>) 启动的共识模块， 和chainmint 通信， 组织chainmint 的交易序例。</li>
-</ol>
-</li>
-<li><ol>
 <li>chainmint(<a href="https://github.com/chainx-org/chainmint" target="_blank" rel="external">https://github.com/chainx-org/chainmint</a>) 实现了abci接口的交易具体逻辑。</li>
-</ol>
-</li>
-<li><ol>
 <li>postgreSql(<a href="https://github.com/postgres/postgres" target="_blank" rel="external">https://github.com/postgres/postgres</a>) chainmint的数据存储模块。</li>
-</ol>
-</li>
-<li><ol>
-<li>chainmintcli(<a href="https://github.com/chainx-org/chainmint/tree/master/cmd/chainmintcli" target="_blank" rel="external">https://github.com/chainx-org/chainmint/tree/master/cmd/chainmintcli</a>) chainmint的客户端，用于和chainmint 通信用</li>
-</ol>
-</li>
+<li>chainmintcli(<a href="https://github.com/chainx-org/chainmint/tree/master/cmd/chainmintcli" target="_blank" rel="external">https://github.com/chainx-org/chainmint/tree/master/cmd/chainmintcli</a>) chainmint的客户端，用于和chainmint 通信。</li>
 </ul>
 
       
