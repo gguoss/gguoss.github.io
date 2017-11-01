@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Block Chain">
 <meta property="og:description" content="兰花《一个通过带宽挖矿激励的完全分布式的匿名代理网络》 作者： David L. Salamon, Brian J. Fox, Jay Freeman, and Gustav Simonsson with Stephen F. Bell, and Dr. Steven Waterhouse, Ph.D. Version 0.9.0  摘要互联网的飞速发展， 越来越多的方法和途径可以很有效的快速发现">
 <meta property="og:image" content="http://yoursite.com/img/Orchid_connect.png">
-<meta property="og:updated_time" content="2017-10-31T07:32:29.460Z">
+<meta property="og:updated_time" content="2017-11-01T03:35:11.983Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="兰花协议">
 <meta name="twitter:description" content="兰花《一个通过带宽挖矿激励的完全分布式的匿名代理网络》 作者： David L. Salamon, Brian J. Fox, Jay Freeman, and Gustav Simonsson with Stephen F. Bell, and Dr. Steven Waterhouse, Ph.D. Version 0.9.0  摘要互联网的飞速发展， 越来越多的方法和途径可以很有效的快速发现">
@@ -205,8 +205,21 @@
 <li>*Web服务器访问。攻击者了解到，从兰花网络到特定的网络服务器（可能会托管多个网站）进行了出站连接。</li>
 <li>*以太坊联系。 攻击者了解到，一个兰花用户持有一个Ethereum公钥。</li>
 <li>*购买联系。 攻击者了解到两个交易共享一个付款人。</li>
-<li>*购买信息。 攻击者了解通过链发送的带宽的数量和时间。<br>尽管上述行为信息在正常操作期间与兰花网络上的其他节点共享，如下所述，在大多数情况下，假设用户只有在行为信息收集时才会受到直接的伤害，如果攻击者可以快速探悉几条信息。例如，要说用户X访问了网站Y，攻击者将需要：买方识别，网站访问信息和几条链接标识。 因此，遵循参考规格的同行不会存储或共享上述任何信息，除非提供客户购买的服务所需。</li>
+<li>*购买信息。 攻击者了解通过链发送的带宽的数量和时间。<br>尽管上述行为信息在正常操作期间与兰花网络上的其他节点共享，如下所述，在大多数情况下，假设用户只有在行为信息收集时才会受到直接的伤害，如果攻击者可以快速探悉几条信息。例如，要说用户X访问了网站Y，攻击者将需要：买方识别，网站访问信息和几条链接标识。 因此，遵循参考规格的同行不会存储或共享上述任何信息，除非提供客户购买的服务所需。<h4 id="2-2-经济攻击"><a href="#2-2-经济攻击" class="headerlink" title="2.2. 经济攻击"></a>2.2. 经济攻击</h4>与相关系统不同， 兰花协议必须关心支付机制的攻击。本文归纳两大类如下：</li>
+<li><ol>
+<li>经济利益。 有利的不良行为，例如用户提供“免费样品”带宽，允许用户专门使用免费样品带宽。</li>
+</ol>
+</li>
+<li><ol>
+<li>经济拒绝服务（EDoS）。 使用付款来淹没兰花网络上的另一个节点进行购买，从而使其脱机。<h4 id="2-3-服务质量攻击"><a href="#2-3-服务质量攻击" class="headerlink" title="2.3. 服务质量攻击"></a>2.3. 服务质量攻击</h4>一些对手可能会通过放慢兰花网络用户的系统性能来满足，从而潜在地减少使用。<h4 id="2-4-中间人攻击"><a href="#2-4-中间人攻击" class="headerlink" title="2.4. 中间人攻击"></a>2.4. 中间人攻击</h4>只有在两个互动方之间插入自己才能执行的操作统称为中间人攻击。可以记录加密的信息用于分析元数据（第2.8节），而非加密数据可能另外被更改为控制行为。如果密钥交换没有得到保障，中间人也可能会欺骗双方使其错误地认为攻击者的密钥是对方的密钥。<h4 id="2-5-女巫攻击"><a href="#2-5-女巫攻击" class="headerlink" title="2.5. 女巫攻击"></a>2.5. 女巫攻击</h4>伪装成多个用户执行恶意行为称为Sybil攻击，使被攻击者承受多方伪装用户的假冒数据。这种攻击的应用包括：</li>
+</ol>
+</li>
+<li>向Yelp, Amazon 等平台提供多个reviews。</li>
+<li>通过假装是多个倾听者来实现BitTorrent从而可以快速下载[72]。<h4 id="2-6-日蚀攻击"><a href="#2-6-日蚀攻击" class="headerlink" title="2.6. 日蚀攻击"></a>2.6. 日蚀攻击</h4>在日蚀攻击中，攻击者的目标是隐藏系统的一部分。 采用的方法是一般网络相当于特权升级攻击：获得网络位置的控制权更多地控制网络，然后使用该控制来获取更多的控制权。</li>
+<li>比特币的p2p，所有节点都是平等地位，因此建立连接的机制可以被攻击者拿来利用。通过种种手段机制，可以做到将指定的一个节点（矿工）所有的连接的端口都占用[1]，所有的连接都是被一个攻击方所掌握的。攻击方这样可以使得这个矿工无法第一时间获得最新的区块，延迟它收到最新区块的时间，这样相当于让这个矿工做了许多无用功。甚至在一种名为自私矿工[2]的策略下，引导受害的矿工去挖掘非最长链上的区块，达成一种对攻击方的优势。</li>
+<li>通过接管与磁链接相关联的地址空间，从BitTorrent DHT中删除文件[83]。</li>
 </ul>
+<p>作者：逆望高<br>链接：<a href="https://www.zhihu.com/question/55814858/answer/146514686" target="_blank" rel="external">https://www.zhihu.com/question/55814858/answer/146514686</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 
       
 
