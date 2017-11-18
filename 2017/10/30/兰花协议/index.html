@@ -17,7 +17,8 @@
 <meta property="og:image" content="http://yoursite.com/img/orchildprotocol.png">
 <meta property="og:image" content="http://yoursite.com/img/Orchid_connect.png">
 <meta property="og:image" content="http://yoursite.com/img/带宽挖矿.png">
-<meta property="og:updated_time" content="2017-11-16T05:27:06.182Z">
+<meta property="og:image" content="http://yoursite.com/img/OrchidAccess.png">
+<meta property="og:updated_time" content="2017-11-18T06:47:36.590Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="兰花协议">
 <meta name="twitter:description" content="兰花《一个通过带宽挖矿激励的完全分布式的匿名代理网络》 作者： David L. Salamon, Brian J. Fox, Jay Freeman, and Gustav Simonsson with Stephen F. Bell, and Dr. Steven Waterhouse, Ph.D. Version 0.9.0 原文     摘要互联网的飞速发展， 越来越多的方法和途径可以很有">
@@ -283,7 +284,14 @@
 <li>他们转发的数据包的大小，时间和数量。</li>
 <li>控制支付代币的公钥。</li>
 <li>针对它们的数据包控制字段的内容。<br>此外，代理节点及入侵防御系统可以访问以下信息：</li>
-<li>Web服务器的主机名和SSL / TLS会话协商的明文部分。</li>
+<li>Web服务器的主机名和SSL / TLS会话协商的明文部分。<h4 id="9-2-潜在的合谋者"><a href="#9-2-潜在的合谋者" class="headerlink" title="9.2. 潜在的合谋者"></a>9.2. 潜在的合谋者</h4>在兰花网络中， 以下的角色可能被攻击者监视或者串谋：</li>
+<li>互联网服务提供商以客户，中继，代理，web服务器的角色加入兰花网络。不可靠概率用s表示。</li>
+<li>网站。 链接到代理的网站服务器。 不可靠概率用w表示。</li>
+<li>Relayn。 链路中的第n个中继节点。 不可靠概率用r/n 表示。</li>
+<li>代理。 有流量通过中继到网站服务器的代理。不可靠概率用x/n 表示。<br>我们已经分离出上面的r和x，原因是：虽然攻击者无法控制他们可用于计算工作量计算的总计算量，但他们可以控制如何在中继和代理节点之间分配计算。<h4 id="9-3-攻击类型"><a href="#9-3-攻击类型" class="headerlink" title="9.3. 攻击类型"></a>9.3. 攻击类型</h4>共谋攻击的核心目标是将特定的兰花客户与特定的SSL连接相链接。 主要可以采用如下方法：</li>
+<li>关系。攻击者可以通过观察消息路由过程中的节点来推断出一个客户正在和一个给定的网站通话。</li>
+<li>记时。 攻击者可以通过控制并观察数据包的时间规律来推断客户正在与给定网站通话。</li>
+<li>未燃烧的带宽花费。 尽管客户可以使用带宽燃烧的方式掩盖自己的流量，但攻击者仍然可以执行定时攻击。<h4 id="9-4-“常规”互联网接入：零中继，零代理"><a href="#9-4-“常规”互联网接入：零中继，零代理" class="headerlink" title="9.4. “常规”互联网接入：零中继，零代理"></a>9.4. “常规”互联网接入：零中继，零代理</h4>虽然当客户直接连接网站时，兰花系统不被使用，但我们在接下来的文章会分析审查在客户启动中存在的风险。<br><img src="/img/OrchidAccess.png" alt=""><br>在上表中，“X”表示参与共谋，互联网服务商 有通过P(关系) 攻击类型有s的概率参与共谋。网站有通过P(记时)攻击类型有w的概率参与共谋。（上图是英文原本图， 图中w 应该在P(Timing)那列）</li>
 </ul>
 
       
