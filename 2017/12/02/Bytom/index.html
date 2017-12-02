@@ -6,14 +6,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | Block Chain</title>
+  <title>Bytom | Block Chain</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Block Chain">
-<meta property="og:url" content="http://yoursite.com/archives/2017/page/2/index.html">
+  <meta name="description" content="初始化测试网络配置文件1$./bytomd init --chain_id testnet  启动节点1$./bytomd node --wallet.enable  使用bytomcli 查看当前信息1$./bytomcli net-info 该图展示了当前节点的邻居节点的相关信息 创建账户1$./bytomcli create-account [account id]  这时一定要记住自己的私">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bytom">
+<meta property="og:url" content="http://yoursite.com/2017/12/02/Bytom/index.html">
 <meta property="og:site_name" content="Block Chain">
+<meta property="og:description" content="初始化测试网络配置文件1$./bytomd init --chain_id testnet  启动节点1$./bytomd node --wallet.enable  使用bytomcli 查看当前信息1$./bytomcli net-info 该图展示了当前节点的邻居节点的相关信息 创建账户1$./bytomcli create-account [account id]  这时一定要记住自己的私">
+<meta property="og:image" content="http://yoursite.com/img/bytom_init.png">
+<meta property="og:image" content="http://yoursite.com/img/启动节点同步中.png">
+<meta property="og:image" content="http://yoursite.com/img/net-info.png">
+<meta property="og:image" content="http://yoursite.com/img/create-account.png">
+<meta property="og:image" content="http://yoursite.com/img/account_control_program.png">
+<meta property="og:image" content="http://yoursite.com/img/submit_tx.png">
+<meta property="og:image" content="http://yoursite.com/img/list_somthing.png">
+<meta property="og:image" content="http://yoursite.com/img/create-asset.png">
+<meta property="og:image" content="http://yoursite.com/img/issue-asset.png">
+<meta property="og:image" content="http://yoursite.com/img/list-assets.png">
+<meta property="og:updated_time" content="2017-12-02T13:05:30.881Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Block Chain">
+<meta name="twitter:title" content="Bytom">
+<meta name="twitter:description" content="初始化测试网络配置文件1$./bytomd init --chain_id testnet  启动节点1$./bytomd node --wallet.enable  使用bytomcli 查看当前信息1$./bytomcli net-info 该图展示了当前节点的邻居节点的相关信息 创建账户1$./bytomcli create-account [account id]  这时一定要记住自己的私">
+<meta name="twitter:image" content="http://yoursite.com/img/bytom_init.png">
   
     <link rel="alternative" href="/atom.xml" title="Block Chain" type="application/atom+xml">
   
@@ -145,106 +160,185 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Bytom" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Bytom
+    </h1>
+  
+
+        
+        <a href="/2017/12/02/Bytom/" class="archive-article-date">
+  	<time datetime="2017-12-02T12:52:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="初始化测试网络配置文件"><a href="#初始化测试网络配置文件" class="headerlink" title="初始化测试网络配置文件"></a>初始化测试网络配置文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomd init --chain_id testnet</div></pre></td></tr></table></figure>
+<p><img src="/img/bytom_init.png" alt="初始化测试网络配置文件"></p>
+<h3 id="启动节点"><a href="#启动节点" class="headerlink" title="启动节点"></a>启动节点</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomd node --wallet.enable</div></pre></td></tr></table></figure>
+<p><img src="/img/启动节点同步中.png" alt="启动节点"></p>
+<h3 id="使用bytomcli-查看当前信息"><a href="#使用bytomcli-查看当前信息" class="headerlink" title="使用bytomcli 查看当前信息"></a>使用bytomcli 查看当前信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli net-info</div></pre></td></tr></table></figure>
+<p><img src="/img/net-info.png" alt="查看邻居节点信息"><br>该图展示了当前节点的邻居节点的相关信息</p>
+<h3 id="创建账户"><a href="#创建账户" class="headerlink" title="创建账户"></a>创建账户</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli create-account [account id]</div></pre></td></tr></table></figure>
+<p><img src="/img/create-account.png" alt="创建账户"></p>
+<p>这时一定要记住自己的私钥xprv, 和账户account id</p>
+<h3 id="创建属于你账户的control-program"><a href="#创建属于你账户的control-program" class="headerlink" title="创建属于你账户的control program"></a>创建属于你账户的control program</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli create-account-receiver [account id]</div></pre></td></tr></table></figure>
+<p><img src="/img/account_control_program.png" alt="创建资产转移control program"></p>
+<p><code>注意：</code> 这时可以把你的control program 记下来， 以后有人给你转btm,或者其他资产， 都是通过这个control program转给你</p>
+<p><code>注意：</code> 接下来只有有btm的人才能给你发送btm(两种途径获得。1，能自己同步完，并且挖到矿。2，找bytom官方要)</p>
+<h3 id="转移btm"><a href="#转移btm" class="headerlink" title="转移btm"></a>转移btm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli sub-control-receiver-tx [account xprv] [account id] [asset id] [spend amount] [control_program]</div></pre></td></tr></table></figure>
+<p><img src="/img/submit_tx.png" alt="btm转移"><br>等该交易的块被同步完成时，发送者和接收方都可以用如下命令来查看余额<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli list-balances</div></pre></td></tr></table></figure></p>
+<p><img src="/img/list_somthing.png" alt="list-balances"></p>
+<h3 id="发布资产"><a href="#发布资产" class="headerlink" title="发布资产"></a>发布资产</h3><ul>
+<li>1.创建资产<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli create-asset silver</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/img/create-asset.png" alt="创建资产"></p>
+<ul>
+<li>2.发布资产<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli sub-create-issue-tx [account id] [asset id] [issue amount] [asset xprv] [account xprv]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/img/issue-asset.png" alt="发布资产"></p>
+<ul>
+<li>3.查看资产<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli list-assets</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/img/list-assets.png" alt="查看资产"></p>
+<p><strong>转移其他资产类似于转移btm，只是asset-id 不同</strong></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>微信支付<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wenxin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/31/raiden/" class="archive-article-date">
-  	<time datetime="2017-05-30T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/31/raiden/">雷电网络</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/12/02/Bytom/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/28/ipfs/" class="archive-article-date">
-  	<time datetime="2017-05-27T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-28</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/28/ipfs/">IPFS(中文白皮书)</a>
-    </h1>
+  
+    <a href="/2017/10/30/兰花协议/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">兰花协议</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://yoursite.com/2017/12/02/Bytom/", 
+    sourceId: "Bytom",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/26/chain/" class="archive-article-date">
-  	<time datetime="2017-05-25T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/26/chain/">Chain 简介</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2017/">&laquo; Prev</a><a class="page-number" href="/archives/2017/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
 
@@ -268,8 +362,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

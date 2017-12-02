@@ -18,8 +18,11 @@
 <meta property="og:image" content="http://yoursite.com/img/Orchid_connect.png">
 <meta property="og:image" content="http://yoursite.com/img/带宽挖矿.png">
 <meta property="og:image" content="http://yoursite.com/img/OrchidAccess.png">
+<meta property="og:image" content="http://yoursite.com/home/gavin/work/shell/blog/themes/yilia/source/img/OrchidVPN.png">
+<meta property="og:image" content="http://yoursite.com/home/gavin/work/shell/blog/themes/yilia/source/img/0Relay1Proxy.png">
+<meta property="og:image" content="http://yoursite.com/home/gavin/work/shell/blog/themes/yilia/source/img/1Relay1Proxy.png">
 <meta property="og:image" content="http://yoursite.com/home/gavin/work/shell/blog/themes/yilia/source/img/OrichidFigure3.png">
-<meta property="og:updated_time" content="2017-11-19T14:19:12.642Z">
+<meta property="og:updated_time" content="2017-11-20T09:19:28.918Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="兰花协议">
 <meta name="twitter:description" content="兰花《一个通过带宽挖矿激励的完全分布式的匿名代理网络》 作者： David L. Salamon, Brian J. Fox, Jay Freeman, and Gustav Simonsson with Stephen F. Bell, and Dr. Steven Waterhouse, Ph.D. Version 0.9.0 原文     摘要互联网的飞速发展， 越来越多的方法和途径可以很有">
@@ -292,7 +295,7 @@
 <li>代理。 有流量通过中继到网站服务器的代理。不可靠概率用x/n 表示。<br>我们已经分离出上面的r和x，原因是：虽然攻击者无法控制他们可用于计算工作量计算的总计算量，但他们可以控制如何在中继和代理节点之间分配计算。<h4 id="9-3-攻击类型"><a href="#9-3-攻击类型" class="headerlink" title="9.3. 攻击类型"></a>9.3. 攻击类型</h4>共谋攻击的核心目标是将特定的兰花客户与特定的SSL连接相链接。 主要可以采用如下方法：</li>
 <li>关系。攻击者可以通过观察消息路由过程中的节点来推断出一个客户正在和一个给定的网站通话。</li>
 <li>记时。 攻击者可以通过控制并观察数据包的时间规律来推断客户正在与给定网站通话。</li>
-<li>未燃烧的带宽花费。 尽管客户可以使用带宽燃烧的方式掩盖自己的流量，但攻击者仍然可以执行定时攻击。<h4 id="9-4-“常规”互联网接入：零中继，零代理"><a href="#9-4-“常规”互联网接入：零中继，零代理" class="headerlink" title="9.4. “常规”互联网接入：零中继，零代理"></a>9.4. “常规”互联网接入：零中继，零代理</h4>虽然当客户直接连接网站时，兰花系统不被使用，但我们在接下来的文章会分析审查在客户启动中存在的风险。<br><img src="/img/OrchidAccess.png" alt=""><br>在上表中，“X”表示参与共谋，互联网服务商 有通过P(关系) 攻击类型有s的概率参与共谋。网站有通过P(记时)攻击类型有w的概率参与共谋。（上图是英文原图，图中有个小错误 图中w 应该在P(Timing)那列）</li>
+<li>未燃烧的带宽花费。 尽管客户可以使用带宽燃烧的方式掩盖自己的流量，但攻击者仍然可以执行定时攻击。<h4 id="9-4-“常规”互联网访问：零中继，零代理"><a href="#9-4-“常规”互联网访问：零中继，零代理" class="headerlink" title="9.4. “常规”互联网访问：零中继，零代理"></a>9.4. “常规”互联网访问：零中继，零代理</h4>虽然当客户直接连接网站时，兰花系统不被使用，但我们在接下来的类容会分析在客户启动中存在的风险。<br><img src="/img/OrchidAccess.png" alt=""><br>在上表中，“X”表示参与共谋，互联网服务商 有x的概率采用关系攻击类型。网站有w的概率采用关系攻击类型。<h4 id="9-5-VPN-零中继，-零代理"><a href="#9-5-VPN-零中继，-零代理" class="headerlink" title="9.5. VPN: 零中继， 零代理"></a>9.5. VPN: 零中继， 零代理</h4>为了进行分析，我们也提出了VPN访问固有的合谋风险<br><img src="/home/gavin/work/shell/blog/themes/yilia/source/img/OrchidVPN.png" alt=""><br>g是VPN提供商被监控或者与对手勾结的可能性。 请注意，g可能会随着时间的推移而变化导致难以建模，例如，由于您的VPN使用情况。<h4 id="9-6-零中继，一个代理"><a href="#9-6-零中继，一个代理" class="headerlink" title="9.6. 零中继，一个代理"></a>9.6. 零中继，一个代理</h4><img src="/home/gavin/work/shell/blog/themes/yilia/source/img/0Relay1Proxy.png" alt=""><br>毫无疑问，这种情况下的风险与VPN使用的风险很相似。 不使用中继的链相当于在每个浏览会话之前随机选择新的VPN提供商的VPN，并且VPN提供商不存储个人信息。<h4 id="9-7-一个中继，一个代理"><a href="#9-7-一个中继，一个代理" class="headerlink" title="9.7. 一个中继，一个代理"></a>9.7. 一个中继，一个代理</h4><img src="/home/gavin/work/shell/blog/themes/yilia/source/img/1Relay1Proxy.png" alt=""><br>如果在这种配置中使用带宽燃烧，所有的定时攻击都会被缓解。 </li>
 </ul>
 <h3 id="15-未来的工作"><a href="#15-未来的工作" class="headerlink" title="15. 未来的工作"></a>15. 未来的工作</h3><p>本节中的内容分为两类：好的方面和我们像公众展示的内部矛盾特征。不够我们相信这种矛盾都是很普遍的——虽然几乎所有人都有一个自己最喜欢的将权利用作歧途的例子，但是同样也有无数的将权利用作正途的例子。兰花这种协议是没有自己的判断力，无法告知它被自由战士，还是被恐怖分子，坏人还是英雄所用。</p>
 <h4 id="15-1-空间证明"><a href="#15-1-空间证明" class="headerlink" title="15.1. 空间证明"></a>15.1. 空间证明</h4><p>如第5节所述，我们非常有兴趣探索其他证明类型。这是一个重要的问题，因为工作证明系统的环境影响，以及我们目前的工作证明算法要求全面的计算机充当网络路由器。<br>我们很高兴能够探索使用磁盘空间成为我们安全核心的稀缺资源的可能性，这可能会让旧手机或类似硬件有利地参与到兰花网络中。</p>
@@ -403,6 +406,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/12/02/Bytom/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Bytom
+        
+      </div>
+    </a>
   
   
     <a href="/2017/09/03/chainmint/" id="article-nav-older" class="article-nav-link-wrap">

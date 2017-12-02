@@ -147,6 +147,85 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Bytom" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/02/Bytom/">Bytom</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/02/Bytom/" class="archive-article-date">
+  	<time datetime="2017-12-02T12:52:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="初始化测试网络配置文件"><a href="#初始化测试网络配置文件" class="headerlink" title="初始化测试网络配置文件"></a>初始化测试网络配置文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomd init --chain_id testnet</div></pre></td></tr></table></figure>
+<p><img src="/img/bytom_init.png" alt="初始化测试网络配置文件"></p>
+<h3 id="启动节点"><a href="#启动节点" class="headerlink" title="启动节点"></a>启动节点</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomd node --wallet.enable</div></pre></td></tr></table></figure>
+<p><img src="/img/启动节点同步中.png" alt="启动节点"></p>
+<h3 id="使用bytomcli-查看当前信息"><a href="#使用bytomcli-查看当前信息" class="headerlink" title="使用bytomcli 查看当前信息"></a>使用bytomcli 查看当前信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli net-info</div></pre></td></tr></table></figure>
+<p><img src="/img/net-info.png" alt="查看邻居节点信息"><br>该图展示了当前节点的邻居节点的相关信息</p>
+<h3 id="创建账户"><a href="#创建账户" class="headerlink" title="创建账户"></a>创建账户</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli create-account [account id]</div></pre></td></tr></table></figure>
+<p><img src="/img/create-account.png" alt="创建账户"></p>
+<p>这时一定要记住自己的私钥xprv, 和账户account id</p>
+<h3 id="创建属于你账户的control-program"><a href="#创建属于你账户的control-program" class="headerlink" title="创建属于你账户的control program"></a>创建属于你账户的control program</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli create-account-receiver [account id]</div></pre></td></tr></table></figure>
+<p><img src="/img/account_control_program.png" alt="创建资产转移control program"></p>
+<p><code>注意：</code> 这时可以把你的control program 记下来， 以后有人给你转btm,或者其他资产， 都是通过这个control program转给你</p>
+<p><code>注意：</code> 接下来只有有btm的人才能给你发送btm(两种途径获得。1，能自己同步完，并且挖到矿。2，找bytom官方要)</p>
+<h3 id="转移btm"><a href="#转移btm" class="headerlink" title="转移btm"></a>转移btm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli sub-control-receiver-tx [account xprv] [account id] [asset id] [spend amount] [control_program]</div></pre></td></tr></table></figure>
+<p><img src="/img/submit_tx.png" alt="btm转移"><br>等该交易的块被同步完成时，发送者和接收方都可以用如下命令来查看余额<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli list-balances</div></pre></td></tr></table></figure></p>
+<p><img src="/img/list_somthing.png" alt="list-balances"></p>
+<h3 id="发布资产"><a href="#发布资产" class="headerlink" title="发布资产"></a>发布资产</h3><ul>
+<li>1.创建资产<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli create-asset silver</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/img/create-asset.png" alt="创建资产"></p>
+<ul>
+<li>2.发布资产<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli sub-create-issue-tx [account id] [asset id] [issue amount] [asset xprv] [account xprv]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/img/issue-asset.png" alt="发布资产"></p>
+<ul>
+<li>3.查看资产<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli list-assets</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/img/list-assets.png" alt="查看资产"></p>
+<p><strong>转移其他资产类似于转移btm，只是asset-id 不同</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/02/Bytom/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-兰花协议" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -284,7 +363,7 @@
 <li>代理。 有流量通过中继到网站服务器的代理。不可靠概率用x/n 表示。<br>我们已经分离出上面的r和x，原因是：虽然攻击者无法控制他们可用于计算工作量计算的总计算量，但他们可以控制如何在中继和代理节点之间分配计算。<h4 id="9-3-攻击类型"><a href="#9-3-攻击类型" class="headerlink" title="9.3. 攻击类型"></a>9.3. 攻击类型</h4>共谋攻击的核心目标是将特定的兰花客户与特定的SSL连接相链接。 主要可以采用如下方法：</li>
 <li>关系。攻击者可以通过观察消息路由过程中的节点来推断出一个客户正在和一个给定的网站通话。</li>
 <li>记时。 攻击者可以通过控制并观察数据包的时间规律来推断客户正在与给定网站通话。</li>
-<li>未燃烧的带宽花费。 尽管客户可以使用带宽燃烧的方式掩盖自己的流量，但攻击者仍然可以执行定时攻击。<h4 id="9-4-“常规”互联网接入：零中继，零代理"><a href="#9-4-“常规”互联网接入：零中继，零代理" class="headerlink" title="9.4. “常规”互联网接入：零中继，零代理"></a>9.4. “常规”互联网接入：零中继，零代理</h4>虽然当客户直接连接网站时，兰花系统不被使用，但我们在接下来的文章会分析审查在客户启动中存在的风险。<br><img src="/img/OrchidAccess.png" alt=""><br>在上表中，“X”表示参与共谋，互联网服务商 有通过P(关系) 攻击类型有s的概率参与共谋。网站有通过P(记时)攻击类型有w的概率参与共谋。（上图是英文原图，图中有个小错误 图中w 应该在P(Timing)那列）</li>
+<li>未燃烧的带宽花费。 尽管客户可以使用带宽燃烧的方式掩盖自己的流量，但攻击者仍然可以执行定时攻击。<h4 id="9-4-“常规”互联网访问：零中继，零代理"><a href="#9-4-“常规”互联网访问：零中继，零代理" class="headerlink" title="9.4. “常规”互联网访问：零中继，零代理"></a>9.4. “常规”互联网访问：零中继，零代理</h4>虽然当客户直接连接网站时，兰花系统不被使用，但我们在接下来的类容会分析在客户启动中存在的风险。<br><img src="/img/OrchidAccess.png" alt=""><br>在上表中，“X”表示参与共谋，互联网服务商 有x的概率采用关系攻击类型。网站有w的概率采用关系攻击类型。<h4 id="9-5-VPN-零中继，-零代理"><a href="#9-5-VPN-零中继，-零代理" class="headerlink" title="9.5. VPN: 零中继， 零代理"></a>9.5. VPN: 零中继， 零代理</h4>为了进行分析，我们也提出了VPN访问固有的合谋风险<br><img src="/home/gavin/work/shell/blog/themes/yilia/source/img/OrchidVPN.png" alt=""><br>g是VPN提供商被监控或者与对手勾结的可能性。 请注意，g可能会随着时间的推移而变化导致难以建模，例如，由于您的VPN使用情况。<h4 id="9-6-零中继，一个代理"><a href="#9-6-零中继，一个代理" class="headerlink" title="9.6. 零中继，一个代理"></a>9.6. 零中继，一个代理</h4><img src="/home/gavin/work/shell/blog/themes/yilia/source/img/0Relay1Proxy.png" alt=""><br>毫无疑问，这种情况下的风险与VPN使用的风险很相似。 不使用中继的链相当于在每个浏览会话之前随机选择新的VPN提供商的VPN，并且VPN提供商不存储个人信息。<h4 id="9-7-一个中继，一个代理"><a href="#9-7-一个中继，一个代理" class="headerlink" title="9.7. 一个中继，一个代理"></a>9.7. 一个中继，一个代理</h4><img src="/home/gavin/work/shell/blog/themes/yilia/source/img/1Relay1Proxy.png" alt=""><br>如果在这种配置中使用带宽燃烧，所有的定时攻击都会被缓解。 </li>
 </ul>
 <h3 id="15-未来的工作"><a href="#15-未来的工作" class="headerlink" title="15. 未来的工作"></a>15. 未来的工作</h3><p>本节中的内容分为两类：好的方面和我们像公众展示的内部矛盾特征。不够我们相信这种矛盾都是很普遍的——虽然几乎所有人都有一个自己最喜欢的将权利用作歧途的例子，但是同样也有无数的将权利用作正途的例子。兰花这种协议是没有自己的判断力，无法告知它被自由战士，还是被恐怖分子，坏人还是英雄所用。</p>
 <h4 id="15-1-空间证明"><a href="#15-1-空间证明" class="headerlink" title="15.1. 空间证明"></a>15.1. 空间证明</h4><p>如第5节所述，我们非常有兴趣探索其他证明类型。这是一个重要的问题，因为工作证明系统的环境影响，以及我们目前的工作证明算法要求全面的计算机充当网络路由器。<br>我们很高兴能够探索使用磁盘空间成为我们安全核心的稀缺资源的可能性，这可能会让旧手机或类似硬件有利地参与到兰花网络中。</p>
@@ -829,175 +908,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/06/01/区块链上的分布式存储/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-raiden" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/31/raiden/">雷电网络</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/31/raiden/" class="archive-article-date">
-  	<time datetime="2017-05-30T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="雷电网络"><a href="#雷电网络" class="headerlink" title="雷电网络"></a>雷电网络</h1><h2 id="基于以太坊的快速数字资产交易"><a href="#基于以太坊的快速数字资产交易" class="headerlink" title="基于以太坊的快速数字资产交易"></a>基于以太坊的快速数字资产交易</h2><p><strong> 以太坊上网络支付通道 </strong><br>Raiden 利用链下网络状态技术给以太坊上的数字资产带来了许多nice的属性：</p>
-<ul>
-<li>1.可扩展性: 它与参与者的数量呈线性关系（每秒可能有1,000,000+次转帐)。</li>
-<li>2.快速： 转账在一秒钟的时间内被确认和确定。</li>
-<li>3.匿名性：单次转帐不会显示在全局分布式帐本中。</li>
-<li>4.互操作性： 以太坊上任何实现了标准代币的接口的代币都可以互相交易。</li>
-<li>5.低额交易费： 交易费比区块链上的交易费低7个数量级。</li>
-<li>6.小额支付： 低交易费允许有效的转移小额资金。<br><strong> 技术点 </strong><br>该技术类似于比特币的闪电网络。<br>基本思想是： 所有的交易需要记载到区块链上的共享账本上（这是区块链的瓶颈），而该技术是通过交易双方私下签名交易信息， 不需要全部上链。Raiden 使用一个p2p支付通道网络，并在以太坊的区块链上存一定的押金。Raiden 是以太坊上的一个扩展应用。Raiden 节点和以太坊的节点互相联通工作，作为交易的基础设施， 并用以太坊上的链来管理通道的存证信息。Raiden 提供了简单的API, 使得DApps 非常容易实现。<br><strong> 应用 </strong></li>
-<li>为内容分发做小额计费：Paywalls,广告和订阅。 </li>
-<li>去中心化的M2M市场： 特别是在物联网中， 微小的带宽， 存储， cpu占有率， 能量， 传感器数据等可以交易。</li>
-<li>没有交集的代币系统： 游戏代币， 奖励代币， 私有货币。</li>
-<li>API 访问： 对于即将来临的M2M经济，每次API 访问计费。</li>
-<li>快速去中心话交易。<br><strong> 与以太坊相辅相成 </strong><br>Vitalik Buterin 说：“ 状态通道是一种重要技术， 有可能大大提高许多区块链应用程序的可扩展性和隐私性； 结合分片和其他隐私秘密保护技术， 他们是一个重要的组合，可以实现去中心化的许多属性，而这些属性是圈内人和机构所期望，也应该实现的“</li>
-</ul>
-<p>Raiden 1.0 详解：<br>Raiden 1.0 通过合约的方式实现了token 的线下状态通道支付。<br>Registry 合约是系统注册合约，以太坊上的每一种代币都可以一次注册， 然后会产生一个基于该token的状态通道管理合约。每个有该token的用户都可以选择一个搭档建立一个状态通道合约，通过设置押金（会在链上存证）实现线下通道支付，线下交易都是双方各自签名确认即可， 撤出时， 再双方提供证据， 链上交易存证。合约如下：<br><img src="/img/raiden.jpg" alt=""> </p>
-<h3 id="Raiden-的类介绍："><a href="#Raiden-的类介绍：" class="headerlink" title="Raiden 的类介绍："></a>Raiden 的类介绍：</h3><h4 id="Asset"><a href="#Asset" class="headerlink" title="Asset"></a>Asset</h4><ul>
-<li>a. 没有特殊规范来规定哪样的资产。</li>
-<li>b.只要是上链的一个简单合约地址就可以（如Toke address）。<h4 id="RaidenProtocol"><a href="#RaidenProtocol" class="headerlink" title="RaidenProtocol"></a>RaidenProtocol</h4></li>
-<li>a.节点间的传输层交互</li>
-<li>b.RaidenService 的网络事件通知。<h4 id="Raiden-Service"><a href="#Raiden-Service" class="headerlink" title="Raiden Service"></a>Raiden Service</h4></li>
-<li>a.链下运行。</li>
-<li>b.Raiden 的根类。</li>
-<li>c.暴露Raiden 与Raiden的接口。</li>
-<li>d.需要直接访问本地的Blockchain节点。</li>
-<li>e.管理所有的链上链下交互路由。</li>
-<li>f.维护AssetManagers列表。</li>
-<li>g.每个维护的AssetManagers只负责一个资产。<h4 id="AssetManager"><a href="#AssetManager" class="headerlink" title="AssetManager"></a>AssetManager</h4></li>
-<li>a.链下运行。</li>
-<li>b.完全由RaidenService实例拥有。</li>
-<li>c.与一个单一资产相关联。</li>
-<li>d.与链上的ChannelManagerContract相关联，负责同一个资产。</li>
-<li>e.在单一资产上维护一组到其他节点的通道。</li>
-<li>f.从链上的ChannelManagerContract获取通道初始化列表。<h4 id="ChannelManagerContract"><a href="#ChannelManagerContract" class="headerlink" title="ChannelManagerContract"></a>ChannelManagerContract</h4></li>
-<li>a.链上运行。</li>
-<li>b.关联实实在在的一种资产。</li>
-<li>c. 维护链上的NettingChannelContracts列表。<h4 id="NettingChannelContract"><a href="#NettingChannelContract" class="headerlink" title="NettingChannelContract"></a>NettingChannelContract</h4></li>
-<li>a.链上运行。</li>
-<li>b.和一种资产相关联。</li>
-<li>c.知道同一通道的两个参与方(链上 地址）</li>
-<li>d.持有双方存款</li>
-<li>e.在链上执行一个通道的结算。<h4 id="TransferManager"><a href="#TransferManager" class="headerlink" title="TransferManager"></a>TransferManager</h4></li>
-<li>a.链下运行。</li>
-<li>b.负责处理TransferTasks，它们代表了脱机通道中双方之间的单一转移。</li>
-<li>c.在没有直接目标通道打开的情况下，会产生TransferTask 作为中介转移。</li>
-<li>d.如果具有接收到的转移目标的通道打开，则可以启动到目标的转移。<h4 id="TransferTask-UML-transfer-activity-transfer-state"><a href="#TransferTask-UML-transfer-activity-transfer-state" class="headerlink" title="TransferTask(UML: transfer_activity, transfer_state)"></a>TransferTask(UML: transfer_activity, transfer_state)</h4></li>
-<li>a.链下运行。</li>
-<li>b.异步运行， 通过网络事件触发。</li>
-<li>c.和AssetManager, TransferManager 和RaidenService 相关联。</li>
-<li>d. 和transfer完全相关联。</li>
-<li>e.负责找到与之相关联的传输路径。</li>
-<li>i. 路径是活跃的。</li>
-<li>ii.路径有足够的资金用于转移。</li>
-<li>f.如果找不到路径，则启动CancelTransfer。<h4 id="Transfer"><a href="#Transfer" class="headerlink" title="Transfer"></a>Transfer</h4></li>
-<li>a.包含nonce, 资产, 金额，参与方，locksroot[, secret]。</li>
-<li>b. nonce: 跟踪消息序列的计数器。Transfers的nonce 在通道中更新, 参与方的nonce在参与方的本地镜像中更新。</li>
-<li>c.是一个merkle树的树根。它记录了他们的hashlocks的最精简locked_ammounts。<h4 id="LockedTransfer"><a href="#LockedTransfer" class="headerlink" title="LockedTransfer"></a>LockedTransfer</h4></li>
-<li>a. 如果收款人知道hashlock的secret, 那么他就可以声明locked_amount。 locked_amount不是余额的一部分，而是在locksroot中隐含。<h4 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h4></li>
-<li>a.链下运行。</li>
-<li>b.被本地或者伙伴节点初始化。</li>
-<li>c.在链上有一个相对应的NettingChannelContract。</li>
-<li>d.在每个资产的对端节点中最多有一个通道。也就是说，（目前）最多两个(不同的)节点可以为每个资产设置一个通道。</li>
-<li>e.和伙伴节点维护最终的交易账本。</li>
-<li>f.执行创造和取消transfers。</li>
-<li>g.维护LockedTransfers列表。</li>
-<li>h. 执行LockedTransfers的声明。</li>
-<li>i.更新自己和伙伴的账目（接受或者发送）。<h3 id="各模块关系图如下："><a href="#各模块关系图如下：" class="headerlink" title="各模块关系图如下："></a>各模块关系图如下：</h3><img src="/img/concept_relationships.png" alt=""> <h3 id="核心步骤。"><a href="#核心步骤。" class="headerlink" title="核心步骤。"></a>核心步骤。</h3><h4 id="Transfers-in-a-channel"><a href="#Transfers-in-a-channel" class="headerlink" title="Transfers in a channel"></a>Transfers in a channel</h4></li>
-<li>a.类型: Transfer, LockedTransfer (Parent class for): MediatedTransfer, CancelTransfer。</li>
-<li>b.Trasfers 接收到一个RaidenProtocol实例化的消息，并转发给RaidenService,由TransferManager来真正的处理。</li>
-<li>c.TransferManager 从AssetManager中获得相关联的通道。</li>
-<li>d.任何通道可以追踪Transfers和LockedTransfers。</li>
-<li>e.Transfers 可以通过通道发送给参与方的节点， 也可以注册本地通道。因此，通道中的transfer既可以是用于发送的， 也可以是用于接收的。</li>
-<li>f.一旦接收到transfer, 由通道注册。</li>
-<li>i.Transfer 接收者必须要有正确的nonce。这个nonce是当每次接收到伙伴节点transfer而增加。这个nonce 在本地伙伴节点维护。参与双方维护相同的增加。保证参与transfer双方的序列一致性。</li>
-<li>ii.收到的transfer包含secret, 解锁secret得到金额, 并相应更新余额。</li>
-<li>iii.如果我们收到了LockerTransfer，LockedTransfer将被注册。</li>
-<li>iiii.最后，自己的余额和合作伙伴的余额根据allowance（= transfer.balance  -  self.balance）进行更新。如果转让包含secreted, 余额则根据步骤ii中触发的声明进行。</li>
-<li>g.如果Transfer被发送， 则由Channel注册：</li>
-<li>i.对于接收方，是对称的。</li>
-<li>ii.我们不需要验证lockroots是否正确。</li>
-<li>h.只有节点的当前余额超过传送的额度并且未达到到期的块高度(后者仅与LockedTransfers相关)，Transfers才能被初始化。</li>
-</ul>
-<h3 id="选择多条Transfer的场景"><a href="#选择多条Transfer的场景" class="headerlink" title="选择多条Transfer的场景"></a>选择多条Transfer的场景</h3><h4 id="正常的Transfer"><a href="#正常的Transfer" class="headerlink" title="正常的Transfer"></a>正常的Transfer</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">A 通过B 转帐给C：</div><div class="line">A： 初始化secret</div><div class="line">A： MediatedTransfer -&gt; B</div><div class="line">B：MediatedTransfer -&gt;  C</div><div class="line">C：secretRequest -&gt; A (证明收到的transfer是有效的)</div><div class="line">A：Secret -&gt; C</div><div class="line">C：Secret -&gt; B</div></pre></td></tr></table></figure>
-<h4 id="CancelTransfer"><a href="#CancelTransfer" class="headerlink" title="CancelTransfer:"></a>CancelTransfer:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">A： 初始化Secret</div><div class="line">A： MediatedTransfer -&gt; B</div><div class="line">B： MediatedTransfer -&gt; C(失败： C 不能和D建立路经)</div><div class="line">C：CancelTransfer -&gt; B</div><div class="line">B：MediatedTransfer -&gt; C2</div><div class="line">C2：MediatedTransfer -&gt; D</div></pre></td></tr></table></figure>
-<h4 id="TimeoutTransfer"><a href="#TimeoutTransfer" class="headerlink" title="TimeoutTransfer"></a>TimeoutTransfer</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">A： 初始化Secret</div><div class="line">B： MediatedTransfer -&gt; B</div><div class="line">B： MediatedTransfer -&gt; C (失败：没有接收到C的ACK消息)</div><div class="line">B: TransferTimeout -&gt; A</div><div class="line">决议：A不会透露secret，尝试新的transfer，B禁止C</div></pre></td></tr></table></figure>
-<h3 id="私有链上运行步骤：（geth-需要-lt-1-6-0的版本）"><a href="#私有链上运行步骤：（geth-需要-lt-1-6-0的版本）" class="headerlink" title="私有链上运行步骤：（geth 需要 &lt; 1.6.0的版本）"></a>私有链上运行步骤：（geth 需要 &lt; 1.6.0的版本）</h3><p>1，编译合约，并生成到genesis.json。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python tools/config_builder.py full_genesis &gt; mycustomgenesis.json</div></pre></td></tr></table></figure></p>
-<p>2， 根据genesis.json初始化内容到指定目录。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">geth --datadir /tmp/privategeth init mycustomgenesis.json</div></pre></td></tr></table></figure></p>
-<p>3，启动geth<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">geth --datadir /tmp/privategeth --networkid 123 --nodiscover --maxpeers 0 --rpc --minerthreads 1 --etherbase c13f2e8e9c92d81de806023d68cc64fe85bf6740 --mine</div></pre></td></tr></table></figure></p>
-<p>4，启动雷电网络<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">raiden --eth_rpc_endpoint 127.0.0.1:8545 --registry_contract_address 79eafd0b5ec8d3f945e6bb2817ed90b046c0d0af --discovery_contract_address 2ce636d6240f8955d085a896e12429f8b3c7db26</div></pre></td></tr></table></figure></p>
-<h3 id="进入Raiden-控制台"><a href="#进入Raiden-控制台" class="headerlink" title="进入Raiden 控制台"></a>进入Raiden 控制台</h3><p>举一个 alice 给 bob 转帐的例子：</p>
-<ul>
-<li><p>1.创建token, 或者用已有toke</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">token_address = tools.create_token(initial_alloc=1000, name=&quot;mytoken&quot;, symbol=&quot;MT&quot;, decimals=2)</div></pre></td></tr></table></figure>
-</li>
-<li><p>2.Bob的地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bob = &apos;addresss of partner without leading 0x&apos;</div></pre></td></tr></table></figure>
-</li>
-<li><p>3.确保可以链接bob</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tools.ping(bob)</div></pre></td></tr></table></figure>
-</li>
-<li><p>4.打开状态通道</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tools.open_channel_with_funding(token_address, bob, amount)</div></pre></td></tr></table></figure>
-</li>
-<li><p>5.bob的操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">raiden.api.deposit(token_address, alice, amount)</div></pre></td></tr></table></figure>
-</li>
-<li><p>6.可以互相转帐</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">alice -&gt; bob</div><div class="line">raiden.api.transfer(token_address, 73, bob)</div><div class="line">bob -&gt; alice</div><div class="line">raiden.api.transfer(token_address, 50, alice)</div></pre></td></tr></table></figure>
-</li>
-<li><p>7.可以查看通道的状态</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tools.channel_stats_for(token_address, bob, pretty=True)</div></pre></td></tr></table></figure>
-</li>
-<li><p>8.关闭通道</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">raiden.api.close(token_address, bob)</div></pre></td></tr></table></figure>
-</li>
-<li><p>9.为了防止对方欺骗，设置了settle过程，有10个块的timeout, 等待对方确认</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">raiden.api.settle(token_address, bob)</div></pre></td></tr></table></figure>
-</li>
-<li><p>10.可以查看双方的资金状况：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">asset.balance_of(raiden.address)</div><div class="line">asset.balance_of(bob)</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>Raiden 2.0 正在准备实现側链的功能。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/31/raiden/">展开全文 >></a>
         </p>
       
 
