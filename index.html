@@ -147,6 +147,74 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-SL" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/24/SL/">如何编译运行cardano SL</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/24/SL/" class="archive-article-date">
+  	<time datetime="2017-12-24T07:25:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="什么是Cardano-SL？"><a href="#什么是Cardano-SL？" class="headerlink" title="什么是Cardano SL？"></a>什么是Cardano SL？</h3><p>Cardano SL是由IOHK与爱丁堡大学、雅典大学以及康涅狄格大学协作设计开发的加密货币。Cardano SL是基于Haskell实现的，可以看看由Aggelos Kiayias, Alexander Russell, Bernardo David和Roman Oliynykov所写的白皮书 <a href="https://iohk.io/research/papers/#9BKRHCSI" target="_blank" rel="external">Ouroboros协议</a>。你可以将Cardano SL想象成比特币重新构想的一种可以自由修复比特币设计缺陷的升级版比特币。请阅读<a href="https://cardanodocs.com/introduction/#what-makes-cardano-sl-special" target="_blank" rel="external">Cardano SL的与众不同</a>来获取关于Cardano SL与比特币相似点与不同处的更多信息。</p>
+<h3 id="Cardano-的分层结构"><a href="#Cardano-的分层结构" class="headerlink" title="Cardano 的分层结构"></a>Cardano 的分层结构</h3><p>Cardano的设计是分层的，Cardano SL是Cardano平台的第一个组成部分， 也就是第一层。最终，它会拓展到”控制层”，作为可信任的计算框架来评估特殊的证明，保证一定量的计算被正确的执行。在游戏和赌博中，这种系统用来验证随机数产生和游戏结果的真实性。加上侧链，可以完成像游戏中可证明的公平分配奖金的任务。不过控制层的应用远远超出了游戏和赌博。身份管理、信用卡系统等等都会成为Cardano平台的一部分。我们还致力于将Cardano SL的钱包应用Daedalus发展成一个通用的加密货币钱包，具有自动化的加密货币之间的交易以及加密货币与法币之间的交易。</p>
+<h3 id="如何在nix-模式编译Cardano-SL？"><a href="#如何在nix-模式编译Cardano-SL？" class="headerlink" title="如何在nix 模式编译Cardano SL？"></a>如何在nix 模式编译Cardano SL？</h3><ul>
+<li><p>1.安装 Nix (full instructions at <a href="https://nixos.org/nix/download.html" target="_blank" rel="external">https://nixos.org/nix/download.html</a>)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">    curl https://nixos.org/nix/install | sh</div></pre></td></tr></table></figure>
+</li>
+<li><p>2.在/etc/nix/nix.conf 下增加索引</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">        $ sudo mkdir -p /etc/nix</div><div class="line">$ sudo vi /etc/nix/nix.conf       <span class="comment"># ..or any other editor, if you prefer</span></div></pre></td></tr></table></figure>
+<p>  ..如下两行添加到/etc/nix/nix.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">binary-caches             = https://cache.nixos.org https://hydra.iohk.io</div><div class="line">binary-caches-public-keys = hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=</div></pre></td></tr></table></figure>
+</li>
+<li><p>3.进入nix-shell模式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">        $ nix-shell</div></pre></td></tr></table></figure>
+</li>
+<li><p>4.编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">        $ ./scripts/build/cardano-sl.sh</div><div class="line">```        </div><div class="line">编译好后， 所有编译好的组件会在cardano-sl/.stack-work/install/x86_64-linux-nix（体系架构不同，该目录不同）/lts-9.1/8.0.2/bin/ 目录下</div><div class="line"></div><div class="line">### 如何运行Cardano SL 链接主网？</div><div class="line">* 1. 拷贝 可执行文件**cardano-node** 到cardano-sl 目录下</div><div class="line">* 2. 生成topology-mainnet文件./cardano-sl目录下，配置如下：</div></pre></td></tr></table></figure>
+<p>wallet:<br>  relays: [[{ host: relays.cardano-mainnet.iohk.io }]]<br>  valency: 1<br>  fallbacks: 7</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 3. 运行如下启动命令：</div><div class="line">``` bash</div><div class="line">$ ./cardano-node --web --no-ntp --configuration-key mainnet_full --tlscert ./scripts/tls-files/server.crt --tlskey ./scripts/tls-files/server.key --tlsca ./scripts/tls-files/ca.crt --log-config ./scripts/log-templates/log-config-qa.yaml --topology &quot;topology-mainnet&quot; --logs-prefix &quot;state-wallet-mainnet/logs&quot; --db-path &quot;state-wallet-mainnet/db&quot; --wallet-db-path &apos;state-wallet-mainnet/wallet-db&apos;</div></pre></td></tr></table></figure>
+<p>数据最后都存储在cardano-sl/state-wallet-mainnet</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/24/SL/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-Bytom" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -852,62 +920,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/06/05/tendermint/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-区块链上的分布式存储" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/01/区块链上的分布式存储/">区块链相关的分布式存储之IPFS</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/01/区块链上的分布式存储/" class="archive-article-date">
-  	<time datetime="2017-06-01T08:08:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>区块链百花争鸣的时代， 各种应用场景争相开放，就算在同一个领域，也会有各种产品出现。如分布式存储领域， 有storj, maidsafe, swarm, zeronet, ipfs等。在这里， 主角当然是IPFS。<br>正如比特币一样， 它没有产生新的技术，而是总结前人的技术， 它是p2p, 密码学，共识学等技术的组合体。IPFS则组合了4大技术点如下：</p>
-<ul>
-<li>1.分布式哈希算法(kad算法，coral dsht算法，s/kad 算法）(快速点对点定位，最优路经，防攻击。)</li>
-<li>2.百度种子用到的技术BitTorrent(数据是双通道传输，参与人越多速度越快，解决了带宽问题。)</li>
-<li>3.分布式版本控制系统git(分布式记录所有版本，安全的有据可查。)</li>
-<li>4.自我认证文件系统-SFS(分布式信任链，平等共享的全局命名空间。方便所有的文件有全局唯一名字)<br>IPFS是位于TCP/IP协议的应用层协议（与http协议是竞争关系）。www虽然带来了一次互联网革命，但http协议设计的很丑陋， 所有的事情都集中在一段报文中。<br><img src="/img/http_content.jpg" alt=""><br>http需要中心化的域名服务器，更需要中心化的web服务器。对于重要网站，必须要花费大量的成本防DDOS攻击， 也需要时刻担心服务器数据丢失。<br><img src="/img/http.jpg" alt=""><br>IPFS协议栈是漂亮的, 是对现有臃肿的http协议的一次革命。看下图：<br><img src="/img/ipfs_stack.png" alt=""><br><strong> IPFS 技术栈 </strong></li>
-<li>1.sfs，git技术分别用到了IPNS 层，应用层(applications)。 全局唯一名字, 带版本跟踪。</li>
-<li>2.BitTorrent, 分布式哈希算法分别用到了数据交换层(exchange)，路由层(routing)。快速定位，省带宽交换。<br>IPFS与http相比，瘦客户，富协议，解决了http应用的复杂编程。再加上解决了上面指出的http缺点， 这是对http的革命。以前的web等应用面对瓶颈，都是改良http，然而导致应用很胖。既然IPFS是革命http，革命，是需要流血的。撼动能满足现在的http协议不容易， 所以IPFS需要寻找革命的战友， 它提出来了用区块链来作为革命的导火索。为了应用区块链，最需搬走的大山是共识问题。目前为止，得到世人验证的有效防拜占庭共识只有POW。而IPFS想发布基于POR(带激励机制的带宽，存储容量等资源相关的一种共识)的filecoin，这无疑是困难的。所以这也是，持续这么久， IPFS都没出正式版白皮书的原因。因为区块链很火，应用都往区块链上靠，但要成为区块链应用，必须要解决共识问题。IPFS也不例外，IPFS的最难点， 就是怎么解决POR的共识问题，开发者还没有发布最实际的有效做法。个人看法， 如果IPFS能完美的解决POR问题， www的今天，就是IPFS的明天。</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/01/区块链上的分布式存储/">展开全文 >></a>
         </p>
       
 

@@ -6,29 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Bytom | Block Chain</title>
+  <title>如何编译运行cardano SL | Block Chain</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="初始化测试网络配置文件1$./bytomd init --chain_id testnet  启动节点1$./bytomd node --wallet.enable  使用bytomcli 查看当前信息1$./bytomcli net-info 该图展示了当前节点的邻居节点的相关信息 创建账户1$./bytomcli create-account [account id]  这时一定要记住自己的私">
+  <meta name="description" content="什么是Cardano SL？Cardano SL是由IOHK与爱丁堡大学、雅典大学以及康涅狄格大学协作设计开发的加密货币。Cardano SL是基于Haskell实现的，可以看看由Aggelos Kiayias, Alexander Russell, Bernardo David和Roman Oliynykov所写的白皮书 Ouroboros协议。你可以将Cardano SL想象成比特币重新构想的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Bytom">
-<meta property="og:url" content="http://yoursite.com/2017/12/02/Bytom/index.html">
+<meta property="og:title" content="如何编译运行cardano SL">
+<meta property="og:url" content="http://yoursite.com/2017/12/24/SL/index.html">
 <meta property="og:site_name" content="Block Chain">
-<meta property="og:description" content="初始化测试网络配置文件1$./bytomd init --chain_id testnet  启动节点1$./bytomd node --wallet.enable  使用bytomcli 查看当前信息1$./bytomcli net-info 该图展示了当前节点的邻居节点的相关信息 创建账户1$./bytomcli create-account [account id]  这时一定要记住自己的私">
-<meta property="og:image" content="http://yoursite.com/img/bytom_init.png">
-<meta property="og:image" content="http://yoursite.com/img/启动节点同步中.png">
-<meta property="og:image" content="http://yoursite.com/img/net-info.png">
-<meta property="og:image" content="http://yoursite.com/img/create-account.png">
-<meta property="og:image" content="http://yoursite.com/img/account_control_program.png">
-<meta property="og:image" content="http://yoursite.com/img/submit_tx.png">
-<meta property="og:image" content="http://yoursite.com/img/list_somthing.png">
-<meta property="og:image" content="http://yoursite.com/img/create-asset.png">
-<meta property="og:image" content="http://yoursite.com/img/isue-asset.png">
-<meta property="og:image" content="http://yoursite.com/img/list-assets.png">
-<meta property="og:updated_time" content="2017-12-02T14:09:29.425Z">
+<meta property="og:description" content="什么是Cardano SL？Cardano SL是由IOHK与爱丁堡大学、雅典大学以及康涅狄格大学协作设计开发的加密货币。Cardano SL是基于Haskell实现的，可以看看由Aggelos Kiayias, Alexander Russell, Bernardo David和Roman Oliynykov所写的白皮书 Ouroboros协议。你可以将Cardano SL想象成比特币重新构想的">
+<meta property="og:updated_time" content="2017-12-24T07:26:30.957Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bytom">
-<meta name="twitter:description" content="初始化测试网络配置文件1$./bytomd init --chain_id testnet  启动节点1$./bytomd node --wallet.enable  使用bytomcli 查看当前信息1$./bytomcli net-info 该图展示了当前节点的邻居节点的相关信息 创建账户1$./bytomcli create-account [account id]  这时一定要记住自己的私">
-<meta name="twitter:image" content="http://yoursite.com/img/bytom_init.png">
+<meta name="twitter:title" content="如何编译运行cardano SL">
+<meta name="twitter:description" content="什么是Cardano SL？Cardano SL是由IOHK与爱丁堡大学、雅典大学以及康涅狄格大学协作设计开发的加密货币。Cardano SL是基于Haskell实现的，可以看看由Aggelos Kiayias, Alexander Russell, Bernardo David和Roman Oliynykov所写的白皮书 Ouroboros协议。你可以将Cardano SL想象成比特币重新构想的">
   
     <link rel="alternative" href="/atom.xml" title="Block Chain" type="application/atom+xml">
   
@@ -160,58 +149,47 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Bytom" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-SL" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Bytom
+      如何编译运行cardano SL
     </h1>
   
 
         
-        <a href="/2017/12/02/Bytom/" class="archive-article-date">
-  	<time datetime="2017-12-02T12:52:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
+        <a href="/2017/12/24/SL/" class="archive-article-date">
+  	<time datetime="2017-12-24T07:25:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="初始化测试网络配置文件"><a href="#初始化测试网络配置文件" class="headerlink" title="初始化测试网络配置文件"></a>初始化测试网络配置文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomd init --chain_id testnet</div></pre></td></tr></table></figure>
-<p><img src="/img/bytom_init.png" alt="初始化测试网络配置文件"></p>
-<h3 id="启动节点"><a href="#启动节点" class="headerlink" title="启动节点"></a>启动节点</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomd node --wallet.enable</div></pre></td></tr></table></figure>
-<p><img src="/img/启动节点同步中.png" alt="启动节点"></p>
-<h3 id="使用bytomcli-查看当前信息"><a href="#使用bytomcli-查看当前信息" class="headerlink" title="使用bytomcli 查看当前信息"></a>使用bytomcli 查看当前信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli net-info</div></pre></td></tr></table></figure>
-<p><img src="/img/net-info.png" alt="查看邻居节点信息"><br>该图展示了当前节点的邻居节点的相关信息</p>
-<h3 id="创建账户"><a href="#创建账户" class="headerlink" title="创建账户"></a>创建账户</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli create-account [account id]</div></pre></td></tr></table></figure>
-<p><img src="/img/create-account.png" alt="创建账户"></p>
-<p>这时一定要记住自己的私钥xprv, 和账户account id</p>
-<h3 id="创建属于你账户的control-program"><a href="#创建属于你账户的control-program" class="headerlink" title="创建属于你账户的control program"></a>创建属于你账户的control program</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli create-account-receiver [account id]</div></pre></td></tr></table></figure>
-<p><img src="/img/account_control_program.png" alt="创建资产转移control program"></p>
-<p><code>注意：</code> 这时可以把你的control program 记下来， 以后有人给你转btm,或者其他资产， 都是通过这个control program转给你</p>
-<p><code>注意：</code> 接下来只有有btm的人才能给你发送btm(两种途径获得。1，能自己同步完，并且挖到矿。2，找bytom官方要)</p>
-<h3 id="转移btm"><a href="#转移btm" class="headerlink" title="转移btm"></a>转移btm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli sub-control-receiver-tx [account xprv] [account id] [asset id] [spend amount] [control_program]</div></pre></td></tr></table></figure>
-<p><img src="/img/submit_tx.png" alt="btm转移"><br>等该交易的块被同步完成时，发送者和接收方都可以用如下命令来查看余额<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli list-balances</div></pre></td></tr></table></figure></p>
-<p><img src="/img/list_somthing.png" alt="list-balances"></p>
-<h3 id="发布资产"><a href="#发布资产" class="headerlink" title="发布资产"></a>发布资产</h3><ul>
-<li>1.创建资产<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli create-asset silver</div></pre></td></tr></table></figure>
+        <h3 id="什么是Cardano-SL？"><a href="#什么是Cardano-SL？" class="headerlink" title="什么是Cardano SL？"></a>什么是Cardano SL？</h3><p>Cardano SL是由IOHK与爱丁堡大学、雅典大学以及康涅狄格大学协作设计开发的加密货币。Cardano SL是基于Haskell实现的，可以看看由Aggelos Kiayias, Alexander Russell, Bernardo David和Roman Oliynykov所写的白皮书 <a href="https://iohk.io/research/papers/#9BKRHCSI" target="_blank" rel="external">Ouroboros协议</a>。你可以将Cardano SL想象成比特币重新构想的一种可以自由修复比特币设计缺陷的升级版比特币。请阅读<a href="https://cardanodocs.com/introduction/#what-makes-cardano-sl-special" target="_blank" rel="external">Cardano SL的与众不同</a>来获取关于Cardano SL与比特币相似点与不同处的更多信息。</p>
+<h3 id="Cardano-的分层结构"><a href="#Cardano-的分层结构" class="headerlink" title="Cardano 的分层结构"></a>Cardano 的分层结构</h3><p>Cardano的设计是分层的，Cardano SL是Cardano平台的第一个组成部分， 也就是第一层。最终，它会拓展到”控制层”，作为可信任的计算框架来评估特殊的证明，保证一定量的计算被正确的执行。在游戏和赌博中，这种系统用来验证随机数产生和游戏结果的真实性。加上侧链，可以完成像游戏中可证明的公平分配奖金的任务。不过控制层的应用远远超出了游戏和赌博。身份管理、信用卡系统等等都会成为Cardano平台的一部分。我们还致力于将Cardano SL的钱包应用Daedalus发展成一个通用的加密货币钱包，具有自动化的加密货币之间的交易以及加密货币与法币之间的交易。</p>
+<h3 id="如何在nix-模式编译Cardano-SL？"><a href="#如何在nix-模式编译Cardano-SL？" class="headerlink" title="如何在nix 模式编译Cardano SL？"></a>如何在nix 模式编译Cardano SL？</h3><ul>
+<li><p>1.安装 Nix (full instructions at <a href="https://nixos.org/nix/download.html" target="_blank" rel="external">https://nixos.org/nix/download.html</a>)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">    curl https://nixos.org/nix/install | sh</div></pre></td></tr></table></figure>
+</li>
+<li><p>2.在/etc/nix/nix.conf 下增加索引</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">        $ sudo mkdir -p /etc/nix</div><div class="line">$ sudo vi /etc/nix/nix.conf       <span class="comment"># ..or any other editor, if you prefer</span></div></pre></td></tr></table></figure>
+<p>  ..如下两行添加到/etc/nix/nix.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">binary-caches             = https://cache.nixos.org https://hydra.iohk.io</div><div class="line">binary-caches-public-keys = hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=</div></pre></td></tr></table></figure>
+</li>
+<li><p>3.进入nix-shell模式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">        $ nix-shell</div></pre></td></tr></table></figure>
+</li>
+<li><p>4.编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">        $ ./scripts/build/cardano-sl.sh</div><div class="line">```        </div><div class="line">编译好后， 所有编译好的组件会在cardano-sl/.stack-work/install/x86_64-linux-nix（体系架构不同，该目录不同）/lts-9.1/8.0.2/bin/ 目录下</div><div class="line"></div><div class="line">### 如何运行Cardano SL 链接主网？</div><div class="line">* 1. 拷贝 可执行文件**cardano-node** 到cardano-sl 目录下</div><div class="line">* 2. 生成topology-mainnet文件./cardano-sl目录下，配置如下：</div></pre></td></tr></table></figure>
+<p>wallet:<br>  relays: [[{ host: relays.cardano-mainnet.iohk.io }]]<br>  valency: 1<br>  fallbacks: 7</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 3. 运行如下启动命令：</div><div class="line">``` bash</div><div class="line">$ ./cardano-node --web --no-ntp --configuration-key mainnet_full --tlscert ./scripts/tls-files/server.crt --tlskey ./scripts/tls-files/server.key --tlsca ./scripts/tls-files/ca.crt --log-config ./scripts/log-templates/log-config-qa.yaml --topology &quot;topology-mainnet&quot; --logs-prefix &quot;state-wallet-mainnet/logs&quot; --db-path &quot;state-wallet-mainnet/db&quot; --wallet-db-path &apos;state-wallet-mainnet/wallet-db&apos;</div></pre></td></tr></table></figure>
+<p>数据最后都存储在cardano-sl/state-wallet-mainnet</p>
 </li>
 </ul>
-<p><img src="/img/create-asset.png" alt="创建资产"></p>
-<ul>
-<li>2.发布资产<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli sub-create-issue-tx [account id] [asset id] [issue amount] [asset xprv] [account xprv]</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="/img/isue-asset.png" alt="发布资产"></p>
-<ul>
-<li>3.查看资产<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./bytomcli list-assets</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="/img/list-assets.png" alt="查看资产"></p>
-<p><strong>转移其他资产类似于转移btm，只是asset-id 不同</strong></p>
 
       
 
@@ -296,7 +274,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/12/02/Bytom/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/12/24/SL/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -310,18 +288,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/12/24/SL/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          如何编译运行cardano SL
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/10/30/兰花协议/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">兰花协议</div>
+    <a href="/2017/12/02/Bytom/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Bytom</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -337,8 +306,8 @@
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "http://yoursite.com/2017/12/02/Bytom/", 
-    sourceId: "Bytom",
+    url: "http://yoursite.com/2017/12/24/SL/", 
+    sourceId: "SL",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
