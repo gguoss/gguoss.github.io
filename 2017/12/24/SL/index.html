@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>如何编译运行cardano SL | Block Chain</title>
+  <title>如何编译运行cardano SL? | Block Chain</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="什么是Cardano SL？Cardano SL是由IOHK与爱丁堡大学、雅典大学以及康涅狄格大学协作设计开发的加密货币。Cardano SL是基于Haskell实现的，可以看看由Aggelos Kiayias, Alexander Russell, Bernardo David和Roman Oliynykov所写的白皮书 Ouroboros协议。你可以将Cardano SL想象成比特币重新构想的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何编译运行cardano SL">
+<meta property="og:title" content="如何编译运行cardano SL?">
 <meta property="og:url" content="http://yoursite.com/2017/12/24/SL/index.html">
 <meta property="og:site_name" content="Block Chain">
 <meta property="og:description" content="什么是Cardano SL？Cardano SL是由IOHK与爱丁堡大学、雅典大学以及康涅狄格大学协作设计开发的加密货币。Cardano SL是基于Haskell实现的，可以看看由Aggelos Kiayias, Alexander Russell, Bernardo David和Roman Oliynykov所写的白皮书 Ouroboros协议。你可以将Cardano SL想象成比特币重新构想的">
-<meta property="og:updated_time" content="2017-12-24T07:26:30.957Z">
+<meta property="og:updated_time" content="2017-12-24T07:34:15.793Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何编译运行cardano SL">
+<meta name="twitter:title" content="如何编译运行cardano SL?">
 <meta name="twitter:description" content="什么是Cardano SL？Cardano SL是由IOHK与爱丁堡大学、雅典大学以及康涅狄格大学协作设计开发的加密货币。Cardano SL是基于Haskell实现的，可以看看由Aggelos Kiayias, Alexander Russell, Bernardo David和Roman Oliynykov所写的白皮书 Ouroboros协议。你可以将Cardano SL想象成比特币重新构想的">
   
     <link rel="alternative" href="/atom.xml" title="Block Chain" type="application/atom+xml">
@@ -156,7 +156,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      如何编译运行cardano SL
+      如何编译运行cardano SL?
     </h1>
   
 
@@ -173,20 +173,29 @@
 <h3 id="Cardano-的分层结构"><a href="#Cardano-的分层结构" class="headerlink" title="Cardano 的分层结构"></a>Cardano 的分层结构</h3><p>Cardano的设计是分层的，Cardano SL是Cardano平台的第一个组成部分， 也就是第一层。最终，它会拓展到”控制层”，作为可信任的计算框架来评估特殊的证明，保证一定量的计算被正确的执行。在游戏和赌博中，这种系统用来验证随机数产生和游戏结果的真实性。加上侧链，可以完成像游戏中可证明的公平分配奖金的任务。不过控制层的应用远远超出了游戏和赌博。身份管理、信用卡系统等等都会成为Cardano平台的一部分。我们还致力于将Cardano SL的钱包应用Daedalus发展成一个通用的加密货币钱包，具有自动化的加密货币之间的交易以及加密货币与法币之间的交易。</p>
 <h3 id="如何在nix-模式编译Cardano-SL？"><a href="#如何在nix-模式编译Cardano-SL？" class="headerlink" title="如何在nix 模式编译Cardano SL？"></a>如何在nix 模式编译Cardano SL？</h3><ul>
 <li><p>1.安装 Nix (full instructions at <a href="https://nixos.org/nix/download.html" target="_blank" rel="external">https://nixos.org/nix/download.html</a>)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">    curl https://nixos.org/nix/install | sh</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">    $ curl https://nixos.org/nix/install | sh</div></pre></td></tr></table></figure>
 </li>
 <li><p>2.在/etc/nix/nix.conf 下增加索引</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">        $ sudo mkdir -p /etc/nix</div><div class="line">$ sudo vi /etc/nix/nix.conf       <span class="comment"># ..or any other editor, if you prefer</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo mkdir -p /etc/nix</div><div class="line">$ sudo vi /etc/nix/nix.conf       <span class="comment"># ..or any other editor, if you prefer</span></div></pre></td></tr></table></figure>
 <p>  ..如下两行添加到/etc/nix/nix.conf</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">binary-caches             = https://cache.nixos.org https://hydra.iohk.io</div><div class="line">binary-caches-public-keys = hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=</div></pre></td></tr></table></figure>
 </li>
 <li><p>3.进入nix-shell模式</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">        $ nix-shell</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nix-shell</div></pre></td></tr></table></figure>
 </li>
 <li><p>4.编译</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">        $ ./scripts/build/cardano-sl.sh</div><div class="line">```        </div><div class="line">编译好后， 所有编译好的组件会在cardano-sl/.stack-work/install/x86_64-linux-nix（体系架构不同，该目录不同）/lts-9.1/8.0.2/bin/ 目录下</div><div class="line"></div><div class="line">### 如何运行Cardano SL 链接主网？</div><div class="line">* 1. 拷贝 可执行文件**cardano-node** 到cardano-sl 目录下</div><div class="line">* 2. 生成topology-mainnet文件./cardano-sl目录下，配置如下：</div></pre></td></tr></table></figure>
-<p>wallet:<br>  relays: [[{ host: relays.cardano-mainnet.iohk.io }]]<br>  valency: 1<br>  fallbacks: 7</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 3. 运行如下启动命令：</div><div class="line">``` bash</div><div class="line">$ ./cardano-node --web --no-ntp --configuration-key mainnet_full --tlscert ./scripts/tls-files/server.crt --tlskey ./scripts/tls-files/server.key --tlsca ./scripts/tls-files/ca.crt --log-config ./scripts/log-templates/log-config-qa.yaml --topology &quot;topology-mainnet&quot; --logs-prefix &quot;state-wallet-mainnet/logs&quot; --db-path &quot;state-wallet-mainnet/db&quot; --wallet-db-path &apos;state-wallet-mainnet/wallet-db&apos;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./scripts/build/cardano-sl.sh</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>编译好后， 所有编译好的组件会在cardano-sl/.stack-work/install/x86_64-linux-nix（体系架构不同，该目录不同）/lts-9.1/8.0.2/bin/ 目录下</p>
+<h3 id="如何运行Cardano-SL-链接主网？"><a href="#如何运行Cardano-SL-链接主网？" class="headerlink" title="如何运行Cardano SL 链接主网？"></a>如何运行Cardano SL 链接主网？</h3><ul>
+<li>1.拷贝 可执行文件<strong>cardano-node</strong> 到cardano-sl 目录下</li>
+<li>2.生成topology-mainnet文件./cardano-sl目录下，配置如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">wallet:</div><div class="line">    relays: [[&#123; host: relays.cardano-mainnet.iohk.io &#125;]]</div><div class="line">    valency: 1</div><div class="line">    fallbacks: 7</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>3.运行如下启动命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./cardano-node --web --no-ntp --configuration-key mainnet_full --tlscert ./scripts/tls-files/server.crt --tlskey ./scripts/tls-files/server.key --tlsca ./scripts/tls-files/ca.crt --log-config ./scripts/<span class="built_in">log</span>-templates/<span class="built_in">log</span>-config-qa.yaml --topology <span class="string">"topology-mainnet"</span> --logs-prefix <span class="string">"state-wallet-mainnet/logs"</span> --db-path <span class="string">"state-wallet-mainnet/db"</span> --wallet-db-path <span class="string">'state-wallet-mainnet/wallet-db'</span></div></pre></td></tr></table></figure>
 <p>数据最后都存储在cardano-sl/state-wallet-mainnet</p>
 </li>
 </ul>
